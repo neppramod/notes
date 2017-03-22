@@ -1,0 +1,4 @@
+convert -resize 1366x768 more_purple.jpg noise-texture.png
+ffmpeg -ss 26 -i mv.mp4 -vcodec copy -acodec copy mv1.mp4
+ffmpeg -f concat -i list -c copy output.mp4
+# list contains file 'file_path/file_name'

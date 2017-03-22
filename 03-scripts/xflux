@@ -1,0 +1,11 @@
+#!/bin/bash
+#xflux -l 27.6919 -g 85.3386 -k 2700
+xflux -l 27.6919 -g 85.3386 -k 3400
+
+# Ember: 1200K
+# Candle: 1900K
+# Warm Incandescent: 2300K
+# Incandescent: 2700K
+# Halogen: 3400K
+# Fluorescent: 4200K
+# Daylight: 5500K
