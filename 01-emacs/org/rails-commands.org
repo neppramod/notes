@@ -1,0 +1,50 @@
+* Rails commands
+================
+** Destroy created scaffold
+rails destroy scaffold XXXXX
+
+** Scaffold
+rails g scaffold user email:string crypted_password:string salt:string --migration false
+
+** Install (Gemfile)
+gem "therubyracer"
+gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
+gem "twitter-bootstrap-rails"
+
+** Run following commands
+bundle install
+rails generate bootstrap:install less
+
+
+** To create new pages through scaffold
+rails g scaffold Post title:string description:text
+rake db:migrate
+rails g bootstrap:themed Posts
+
+For less see 
+
+https://github.com/seyhunak/twitter-bootstrap-rails
+
+** Relationship in scaffolding
+rails g scaffold Post
+rails g scaffold Comment post:references
+
+Then rails will create a migration that adds a column named post_id to the Comment table and creates an index on it. For both tables, it creates foreign key constraints between comments(post_id) and posts(id). Rails will also add belongs_to :post in the Comment model.
+
+At anytime you can add a has_many to a model as long as another model belongs_to the first model and has a migration with the foreign key column.
+
+At anytime you can add a has_many to a model as long as another model belongs_to the first model and has a migration with the foreign key column.
+
+E.g.,
+$ vi Gemfile
+
+gem "therubyracer"
+gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
+gem "twitter-bootstrap-rails"
+
+$ rails g scaffold Address street:string city:string
+$ rake db:migrate
+$ rails g bootstrap:themed Address
+$ rails g scaffold Person name:string hobby:string address:references
+$ rake db:migrate
+$ rails g bootstrap:themed Person

@@ -1,0 +1,24 @@
+
+
+Having used ecb for a few year now, the only commands I ever use are:
+
+    Jump to the directory window CTRL-c . gd (ie type ctrl and c together, release and press '.', release and press 'g' then 'd')
+    Jump to the history window CTRL-c . gh
+    Jump to the last window you were in CTRL-c . gl
+    Jump to the first editor window CTRL-c . g1
+
+The directory browser can be controlled without using the mouse too – just use the arrow keys and enter – give it a go!dd
+
+
+
+
+Keyboard navigation:
+
+ECB windows from bottom to top.
+
+    Go to history: "C-c . g h"
+    Go to methods: "C-c . g m"
+    Go to sources: "C-c . g s"
+    Go to directories: "C-c . g d"
+
+Main buffer: "C-c . g 1"

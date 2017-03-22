@@ -1,0 +1,54 @@
+OO Design Patterns - GOF
+========================
+
+# Types of patterns
+* Creational Patterns
+  Object instantiation
+** Singleton
+   Creates single object
+** Builder
+   Builds a product using different parts
+** Prototype
+   Uses a clone of prototype to create object, in situations where object creation is costly
+** Factory method
+   A factory method is responsible to instantiate the object, hiding the detail how the object is created
+** Abstract factory
+   A family of objects are created using the factory.
+* Structural Patterns
+  Composing structures
+** Adapter
+   Makes an incompatible API compatible with the current API by calling the incompatible API through the compatible API interface
+** Facade
+   Simplifying a complex code/library/api by wrapping the library in a simple api
+** Bridge
+   One interface holding the reference of another interface is called bridge. This frees object instantiation until late.
+** Composite
+   Composes object creating a chain of objects, which itself acts as a composite object.
+** Decorator
+   Provides a way to add additional behavior to a class by wrapping it by the decorator.
+** Proxy
+   Hides object instantiation behind a proxy. Sometimes heavy resources can be defered until it is actually used.
+** Flyweight
+   Creates few objects that can be used to represent large amount of data type individually using that object.
+* Behavior Patterns
+  Algorithms and processes, including communications
+** Template Method
+   Provides a template that is implemented or replaced by subclasses.
+** Memento
+   Save state and later restore it
+** State
+   Implement algorithm as state machine
+** Strategy
+   Decouple certain behavior or algorithm using interface, so that the client can have separate behavior.
+** Iterator
+   Provide a way to iterate object collection even types of different types using a common interface
+** Mediator
+   Provides a way to communicate common behavior using a mediator that communicates between objects of different types.
+** Observer
+   Provide a way to listen to some changes and act accordingly when certain events happen
+** Chain of Responsibility
+   Chain several handlers, in which only one handles the responsibility.
+** Visitor
+   Provide a way to attach additional logic by adding a visitor interface.
+** Command
+   Provides a way to encapsulate commands.

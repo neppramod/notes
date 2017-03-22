@@ -1,0 +1,50 @@
+Ruby Tutorial
+==============
+* Basic
+
+rails new bookmarks -T -d sqlite3 -B
+# Here we skipped bundle with -B
+bundle install 
+
+# Scaffolding
+rails generate scaffold bookmark title:string url:string
+
+# To go into database 
+rake db:migrate
+
+# Rake tasks
+rake -T
+
+# Open a rails shell
+rails console
+
+* Installation
+* Git
+* Database
+# If you want to use SQLite (not recommended)
+rails new myapp
+
+# If you want to use MySQL
+rails new myapp -d mysql
+
+# Edit config/database.yml to match same username as your app for postgresql
+rails new myapp -d postgresql
+
+# Go inside the application directory
+cd myapp
+
+# Modifiy MySQL or Postgres wit a username/password by 
+# editing config/database.yml file
+
+# Create the Database
+rake db:create 
+
+rails server
+
+
+* Git
+git init .
+git add .
+git commit -m "Initial comit"
+
+

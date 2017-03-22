@@ -1,0 +1,62 @@
+* C-h t (help-with-tutorial)
+* C-h k (describe-key)
+  You enter a key sequence that emacs explains
+* C-h K (Info-goto-emacs-key-command-node)
+Go to the Emacs manual section that describes a key sequence that you type.
+* C-h w (where-is)
+List the (keyboard/menu/mouse) keys that invokes an Emasc command. 
+This is the inverse of C-h k
+* C-h f (describe-function)
+  Describe an Emacs command (non-interactive function)
+* C-h a (apropos-command)
+List Emacs commands whose names match a given pattern. Example C-h a file
+ lists the commands with "file" in their name
+* C-h d
+Show documentation for lisp symbols
+* C-h m (describe-mode)
+Describe the modes of the current buffer, including the main keys and commands available
+* C-h b (describe-bindings)
+  List all of the key bindings currently in effect for the current buffer
+* C-h r (info-emacs-manual)
+Access the EmacsManaul
+* C-h i (info)
+Open info, the documentation browser. Access to a menu of available manuals
+* C-h p (finder-by-keywoard)
+List available EmacsLisp packages. Go to a package
+* M-x search-emacs-glossary
+Open the Glossary page of the Emacs manual
+* C-h C-n (view-emacs-news)
+Describe what's new in the current version of Emacs, compared to the previous version
+* C-h l (view-lossage)
+Show your last 100 keystrokes
+* C-h v (describe-variable)
+Describe an Emacs user option or internal variable
+* Tags
+** To Generate Tags
+find . -type f -iname "*.[chS]" | xargs etags -a
+find . -name '*.c' -exec etags -a {} \;
+
+** To Genereate Emacs Tags
+ctags -e myfile.cpp
+ctags -e -R .
+ctags -e -R *.cpp *.hpp *.h
+** Basic commands
+
+|-----------------+----------------------------------------------|
+| Command Name    | Action                                       |
+|-----------------+----------------------------------------------|
+| M-. <RET>       | Jump to the tag underneath the cursor        |
+| M-. <tag> <RET> | Search for a particular Tag                  |
+| C-u M-.         | Find the next definition for the last Tag    |
+| M-*             | Pop back to where you previously invoked M-. |
+|-----------------+----------------------------------------------|
+
+* Projectile
+| Keys      | Description                                      |
+|-----------+--------------------------------------------------|
+| C-c p C-h | Projectile's key bindings                        |
+| C-c h     | Go to a projectile project (most important)      |
+| C-x j     | Projectile dired (Ctrl - m = Go inside director) |
+|-----------+--------------------------------------------------|
+
+

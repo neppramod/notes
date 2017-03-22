@@ -1,0 +1,8 @@
+Emacs Keyboard Shortcuts
+========================
+* Search Everywhere = Double Shift
+* Open Project view = Alt + 1
+* Open a file by name = Ctrl+X, Ctrl+F
+* Open Navigation Bar = Alt + Home
+* Search commands = Ctrl + Shift + A
+

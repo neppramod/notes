@@ -1,0 +1,6 @@
+* Patterns not clear about
+** Decorator vs Composite
+   Decorator is said to be like composite but a list. Both seem to reference previous element in the list. Why is composite not a list?
+   Decorator adds additional functionality. Order matters.
+
+

@@ -1,0 +1,34 @@
+* Tasks
+** DONE Start new org file for tutorial
+   CLOSED: [2015-03-11 Wed 13:56]
+
+# Alt-Shift-RET for **
+# C-c C-t for DONE
+
+** DONE Outline document
+   CLOSED: [2015-03-11 Wed 14:03]
+** TODO Write introduction
+
+
+* Introduction
+Org-mode is a personal information management and outlining tool for\
+Emacs. This document is intended to give the reader a "feel" for \
+org-mode and to teach basic operations.
+
+** Obtain org-mode
+
+You can download org-mode from the [[http://staff.science.wva.nl/~dominik/Tools/org/][org-mode home page.]]
+
+
+** Installation
+** Configuration
+
+* The basics
+** Creating a new file
+** Simple task list
+   SCHEDULED: <2015-03-11 Wed>
+** Using headlines to structure a document
+** Links to other places
+** Adding notes to a task
+** Scheduling an appointment
+** Using the agenda

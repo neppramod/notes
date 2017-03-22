@@ -1,0 +1,12 @@
+** DONE 1.Ctags, 
+   CLOSED: [2015-10-29 Thu 16:02]
+** DONE Gnu Global (see this package)
+   CLOSED: [2015-10-29 Thu 16:02]
+   Uses barkley db instead of text file
+
+* Emacs Bookmarks 
+- C-x r m RET : Set the bookmark for the visited file, at point.
+- C-x r m bookmark RET : Set the bookmark named bookmark at point (bookmark-set).
+- C-x r b bookmark RET : Jump to the bookmark named bookmark (bookmark-jump).
+- C-x r l : List all bookmarks (list-bookmarks).
+- M-x bookmark-save : Save all the current bookmark values in the default bookmark file. 

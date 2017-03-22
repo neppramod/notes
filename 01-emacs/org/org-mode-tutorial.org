@@ -1,0 +1,47 @@
+* Commands
+http://orgmode.org/manual/Creating-timestamps.html
+
+* Alt + Enter
+   Create sub-bullet
+* Alt + Right/Left Arrow
+  Indent/de-indent bullet
+* Alt + Up/Down
+  Change the order
+* TODO Shift + Right Arrow (Left Arrow = Remove TODO)
+  Make todo / Close TODO
+* - and brace and space and closing brace, to close Ctrl + c Ctrl + x Ctrl + b
+  
+* C-c .     (org-time-stamp)
+  Prompt for a date and insert a corresponding timestamp. When the cursor is at an existing timestamp in the buffer, the command is used to modify this timestamp instead of inserting a new one. When this command is used twice in succession, a time range is inserted. 
+* C-c !     (org-time-stamp-inactive)
+  Like C-c ., but insert an inactive timestamp that will not cause an agenda entry. 
+* C-u C-c .
+* C-u C-c !
+  Like C-c . and C-c !, but use the alternative format which contains date and time. The default time can be rounded to multiples of 5 minutes, see the option org-time-stamp-rounding-minutes. 
+* C-c C-c
+  Normalize timestamp, insert/fix day name if missing or wrong. 
+* C-c <     (org-date-from-calendar)
+  Insert a timestamp corresponding to the cursor date in the Calendar. 
+* C-c >     (org-goto-calendar)
+  Access the Emacs calendar for the current date. If there is a timestamp in the current line, go to the corresponding date instead. 
+* C-c C-o     (org-open-at-point)
+  Access the agenda for the date given by the timestamp or -range at point (see Weekly/daily agenda). 
+* S-<left>     (org-timestamp-down-day)
+* S-<right>     (org-timestamp-up-day)
+  Change date at cursor by one day. These key bindings conflict with shift-selection and related modes (see Conflicts). 
+* S-<up>     (org-timestamp-up)
+* S-<down>     (org-timestamp-down-down)
+  Change the item under the cursor in a timestamp. The cursor can be on a year, month, day, hour or minute. When the timestamp contains a time range like ‘15:30-16:30’, modifying the first time will also shift the second, shifting the time block with constant length. To change the length, modify the second time. Note that if the cursor is in a headline and not at a timestamp, these same keys modify the priority of an item. (see Priorities). The key bindings also conflict with shift-selection and related modes (see Conflicts). 
+* C-c C-y     (org-evaluate-time-range)
+  Evaluate a time range by computing the difference between start and end. With a prefix argument, insert result after the time range (in a table: into the following column).
+* C-c a (agenda-files)
+
+* C-c [ (org-agenda-file-to-front)
+  Add current file to agenda
+* C-c ] (org-remove-file)
+  Remove current file from agenda
+* C-' or C-, (org-cycle-agenda-files)
+  Cycle through agenda files
+
+* See Schedule
+  http://orgmode.org/manual/Inserting-deadline_002fschedule.html

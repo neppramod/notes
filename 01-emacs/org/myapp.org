@@ -1,0 +1,40 @@
+MyApp Developement
+* Difference in Event and Donation
+*** Person does not have reference to donation, only donation has reference to person.
+*** TODO Add route.
+*** TODO Not done rake db:migrate
+*** TODO Restart to see the changes. Can get some error message for db:migrate 
+    (wonder if it is even required for mongo)
+
+*** Errors
+    1. Undefined local variable or method `description' for Donation:Class while accessing index
+       Could be variable defined in index or model.
+       a. Check model first (Y)
+       b. If not, check index second.
+
+       Since a happened, check index and all other places where description is not used.
+       Before that check whether description is a field of Donation (Y).
+       - Added in index.html, edit.html, new.html, show.html
+	
+       - We also need to permit it in donations_controller (Y)
+
+       - Check localhost:3000/donations again.
+
+   2. undefined method `filed' for Donation:Class
+      - Misspelled in Donation model (Y, for description)
+      
+      - Check localhost:3000/donations again.
+      - Created donation.
+
+* Check mongodb database for donation
+  Purpose: To check whether person object is attached to donation or not.
+
+* Check edit
+  *** Works ***
+* Check delete
+  *** Works ***
+
+* Backup and Try to Change the data type of fields.
+  - Git and in archive.
+  - Check Mongoid reference document to find out supported data type.
+  - Research how date is represented in rails (datepicker like in Roo ?)
