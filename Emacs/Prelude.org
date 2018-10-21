@@ -1,0 +1,967 @@
+[[http://www.gnu.org/licenses/gpl-3.0.txt][[[https://img.shields.io/badge/license-GPL_3-green.svg]]]]
+[[https://liberapay.com/bbatsov/donate][[[https://liberapay.com/assets/widgets/donate.svg]]]]
+[[https://www.patreon.com/bbatsov][[[https://img.shields.io/badge/patreon-donate-orange.svg]]]]
+
+* Emacs Prelude
+  :PROPERTIES:
+  :CUSTOM_ID: emacs-prelude
+  :END:
+
+Prelude is an Emacs distribution that aims to enhance the default Emacs
+experience. Prelude alters a lot of the default settings, bundles a
+plethora of additional packages and adds its own core library to the
+mix. The final product offers an easy to use Emacs configuration for
+Emacs newcomers and lots of additional power for Emacs power users.
+
+Prelude is compatible *ONLY with GNU Emacs 25.1+*. In general you're
+advised to always run Prelude with the latest Emacs - currently *26.1*.
+
+You can support the development of Prelude via
+[[https://www.paypal.me/bbatsov][PayPal]],
+[[https://bountysource.com/teams/prelude][Salt]],
+[[https://www.patreon.com/bbatsov][Patreon]] and
+[[https://liberapay.com/bbatsov/donate][Liberapay]].
+
+[[https://liberapay.com/bbatsov/donate][[[https://liberapay.com/assets/widgets/donate.svg]]]]
+[[https://www.patreon.com/bbatsov][[[https://img.shields.io/badge/patreon-donate-orange.svg]]]]
+
+*Table of Contents*
+
+- [[#fast-forward][Fast Forward]]
+- [[#installing-emacs][Installing Emacs]]
+- [[#installation][Installation]]
+
+  - [[#automated][Automated]]
+
+    - [[#via-curl][Via Curl]]
+    - [[#via-wget][Via Wget]]
+
+  - [[#manual][Manual]]
+
+- [[#updating-prelude][Updating Prelude]]
+
+  - [[#manual-update][Manual update]]
+
+    - [[#update-all-bundled-packages][Update all bundled packages]]
+    - [[#update-preludes-code][Update Prelude's code]]
+    - [[#restart-prelude][Restart Prelude]]
+
+  - [[#automatic-update][Automatic update]]
+
+- [[#enabling-additional-modules][Enabling additional modules]]
+- [[#running][Running]]
+- [[#getting-to-know-prelude][Getting to know Prelude]]
+
+  - [[#keymap][Keymap]]
+
+    - [[#global][Global]]
+    - [[#prelude-mode][Prelude Mode]]
+    - [[#macos-modifier-keys][macOS modifier keys]]
+    - [[#projectile][Projectile]]
+    - [[#helm][Helm]]
+    - [[#key-chords][Key-chords]]
+
+      - [[#disabling-key-chords][Disabling key-chords]]
+
+  - [[#cheatsheet][Cheatsheet]]
+
+- [[#automatic-package-installation][Automatic package installation]]
+
+  - [[#color-themes][Color Themes]]
+  - [[#personalizing][Personalizing]]
+
+    - [[#disabling-whitespace-mode][Disabling whitespace-mode]]
+    - [[#disable-flyspell-mode][Disable flyspell-mode]]
+
+- [[#caveats--pitfalls][Caveats & Pitfalls]]
+
+  - [[#updating-bundled-packages][Updating bundled packages]]
+  - [[#problems-with-flyspell-mode][Problems with flyspell-mode]]
+  - [[#ugly-colors-in-the-terminal-emacs-version][Ugly colors in the
+    terminal Emacs version]]
+  - [[#melpa-error-on-initial-startup][MELPA error on initial startup]]
+  - [[#warnings-on-arrow-navigation-in-editor-buffers][Warnings on arrow
+    navigation in editor buffers]]
+  - [[#customized-c-a-behavior][Customized C-a behavior]]
+  - [[#poor-ido-matching-performance-on-large-datasets][Poor ido
+    matching performance on large datasets]]
+  - [[#windows-compatibility][Windows compatibility]]
+
+- [[#known-issues][Known issues]]
+- [[#support][Support]]
+- [[#contributors][Contributors]]
+- [[#bugs--improvements][Bugs & Improvements]]
+
+** Fast Forward
+   :PROPERTIES:
+   :CUSTOM_ID: fast-forward
+   :END:
+
+Assuming you're using an Unix-like OS (=*BSD=, =GNU/Linux=, =macOS=,
+=Solaris=, etc), you already have Emacs 24.4+ installed, as well as
+=git= & =curl= you can skip the whole manual and just type in your
+favorite shell the following command:
+
+#+BEGIN_SRC sh
+    curl -L https://git.io/epre | sh
+#+END_SRC
+
+You can now power up your Emacs, sit back and enjoy Prelude, forgetting
+about the rest of this manual.
+
+There are two environment variables you can use to control the source
+repository and the installation directory. To change the installation
+directory:
+
+#+BEGIN_SRC sh
+    export PRELUDE_INSTALL_DIR="$HOME/.emacs.d" && curl -L https://github.com/bbatsov/prelude/raw/master/utils/installer.sh | sh
+#+END_SRC
+
+To change the source repository:
+
+#+BEGIN_SRC sh
+    export PRELUDE_URL="https://github.com/yourname/prelude.git" && curl -L https://github.com/bbatsov/prelude/raw/master/utils/installer.sh | sh
+#+END_SRC
+
+Note that the installer will back up any existing =.emacs= file or
+=.emacs.d= since it will unpack Prelude's code in =.emacs.d=. If you're
+doing a manual install make sure you don't have a =.emacs= file or back
+up your existing =.emacs.d= directory manually.
+
+Don't forget to adjust your =prelude-modules.el= file once the
+installation is done. By default most of the modules that ship with
+Prelude are not loaded.
+
+** Installing Emacs
+   :PROPERTIES:
+   :CUSTOM_ID: installing-emacs
+   :END:
+
+Obviously to use the Emacs Prelude you have to install Emacs first. Have
+a look at the [[http://wikemacs.org/index.php/Installing_Emacs][WikEmacs
+articles on installing Emacs]].
+
+** Installation
+   :PROPERTIES:
+   :CUSTOM_ID: installation
+   :END:
+
+*** Automated
+    :PROPERTIES:
+    :CUSTOM_ID: automated
+    :END:
+
+You can install *Emacs Prelude* via the command line with either =curl=
+or =wget=. Naturally =git= is also required.
+
+**** Via Curl
+     :PROPERTIES:
+     :CUSTOM_ID: via-curl
+     :END:
+
+If you're using =curl= type the following command:
+
+#+BEGIN_SRC sh
+    curl -L https://github.com/bbatsov/prelude/raw/master/utils/installer.sh | sh
+#+END_SRC
+
+**** Via Wget
+     :PROPERTIES:
+     :CUSTOM_ID: via-wget
+     :END:
+
+If you're using =wget= type:
+
+#+BEGIN_SRC sh
+    wget --no-check-certificate https://github.com/bbatsov/prelude/raw/master/utils/installer.sh -O - | sh
+#+END_SRC
+
+*** Manual
+    :PROPERTIES:
+    :CUSTOM_ID: manual
+    :END:
+
+Make sure you do not have any =~/.emacs= file present.
+
+#+BEGIN_SRC sh
+    git clone git://github.com/bbatsov/prelude.git path/to/local/repo
+    ln -s path/to/local/repo ~/.emacs.d
+    cd ~/.emacs.d
+#+END_SRC
+
+If you are using Windows, you should check what Emacs thinks the =~=
+directory is by running Emacs and typing =C-x d ~/<RET>=, and then
+adjust the command appropriately.
+
+** Updating Prelude
+   :PROPERTIES:
+   :CUSTOM_ID: updating-prelude
+   :END:
+
+*** Manual update
+    :PROPERTIES:
+    :CUSTOM_ID: manual-update
+    :END:
+
+The update procedure is fairly straightforward and consists of 3 steps:
+
+**** Update all bundled packages
+     :PROPERTIES:
+     :CUSTOM_ID: update-all-bundled-packages
+     :END:
+
+Just run M-x package-list-packages RET U x.
+
+**** Update Prelude's code
+     :PROPERTIES:
+     :CUSTOM_ID: update-preludes-code
+     :END:
+
+#+BEGIN_SRC sh
+    cd path/to/prelude/installation
+    git pull
+#+END_SRC
+
+The =path/to/prelude/installation= is usually =~/.emacs.d= (at least on
+Unix systems).
+
+**** Restart Prelude
+     :PROPERTIES:
+     :CUSTOM_ID: restart-prelude
+     :END:
+
+It's generally a good idea to stop Emacs after you do the update. The
+next time Prelude starts it will install any new dependencies (if there
+are such).
+
+*** Automatic update
+    :PROPERTIES:
+    :CUSTOM_ID: automatic-update
+    :END:
+
+Simply run M-x prelude-update from Emacs itself and restart Emacs
+afterwards.
+
+** Pinning packages
+   :PROPERTIES:
+   :CUSTOM_ID: pinning-packages
+   :END:
+
+By default, Prelude will install packages from the melpa and gnu package
+repositories. Occasionally package integration can break when upgrading
+packages. This can be avoided by pinning packages to stable versions in
+other repositories. To do so, copy =prelude-pinned-packages.el= from the
+sample directory to Prelude's root directory and adjust the
+[[https://www.gnu.org/software/emacs/manual/html_node/emacs/Package-Installation.html][variables]]
+inside accordingly.
+
+** Enabling additional modules
+   :PROPERTIES:
+   :CUSTOM_ID: enabling-additional-modules
+   :END:
+
+By default most of the modules that ship with Prelude are not loaded.
+For more information on the functionality provided by these modules
+visit the [[file:modules/doc/README.md][docs]].
+
+#+BEGIN_SRC lisp
+    ;;; Uncomment the modules you'd like to use and restart Prelude afterwards
+
+    (require 'prelude-c)
+    ;; (require 'prelude-clojure)
+    ;; (require 'prelude-coffee)
+    ;; (require 'prelude-common-lisp)
+    ;; (require 'prelude-css)
+    (require 'prelude-emacs-lisp)
+    (require 'prelude-erc)
+    ;; (require 'prelude-erlang)
+    ;; (require 'prelude-elixir)
+    ;; (require 'prelude-haskell)
+    (require 'prelude-js)
+    ;; (require 'prelude-latex)
+    (require 'prelude-lisp)
+    (require 'prelude-org)
+    (require 'prelude-perl)
+    ;; (require 'prelude-python)
+    ;; (require 'prelude-ruby)
+    ;; (require 'prelude-scala)
+    (require 'prelude-scheme)
+    ;; (require 'prelude-scss)
+    ;; (require 'prelude-web)
+    (require 'prelude-xml)
+#+END_SRC
+
+You'll need to adjust your =prelude-modules.el= file once the
+installation is done. If you are doing a manual install then you first
+need to copy the =prelude-modules.el= available in the sample directory
+to the root of =path/to/prelude/installation= and then adjust that one.
+
+After you've uncommented a module you should either restart Emacs or
+evaluate the module =require= expression with C-x C-e.
+
+** Running
+   :PROPERTIES:
+   :CUSTOM_ID: running
+   :END:
+
+Nothing fancy here. Just start Emacs as usual. Personally I run Emacs in
+daemon mode:
+
+#+BEGIN_SRC sh
+    emacs --daemon
+#+END_SRC
+
+Afterwards I connect to the server with either a terminal or a GUI
+client like this:
+
+#+BEGIN_SRC sh
+    emacsclient -t
+    emacsclient -c
+#+END_SRC
+
+You'd probably do well to put a few aliases in your =.zshrc= (or
+=.bashrc=):
+
+#+BEGIN_SRC sh
+    alias e='emacsclient -t'
+    alias ec='emacsclient -c'
+    alias vim='emacsclient -t'
+    alias vi='emacsclient -t'
+#+END_SRC
+
+The last two aliases are helpful if you're used to editing files from
+the command line using =vi(m)=.
+
+You can also open a file with the cursor positioned directly on a
+specific line:
+
+#+BEGIN_SRC sh
+    emacsclient somefile:1234
+#+END_SRC
+
+This will open file 'somefile' and set cursor on line 1234.
+
+** Getting to know Prelude
+   :PROPERTIES:
+   :CUSTOM_ID: getting-to-know-prelude
+   :END:
+
+Certainly the best way to understand how Prelude enhances the default
+Emacs experience is to peruse Prelude's source code (which is obviously
+written in Emacs Lisp). Understanding the code is not necessary of
+course. Prelude includes a =prelude-mode= minor Emacs mode which
+collects some of the additional functionality added by Prelude. It also
+adds an additional keymap that binds many of those extensions to
+keybindings.
+
+*** Keymap
+    :PROPERTIES:
+    :CUSTOM_ID: keymap
+    :END:
+
+**** Global
+     :PROPERTIES:
+     :CUSTOM_ID: global
+     :END:
+
+| Keybinding | Description                                                                    |
+|------------+--------------------------------------------------------------------------------|
+| C-x \      | =align-regexp=                                                                 |
+| C-+        | Increase font size(=text-scale-increase=).                                     |
+| C--        | Decrease font size(=text-scale-decrease=).                                     |
+| C-x O      | Go back to previous window (the inverse of =other-window= (=C-x o=)).          |
+| C-^        | Join two lines into one(=crux-top-join-line=).                                 |
+| C-x p      | Start =proced= (manage processes from Emacs; works only in Linux).             |
+| C-x m      | Start =eshell=.                                                                |
+| C-x M-m    | Start your default shell.                                                      |
+| C-x C-m    | Alias for =M-x=.                                                               |
+| M-X        | Like =M-x= but limited to commands that are relevant to the active major mode. |
+| C-h A      | Run =apropos= (search in all Emacs symbols).                                   |
+| C-h C-m    | Display key bindings of current major mode and descriptions of every binding.  |
+| M-/        | Run =hippie-expand= (a replacement for the default =dabbrev-expand=).          |
+| C-x C-b    | Open =ibuffer= (a replacement for the default =buffer-list=).                  |
+| F11        | Make the window full screen.                                                   |
+| F12        | Toggle the Emacs menu bar.                                                     |
+| C-x g      | Open Magit's status buffer.                                                    |
+| C-x M-g    | Open Magit's popup of popups.                                                  |
+| M-Z        | Zap up to char.                                                                |
+| C-=        | Run =expand-region= (incremental text selection).                              |
+| C-a        | Run =crux-move-beginning-of-line=. Read [[http://emacsredux.com/blog/2013/05/22/smarter-navigation-to-the-beginning-of-a-line/][this]] for details.                      |
+
+**** Prelude Mode
+     :PROPERTIES:
+     :CUSTOM_ID: prelude-mode
+     :END:
+
+| Keybinding             | Description                                                                       |
+|------------------------+-----------------------------------------------------------------------------------|
+| C-c o                  | Open the currently visited file with an external program.                         |
+| C-c i                  | Search for a symbol, only for buffers that contain code                           |
+| C-c g                  | Search in Google for the thing under point (or an interactive query).             |
+| C-c G                  | Search in GitHub for the thing under point (or an interactive query).             |
+| C-c y                  | Search in YouTube for the thing under point (or an interactive query).            |
+| C-c U                  | Search in Duckduckgo for the thing under point (or an interactive query).         |
+| C-S-RET or Super-o     | Insert an empty line above the current line and indent it properly.               |
+| S-RET or M-o           | Insert an empty line and indent it properly (as in most IDEs).                    |
+| C-S-up or M-S-up       | Move the current line or region up.                                               |
+| C-S-down or M-S-down   | Move the current line or region down.                                             |
+| C-c n                  | Fix indentation in buffer and strip whitespace.                                   |
+| C-c f                  | Open recently visited file.                                                       |
+| C-M-\                  | Indent region (if selected) or the entire buffer.                                 |
+| C-c u                  | Open a new buffer containing the contents of URL.                                 |
+| C-c e                  | Eval a bit of Emacs Lisp code and replace it with its result.                     |
+| C-c s                  | Swap two active windows.                                                          |
+| C-c D                  | Delete current file and buffer.                                                   |
+| C-c d                  | Duplicate the current line (or region).                                           |
+| C-c M-d                | Duplicate and comment the current line (or region).                               |
+| C-c r                  | Rename the current buffer and its visiting file if any.                           |
+| C-c t                  | Open a terminal emulator (=ansi-term=).                                           |
+| C-c k                  | Kill all open buffers except the one you're currently in.                         |
+| C-c TAB                | Indent and copy region to clipboard                                               |
+| C-c I                  | Open user's init file.                                                            |
+| C-c S                  | Open shell's init file.                                                           |
+| C-c . +                | Increment integer at point. Default is +1.                                        |
+| C-c . -                | Decrement integer at point. Default is -1.                                        |
+| C-c . *                | Multiply integer at point. Default is *2.                                         |
+| C-c . /                | Divide integer at point. Default is /2.                                           |
+| C-c . \                | Modulo integer at point. Default is modulo 2.                                     |
+| C-c . ^                | Power to the integer at point. Default is ^2.                                     |
+| C-c . <                | Left-shift integer at point. Default is 1 position to the left.                   |
+| C-c . >                | Right-shift integer at point. Default is 1 position to the right.                 |
+| C-c . #                | Convert integer at point to specified base. Default is 10.                        |
+| C-c . %                | Replace integer at point with another specified integer.                          |
+| C-c . '                | Perform arithmetic operations on integer at point. User specifies the operator.   |
+| Super-r                | Recent files                                                                      |
+| Super-j                | Join lines                                                                        |
+| Super-k                | Kill whole line                                                                   |
+| Super-m m              | Magit status                                                                      |
+| Super-m l              | Magit log                                                                         |
+| Super-m f              | Magit file log                                                                    |
+| Super-m b              | Magit blame mode                                                                  |
+
+*Note*: For various arithmetic operations, the prefix =C-c .= only needs
+to be pressed once for the first operation. For subsequent operations,
+only the appropriate operations (i.e. =+=, =-=, =*=, =/=... needs to be
+pressed).
+
+**** macOS modifier keys
+     :PROPERTIES:
+     :CUSTOM_ID: macos-modifier-keys
+     :END:
+
+Prelude does not mess by default with the standard mapping of =Command=
+(to =Super=) and =Option= (to =Meta=).
+
+If you want to swap them add this to your [[#personalizing][personal
+config]]:
+
+#+BEGIN_SRC lisp
+    (setq mac-command-modifier 'meta)
+    (setq mac-option-modifier 'super)
+#+END_SRC
+
+You can also temporarily swap them with =C-c w=
+(=M-x prelude-swap-meta-and-super=). Note that some emacs distributions
+(like [[https://bitbucket.org/mituharu/emacs-mac.git][emacs-mac]] come
+with =Command=
+[[https://bitbucket.org/mituharu/emacs-mac/src/7fdbfba85d543f01b81e997e2b03788c35cb3bfa/src/macterm.c?at=master&fileviewer=file-view-default#macterm.c-6147:6169][set]]
+to =Meta=.
+
+*Note*: I'd highly recommend to all macOS users to consider
+[[http://emacsredux.com/blog/2013/11/12/a-crazy-productivity-boost-remap-return-to-control/][remapping
+Return to Control]] instead. That's an epic productivity boost and it's
+not as crazy as it sounds!
+
+**** Projectile
+     :PROPERTIES:
+     :CUSTOM_ID: projectile
+     :END:
+
+[[https://github.com/bbatsov/projectile][Projectile]] is one of the
+essential packages bundled with Prelude. It provides an easy way to
+navigate and switch projects. Take a look at its extensive documentation
+to get a feel for everything you can do with Projectile.
+
+Prelude adds an extra keymap prefix =s-p= (=s= stands for =Super=) in
+addition to the standard one =C-c p=. By default on Windows keyboard
+=Super= is mapped to the =Windows= key and on macOS keyboards =Super= is
+mapped to the =Command= key.
+
+If you ever forget any of Projectile's keybindings just do a:
+
+C-c p C-h or s-p C-h
+
+Alternatively you can just press s-p and wait for a moment for
+=which-key= to kick in and show you the available keybindings.
+
+**** Helm
+     :PROPERTIES:
+     :CUSTOM_ID: helm
+     :END:
+
+Helm is setup according to this guide:
+[[http://tuhdo.github.io/helm-intro.html][A Package in a league of its
+own: Helm]].
+
+You can learn Helm usage and key bindings following the guide. C-c h is
+Prelude's default prefix key for Helm. If you don't remember any key
+binding, append C-h after C-c h for a list of key bindings in Helm.
+
+If you love Helm and want to use Helm globally with enhanced
+=helm-find-files=, =helm-buffer-lists=..., you will have to also add
+=(require 'prelude-helm-everywhere)=. When =prelude-helm-everywhere= is
+activated, Helm enables these global key bindings:
+
+| Key binding   | Description                                                                                                                        |
+|---------------+------------------------------------------------------------------------------------------------------------------------------------|
+| M-x           | Run [[http://tuhdo.github.io/helm-intro.html#sec-3][helm-M-x]], an interactive version of M-x.                                     |
+| M-y           | Run [[http://tuhdo.github.io/helm-intro.html#sec-4][helm-show-kill-ring]], shows the content of =kill-ring=.                       |
+| C-x b         | Run [[http://tuhdo.github.io/helm-intro.html#sec-5][helm-mini]], an interactive version of =C-x b= with more features.             |
+| C-x C-f       | Run [[http://tuhdo.github.io/helm-intro.html#sec-6][helm-find-files]], an interactive version of =find-file= with more features.   |
+| C-h f         | Run [[http://tuhdo.github.io/helm-intro.html#sec-13][helm-apropos]], an interactive version of =apropos-command=.                  |
+| C-h r         | Run [[http://tuhdo.github.io/helm-intro.html#sec-14][helm-info-emacs]], an interactive version of =info-emacs-manual=.             |
+| C-h C-l       | Run =helm-locate-library= that can search for locations of any file loaded into Emacs.                                             |
+
+This key binding is activated in =shell-mode=:
+
+| Key Binding   | Description                                                                     |
+|---------------+---------------------------------------------------------------------------------|
+| C-c C-l       | Run =helm-comint-input-ring= that shows =shell= history using Helm interface.   |
+
+This key bindings is activated in =eshell-mode=:
+
+| Key Binding   | Description                                                                   |
+|---------------+-------------------------------------------------------------------------------|
+| C-c C-l       | Run =helm-eshell-history= that shows =eshell= history using Helm interface.   |
+
+If you prefer Ido in everywhere, you should not add
+=prelude-helm-everywhere=, so you can use Helm along with Ido and
+Prelude's default commands.
+
+You can always reactivate Helm with
+=(prelude-global-helm-global-mode-on)=.
+
+*NOTICE*: In =helm-M-x=, you have to pass prefix argument /AFTER/ you
+run =helm-M-x=, because your prefix argument will be displayed in the
+modeline when in =helm-M-x= buffer. Passing prefix argument *BEFORE*
+=helm-M-x= *has no effect*.
+
+**** Key-chords
+     :PROPERTIES:
+     :CUSTOM_ID: key-chords
+     :END:
+
+*Key-chords are available only when the =prelude-key-chord= module has
+been enabled.*
+
+| Keybinding   | Description                                                      |
+|--------------+------------------------------------------------------------------|
+| jj           | Jump to the beginning of a word(=avy-goto-word-1=)               |
+| jk           | Jump to a character(=avy-goto-char=)                             |
+| jl           | Jump to the beginning of a line(=avy-goto-line=)                 |
+| JJ           | Jump back to previous buffer(=crux-switch-to-previous-buffer=)   |
+| uu           | View edits as a tree(=undo-tree-visualize=)                      |
+| xx           | Executed extended command(=execute-extended-command=)            |
+| yy           | Browse the kill ring(=browse-kill-ring=)                         |
+
+***** Disabling key-chords
+      :PROPERTIES:
+      :CUSTOM_ID: disabling-key-chords
+      :END:
+
+In some cases you may not want to have a key-chord that is defined by
+prelude, in which case you can disable the binding in your =personal.el=
+file by setting its command to =nil=. For example, to disable the =jj=
+key-chord add the following line:
+
+#+BEGIN_SRC lisp
+    (key-chord-define-global "jj" nil)
+#+END_SRC
+
+If you're an =evil-mode= user you'll probably do well to disable
+=key-chord-mode= altogether:
+
+#+BEGIN_SRC lisp
+    (key-chord-mode -1)
+#+END_SRC
+
+**** vim emulation
+     :PROPERTIES:
+     :CUSTOM_ID: vim-emulation
+     :END:
+
+If you want to use vim keybindings inside of Emacs enable the
+=prelude-evil= module which provides support for =evil-mode=.
+
+*** Cheatsheet
+    :PROPERTIES:
+    :CUSTOM_ID: cheatsheet
+    :END:
+
+Use =C-h k <key>= (=<key>= are the ones listed on the left) or
+=C-h f <function>= (=<function>= are the ones listed on the right) to
+see the detailed explanation.
+
+#+CAPTION: cheatsheet
+[[/modules/doc/cheatsheet.png]]
+
+**** PDF generation
+     :PROPERTIES:
+     :CUSTOM_ID: pdf-generation
+     :END:
+
+Install [[https://www.latex-project.org/get/][LaTeX]]
+
+#+BEGIN_SRC sh
+    cd modules/doc
+    pdflatex prelude-cheatsheet.tex
+#+END_SRC
+
+**** PNG generation
+     :PROPERTIES:
+     :CUSTOM_ID: png-generation
+     :END:
+
+Install [[https://poppler.freedesktop.org/][Poppler]]
+
+#+BEGIN_SRC sh
+    cd modules/doc
+    pdftocairo -png -singlefile prelude-cheatsheet.pdf cheatsheet
+#+END_SRC
+
+** Automatic package installation
+   :PROPERTIES:
+   :CUSTOM_ID: automatic-package-installation
+   :END:
+
+The default Prelude installation comes with a bare minimum of
+functionality. It will however install add-ons for various programming
+languages and frameworks on demand. For instance - if you try to open a
+=.clj= file =clojure-mode=, =cider= and Prelude's enhanced Lisp
+configuration will be installed automatically for you.
+
+You can, of course, install anything you wish manually as well.
+
+*** Color Themes
+    :PROPERTIES:
+    :CUSTOM_ID: color-themes
+    :END:
+
+Emacs provides a dozen of built-in themes you can use out-of-the-box by
+invoking the =M-x load-theme= command.
+
+[[https://github.com/bbatsov/zenburn-emacs][Zenburn]] is the default
+color theme in Prelude, but you can change it at your discretion. Why
+Zenburn? I (and lots of hackers around the world) find it pretty neat
+for some reason. Personally I find the default theme pretty tiresome for
+the eyes, that's why I took that "controversial" decision to replace it.
+You can, of course, easily go back to the default (or select another
+theme entirely).
+
+To disable Zenburn just put in your [[#personalizing][personal config]]
+the following line:
+
+#+BEGIN_SRC lisp
+    (disable-theme 'zenburn)
+#+END_SRC
+
+Or you can use another theme altogether by adding something in
+=personal/preload= like:
+
+#+BEGIN_SRC lisp
+    (setq prelude-theme 'tango)
+#+END_SRC
+
+*Note* To use a non-built-in theme, like
+[[https://github.com/bbatsov/solarized-emacs][Solarized]], you'll have
+to install it from MELPA first by
+=M-x package-install RET solarized-theme=. Then add
+
+#+BEGIN_SRC lisp
+    (setq prelude-theme 'solarized-dark)
+#+END_SRC
+
+in =personal/preload=.
+
+Finally, if you don't want any theme at all, you can add this to your
+=personal/preload=:
+
+#+BEGIN_SRC lisp
+    (setq prelude-theme nil)
+#+END_SRC
+
+*** Personalizing
+    :PROPERTIES:
+    :CUSTOM_ID: personalizing
+    :END:
+
+All files you create under the =personal/= directory are yours for
+personalization. There is no single special personal config file -- any
+files you create in the =personal/= directory will be loaded in
+lexicographical order. The overall loading precedence is:
+
+1. =personal/preload/*=
+2. =core/=
+3. =prelude-modules.el=
+4. =personal/*=
+
+**** Personalization Example
+     :PROPERTIES:
+     :CUSTOM_ID: personalization-example
+     :END:
+
+Suppose you want to configure go-mode to autoformat on each save. You
+can create a file in =personal/=, let's call this one
+=config-go-mode.el= and add the following to it.
+
+#+BEGIN_SRC emacs-lisp
+    (add-hook 'go-mode-hook
+              (lambda ()
+                (add-hook 'before-save-hook 'gofmt-before-save)
+                (setq tab-width 2)))
+#+END_SRC
+
+**** Tips
+     :PROPERTIES:
+     :CUSTOM_ID: tips
+     :END:
+
+*Fork* (instead of cloning) the official Prelude repo and add your own
+touch to it. You're advised to *avoid changing stuff outside of the
+personal folder* to avoid having to deal with git merge conflicts in the
+future.
+
+If you'd like to add some auto installation of packages in your personal
+config use the following code:
+
+#+BEGIN_SRC lisp
+    (prelude-require-packages '(some-package some-other-package))
+#+END_SRC
+
+If you require just a single package you can also use:
+
+#+BEGIN_SRC lisp
+    (prelude-require-package 'some-package)
+#+END_SRC
+
+**** Preloading personal config
+     :PROPERTIES:
+     :CUSTOM_ID: preloading-personal-config
+     :END:
+
+Sometimes you might want to load code before Prelude has started
+loading. Prelude will automatically preload all Emacs Lisp files in your
+=personal/preload= directory. Note that at this point you can't using
+anything from Prelude, except a few variables like =prelude-dir=, etc
+(since nothing is yet loaded).
+
+**** Disabling whitespace-mode
+     :PROPERTIES:
+     :CUSTOM_ID: disabling-whitespace-mode
+     :END:
+
+Although =whitespace-mode= is awesome, some people might find it too
+intrusive. You can disable it in your personal config with the following
+bit of code:
+
+#+BEGIN_SRC lisp
+    (setq prelude-whitespace nil)
+#+END_SRC
+
+If you like =whitespace-mode=, but prefer it to not automatically
+cleanup your file on save, you can disable that behavior by setting
+=prelude-clean-whitespace-on-save= to =nil= in your config file with:
+
+#+BEGIN_SRC lisp
+    (setq prelude-clean-whitespace-on-save nil)
+#+END_SRC
+
+The =prelude-clean-whitespace-on-save= setting can also be set on a
+per-file or directory basis by using a file variable or a
+=.dir-locals.el= file.
+
+**** Disable flyspell-mode
+     :PROPERTIES:
+     :CUSTOM_ID: disable-flyspell-mode
+     :END:
+
+If you're not fond of spellchecking on the fly:
+
+#+BEGIN_SRC lisp
+    (setq prelude-flyspell nil)
+#+END_SRC
+
+** Caveats & Pitfalls
+   :PROPERTIES:
+   :CUSTOM_ID: caveats-pitfalls
+   :END:
+
+*** Updating bundled packages
+    :PROPERTIES:
+    :CUSTOM_ID: updating-bundled-packages
+    :END:
+
+Generally it's a good idea to do a package update before running
+updating Prelude, since the latest Prelude code might depend on newer
+versions of the bundled packages than you would currently have
+installed.
+
+If you're doing manual Prelude updates you should always do a package
+update first.
+
+=M-x package-list-packages RET U x=
+
+That's not necessary if you're using =M-x prelude-update=, since it will
+automatically update the installed packages.
+
+*** Problems with flyspell-mode
+    :PROPERTIES:
+    :CUSTOM_ID: problems-with-flyspell-mode
+    :END:
+
+Prelude makes heavy use of the flyspell-mode package for spell checking
+of various things. The proper operation of flyspell depends on the
+presence of the =aspell= program and an =en= dictionary on your system.
+You can install =aspell= and the dictionary on macOS with =homebrew=
+like this:
+
+#+BEGIN_SRC sh
+    brew install aspell --with-lang=en
+#+END_SRC
+
+On Linux distros - just use your distro's package manager.
+
+*** Ugly colors in the terminal Emacs version
+    :PROPERTIES:
+    :CUSTOM_ID: ugly-colors-in-the-terminal-emacs-version
+    :END:
+
+If your Emacs looks considerably uglier in a terminal (compared to the
+GUI version) try adding this to your =.bashrc= or =.zshrc=:
+
+#+BEGIN_SRC sh
+    export TERM=xterm-256color
+#+END_SRC
+
+Source the =.bashrc= file and start Emacs again.
+
+*** MELPA error on initial startup
+    :PROPERTIES:
+    :CUSTOM_ID: melpa-error-on-initial-startup
+    :END:
+
+If you get some http connection error related to the MELPA repo just do
+a manual =M-x package-refresh-contents= and restart Emacs afterwards.
+
+*** Warnings on arrow navigation in editor buffers
+    :PROPERTIES:
+    :CUSTOM_ID: warnings-on-arrow-navigation-in-editor-buffers
+    :END:
+
+This is not a bug - it's a feature! I firmly believe that the one true
+way to use Emacs is by using it the way it was intended to be used (as
+far as navigation is concerned at least).
+
+If you'd like to be take this a step further and disable the arrow key
+navigation completely put this in your [[#personalizing][personal
+config]]:
+
+#+BEGIN_SRC lisp
+    (setq guru-warn-only nil)
+#+END_SRC
+
+To disable =guru-mode= completely add the following snippet to your
+[[#personalizing][personal config]]:
+
+#+BEGIN_SRC lisp
+    (setq prelude-guru nil)
+#+END_SRC
+
+*** Customized C-a behavior
+    :PROPERTIES:
+    :CUSTOM_ID: customized-c-a-behavior
+    :END:
+
+Prelude overrides =C-a= to behave as described
+[[http://emacsredux.com/blog/2013/05/22/smarter-navigation-to-the-beginning-of-a-line/][here]].
+If you don't like that simply add this to your
+[[#personalizing][personal config]]:
+
+#+BEGIN_SRC lisp
+    (global-set-key [remap move-beginning-of-line]
+                    'move-beginning-of-line)
+#+END_SRC
+
+*** Poor ido matching performance on large datasets
+    :PROPERTIES:
+    :CUSTOM_ID: poor-ido-matching-performance-on-large-datasets
+    :END:
+
+Prelude's =ido= module swaps the default =ido= flex matching with the
+more powerful [[https://github.com/lewang/flx][ido-flx]].
+
+The sorting algorithm =flx= uses is more complex, but yields better
+results.
+
+On slower machines, it may be necessary to lower =flx-ido-threshold= to
+ensure a smooth experience.
+
+#+BEGIN_SRC lisp
+    (setq flx-ido-threshold 1000)
+#+END_SRC
+
+You can always disable the improved sorting algorithm all together like
+this:
+
+#+BEGIN_SRC lisp
+    (flx-ido-mode -1)
+#+END_SRC
+
+*** Windows compatibility
+    :PROPERTIES:
+    :CUSTOM_ID: windows-compatibility
+    :END:
+
+While everything in Prelude should work fine in Windows, I test it only
+with GNU/Linux & macOS, so there might be Windows-specific problems from
+time to time. This situation will probably improve over time.
+
+** Known issues
+   :PROPERTIES:
+   :CUSTOM_ID: known-issues
+   :END:
+
+Check out the project's
+[[https://github.com/bbatsov/prelude/issues?sort=created&direction=desc&state=open][issue
+list]] a list of unresolved issues. By the way - feel free to fix any of
+them and send me a pull request. :-)
+
+** Support
+   :PROPERTIES:
+   :CUSTOM_ID: support
+   :END:
+
+Support is available via several channels:
+
+- Prelude's Google Group
+  [[mailto:emacs-prelude@googlegroups.com][emacs-prelude@googlegroups.com]]
+- Prelude's Freenode channel (=#prelude-emacs=)
+- [[https://gitter.im/bbatsov/prelude][Gitter]]
+
+** Contributors
+   :PROPERTIES:
+   :CUSTOM_ID: contributors
+   :END:
+
+Here's a [[https://github.com/bbatsov/prelude/contributors][list]] of
+all the people who have contributed to the development of Emacs Prelude.
+
+** Bugs & Improvements
+   :PROPERTIES:
+   :CUSTOM_ID: bugs-improvements
+   :END:
+
+Bug reports and suggestions for improvements are always welcome. GitHub
+pull requests are even better! :-)
+
+Cheers, [[https://twitter.com/bbatsov][Bozhidar]]

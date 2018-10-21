@@ -1,0 +1,10 @@
+* Install Prelude
+Install prelude with following command
+   curl -L https://git.io/epre | sh
+
+* Enable prelude-helm
+Enable prelude-helm package in ~/.emacs.d/prelude-modules.el
+Other enabled packages prelude-erc, prelude-ivy, prelude-company, prelude-c, prelude-company
+
+* Install swiper-helm
+Swiper lets you jump quickly to words. Start typing what word you are looking for. Swiper is bind to C-s.
