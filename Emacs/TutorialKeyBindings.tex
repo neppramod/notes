@@ -1,0 +1,532 @@
+% Created 2018-10-21 Sun 18:59
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\author{Pramod Nepal}
+\date{\today}
+\title{}
+\hypersetup{
+ pdfauthor={Pramod Nepal},
+ pdftitle={},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 26.1 (Org mode 9.1.9)},
+ pdflang={English}}
+\begin{document}
+
+\tableofcontents
+
+Note: Read PackageInstallation note first. After installation of swiper and projectile package follow this.\\
+
+
+\section{Swiper}
+\label{sec:org7ab63bb}
+After installing swiper you can invoke swiper with\\
+\begin{center}
+\begin{tabular}{ll}
+C-s & Search with swiper\\
+\end{tabular}
+\end{center}
+
+\section{Jump between edits}
+\label{sec:orgf2f57b5}
+\begin{center}
+\begin{tabular}{ll}
+\hline
+C-u C-space & jump to previous edit position\\
+C-x C-space & if you want to navigate back between buffers\\
+\end{tabular}
+\end{center}
+
+\section{Copy/Save}
+\label{sec:orge771673}
+\begin{center}
+\begin{tabular}{ll}
+\hline
+M-w w & Save word at point\\
+M-w s & Save sexp at point\\
+M-w l & Save list at point including sexp\\
+M-w d & Save defun\\
+M-w f & Save file at point\\
+M-w b & Save buffer\\
+\end{tabular}
+\end{center}
+
+\section{Macro}
+\label{sec:orgedd41cd}
+\begin{center}
+\begin{tabular}{ll}
+\hline
+C-x ( & Start defining a macro\\
+C- ) & Stop defining a macro\\
+C-e & Execute macro\\
+C-u 37 C-x e & Execute 37 time\\
+\end{tabular}
+\end{center}
+
+\section{Case}
+\label{sec:orgec40a6b}
+\begin{center}
+\begin{tabular}{ll}
+\hline
+C-x C-u & uppercase\\
+C-x C-l & lowercase\\
+\end{tabular}
+\end{center}
+
+\section{Selection}
+\label{sec:org1a7a206}
+\begin{center}
+\begin{tabular}{ll}
+\hline
+C-x SPC & rectangle-mark-mode\\
+\end{tabular}
+\end{center}
+
+\section{Customization}
+\label{sec:org0c50722}
+\subsection{Change theme}
+\label{sec:org2d03689}
+\begin{center}
+\begin{tabular}{ll}
+\hline
+M-x & customize-themes\\
+\end{tabular}
+\end{center}
+
+\section{Key-chords (Quick Jump in edit)}
+\label{sec:org0ab744f}
+Key-chords are available only when the prelude-key-chord module has been enabled.\\
+
+\begin{center}
+\begin{tabular}{ll}
+Keybinding & Description\\
+\hline
+jj & Jump to the beginning of a word(avy-goto-word-1)\\
+jk & Jump to a character(avy-goto-char)\\
+jl & Jump to the beginning of a line(avy-goto-line)\\
+JJ & Jump back to previous buffer(crux-switch-to-previous-buffer)\\
+uu & View edits as a tree(undo-tree-visualize)\\
+xx & Executed extended command(execute-extended-command)\\
+yy & Browse the kill ring(browse-kill-ring)\\
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{ll}
+\hline
+pp & Goto previous line\\
+nn & Goto next line\\
+bb & List bookmark\\
+bm & Add bookmark\\
+\end{tabular}
+\end{center}
+
+;; Custom keys defined in init-personalize.el\\
+\begin{verbatim}
+(key-chord-define-global "nn" 'next-line)
+(key-chord-define-global "pp" 'previous-line)
+(key-chord-define-global "bb" 'bookmark-bmenu-list)
+(key-chord-define-global "bm" 'bookmark-set)
+\end{verbatim}
+
+\section{Convert Document}
+\label{sec:org98fc9fc}
+\begin{verbatim}
+pandoc -f markdown -t org -o README.org README.md ;; convert from markdown to org
+pandoc -f org TutorialKeyBindings.org -o TutorialKeyBindings.pdf
+\end{verbatim}
+
+\section{Bookmark}
+\label{sec:org840f922}
+\begin{center}
+\begin{tabular}{ll}
+\hline
+C-x r m & Create bookmark of current file or directory you are visiting\\
+C-x r b & Go to a bookmark\\
+C-x r l & List bookmark\\
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{ll}
+\hline
+d & Make item for delete\\
+x & Remove all that are marked for d\\
+r & Rename current item's title\\
+s & Save changes\\
+\end{tabular}
+\end{center}
+
+\begin{verbatim}
+(setq bookmark-save-flag 1) ; everytime bookmark is changed, automatically save it
+\end{verbatim}
+
+\section{Prelude}
+\label{sec:org69eb3ce}
+\subsection{Install prelude}
+\label{sec:orgf51933a}
+; Example src code\\
+\begin{verbatim}
+curl -L https://git.io/epre | sh
+\end{verbatim}
+\subsection{Other modules}
+\label{sec:orga37c2ff}
+(require 'prelude-helm)\\
+(require 'prelude-key-chord)\\
+
+\begin{verbatim}
+; writing function
+(defun my-some-function()
+  (interactive)
+  (function1 param)
+  (function2 param))
+\end{verbatim}
+\subsection{Global shortcuts}
+\label{sec:org4442866}
+\begin{center}
+\begin{tabular}{ll}
+Keybinding & Description\\
+\hline
+C-x $\backslash$ & \texttt{align-regexp}\\
+C-+ & Increase font size(\texttt{text-scale-increase}).\\
+C-- & Decrease font size(\texttt{text-scale-decrease}).\\
+C-x O & Go back to previous window (the inverse of \texttt{other-window} (\texttt{C-x o})).\\
+C-\^{} & Join two lines into one(\texttt{crux-top-join-line}).\\
+C-x p & Start \texttt{proced} (manage processes from Emacs; works only in Linux).\\
+C-x m & Start \texttt{eshell}.\\
+C-x M-m & Start your default shell.\\
+C-x C-m & Alias for \texttt{M-x}.\\
+M-X & Like \texttt{M-x} but limited to commands that are relevant to the active major mode.\\
+C-h A & Run \texttt{apropos} (search in all Emacs symbols).\\
+C-h C-m & Display key bindings of current major mode and descriptions of every binding.\\
+M-/ & Run \texttt{hippie-expand} (a replacement for the default \texttt{dabbrev-expand}).\\
+C-x C-b & Open \texttt{ibuffer} (a replacement for the default \texttt{buffer-list}).\\
+F11 & Make the window full screen.\\
+F12 & Toggle the Emacs menu bar.\\
+C-x g & Open Magit's status buffer.\\
+C-x M-g & Open Magit's popup of popups.\\
+M-Z & Zap up to char.\\
+C-= & Run \texttt{expand-region} (incremental text selection).\\
+C-a & Run \texttt{crux-move-beginning-of-line}. Read \href{http://emacsredux.com/blog/2013/05/22/smarter-navigation-to-the-beginning-of-a-line/}{this} for details.\\
+\end{tabular}
+\end{center}
+
+\subsection{Prelude Mode}
+\label{sec:orgbfeadc7}
+\begin{center}
+\begin{tabular}{ll}
+Keybinding & Description\\
+\hline
+C-c o & Open the currently visited file with an external program.\\
+C-c i & Search for a symbol, only for buffers that contain code\\
+C-c g & Search in Google for the thing under point (or an interactive query).\\
+C-c G & Search in GitHub for the thing under point (or an interactive query).\\
+C-c y & Search in YouTube for the thing under point (or an interactive query).\\
+C-c U & Search in Duckduckgo for the thing under point (or an interactive query).\\
+C-S-RET or Super-o & Insert an empty line above the current line and indent it properly.\\
+S-RET or M-o & Insert an empty line and indent it properly (as in most IDEs).\\
+C-S-up or M-S-up & Move the current line or region up.\\
+C-S-down or M-S-down & Move the current line or region down.\\
+C-c n & Fix indentation in buffer and strip whitespace.\\
+C-c f & Open recently visited file.\\
+C-M-$\backslash$ & Indent region (if selected) or the entire buffer.\\
+C-c u & Open a new buffer containing the contents of URL.\\
+C-c e & Eval a bit of Emacs Lisp code and replace it with its result.\\
+C-c s & Swap two active windows.\\
+C-c D & Delete current file and buffer.\\
+C-c d & Duplicate the current line (or region).\\
+C-c M-d & Duplicate and comment the current line (or region).\\
+C-c r & Rename the current buffer and its visiting file if any.\\
+C-c t & Open a terminal emulator (\texttt{ansi-term}).\\
+C-c k & Kill all open buffers except the one you're currently in.\\
+C-c TAB & Indent and copy region to clipboard\\
+C-c I & Open user's init file.\\
+C-c S & Open shell's init file.\\
+C-c . + & Increment integer at point. Default is +1.\\
+C-c . - & Decrement integer at point. Default is -1.\\
+C-c . * & Multiply integer at point. Default is *2.\\
+C-c . / & Divide integer at point. Default is /2.\\
+C-c . $\backslash$ & Modulo integer at point. Default is modulo 2.\\
+C-c . \^{} & Power to the integer at point. Default is \^{}2.\\
+C-c . < & Left-shift integer at point. Default is 1 position to the left.\\
+C-c . > & Right-shift integer at point. Default is 1 position to the right.\\
+C-c . \# & Convert integer at point to specified base. Default is 10.\\
+C-c . \% & Replace integer at point with another specified integer.\\
+C-c . ' & Perform arithmetic operations on integer at point. User specifies the operator.\\
+Super-r & Recent files\\
+Super-j & Join lines\\
+Super-k & Kill whole line\\
+Super-m m & Magit status\\
+Super-m l & Magit log\\
+Super-m f & Magit file log\\
+Super-m b & Magit blame mode\\
+\end{tabular}
+\end{center}
+
+\section{Magit}
+\label{sec:orgea3736f}
+Getting started with Magit is really easy:\\
+\begin{center}
+\begin{tabular}{ll}
+\hline
+M-x magit-status or C-x g & to see git status, and in the status buffer\\
+s & stage files\\
+c c & commit (type the message then C-c C-c to actually commit)\\
+b b & switch to another branch\\
+P u & git push\\
+F u & git pull\\
+\end{tabular}
+\end{center}
+
+
+\subsection{Help projectile keys}
+\label{sec:org0626144}
+\begin{center}
+\begin{tabular}{ll}
+\hline
+C-c p C-h or s-p C-h & \\
+or s-p & and wait for a moment for key bindings for projectile\\
+C-c h & helm\\
+C-c h C-h & Key bindings in helm\\
+\end{tabular}
+\end{center}
+
+
+\section{Dired Mode}
+\label{sec:org5251596}
+\begin{center}
+\begin{tabular}{ll}
+Keybinding & Description\\
+\hline
+Enter/o & Open a file\\
+g & Refresh\\
+\^{} & Visit Parent Directory\\
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{ll}
+m & Mark file\\
+u/U & Unmark/unmark all\\
+\%m & Mark by regexp\\
+\%g & Make files with content matching regexp\\
+t & Toggle mark all\\
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{ll}
+d/D & Flag for deletion/delete now\\
+\%d & Flag by regexp\\
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{ll}
+R & Rename/Move\\
+C & Copy\\
+i/+ & Create directory\\
+\end{tabular}
+\end{center}
+
+Note: For more see: \href{dired-ref.pdf}{Dired Ref}\\
+
+\section{Basic from tutorial}
+\label{sec:orge5113bf}
+\subsection{Move}
+\label{sec:org49309ec}
+\begin{center}
+\begin{tabular}{ll}
+\hline
+C-f & Move forward a character\\
+C-b & Move backward a character\\
+M-f & Move forward a word\\
+M-b & Move backward a word\\
+C-n & Move to next line\\
+C-p & Move to previous line\\
+C-a & Move to beginning of line\\
+C-e & Move to end of line\\
+M-a & Move back to beginning of sentence\\
+M-e & Move forward to end of sentence\\
+\end{tabular}
+\end{center}
+
+C-u 8 *  Insert * 8 times\\
+\subsection{Delete}
+\label{sec:org8b7b97a}
+<DEL>        Delete the character just before the cursor\\
+C-d   	     Delete the next character after the cursor\\
+
+M-<DEL>      Kill the word immediately before the cursor\\
+M-d	     Kill the next word after the cursor\\
+
+C-k	     Kill from the cursor position to end of line\\
+M-k	     Kill to the end of the current sentence\\
+\subsection{Undo}
+\label{sec:orgb63514d}
+C-/          Undo\\
+C-\_          Undo\\
+C-x u        Undo\\
+C-x z        Redo previous command\\
+C-g C-/      Redo\\
+C-S-/        Redo\\
+
+
+\subsection{File}
+\label{sec:org72f4113}
+C-x C-f		Find file\\
+C-x C-s		Save file\\
+C-x s		Save some buffers\\
+C-x C-b		List buffers\\
+C-x b		Switch buffer\\
+C-x C-c		Quit Emacs\\
+C-x 1		Delete all but one window\\
+C-x u		Undo\\
+
+
+\subsection{Multiple windows}
+\label{sec:org5480cee}
+C-M-v             Scroll other window\\
+C-x o             Go to other window\\
+C-x 1             Get rid of other windows\\
+C-x 0             Get rid of current window\\
+C-x 4 C-f         Open in other window\\
+C-x 5 2           Open new frame\\
+C-x 5 0           Remove selected frame\\
+
+\subsection{Help}
+\label{sec:org506869d}
+ESC ESC ESC       Get out of recersive mode\\
+C-h c <cmd/char/seq>   Shows help on cmd. E.g C-h c C-p shows what C-p does\\
+C-x C-c           Exit emacs (Only do this if you restart)\\
+
+\section{Org mode}
+\label{sec:org4b0d139}
+\begin{center}
+\begin{tabular}{ll}
+\hline
+C-c C-l & Org insert link\\
+C-c C-o & Org open at point\\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Create a file with todo and add it to agenda}
+\label{sec:org3df95be}
+Org mode:\\
+\begin{center}
+\begin{tabular}{ll}
+\hline
+C-c a & agenda\\
+C-c & add document to the list of agenda files\\
+C-c & remove document from the list of agenda files\\
+C-c & add date\\
+C-u C-c . – add time and date & \\
+C-g – stop doing what you are trying to do, escape & \\
+\end{tabular}
+\end{center}
+
+\subsection{Tasks}
+\label{sec:orgfc05d80}
+
+\begin{center}
+\begin{tabular}{ll}
+C-c C-t & Task done\\
+Link [[link][description]$\backslash$] & \\
+Shift tab & Show all headings\\
+C-c a t & Global tab list\\
+C-c C-s & Org schedule. Go to a list and schedule it.\\
+l & In agenda, turns on log display (finished task and finished dates)\\
+\end{tabular}
+\end{center}
+
+
+
+
+Note: For more see: \href{orgcard.pdf}{Org mode Ref Card}\\
+
+\section{Printing}
+\label{sec:orgcdc0b56}
+\begin{center}
+\begin{tabular}{ll}
+\hline
+lpq / lpstat & Show print queue\\
+cancel -a & Cancel all print jobs\\
+lpr <files> & Print files\\
+\hline
+\end{tabular}
+\end{center}
+\section{Tags}
+\label{sec:orgfc103f4}
+\subsection{To Generate Tags}
+\label{sec:org093c814}
+\begin{verbatim}
+find . -type f -iname "*.[chS]" | xargs etags -a
+find . -name '*.c' -exec etags -a {} \;
+\end{verbatim}
+\subsection{To Genereate Emacs Tags}
+\label{sec:org4eda625}
+\begin{verbatim}
+ctags -e myfile.cpp
+ctags -e -R .
+ctags -e -R *.cpp *.hpp *.h
+\end{verbatim}
+
+\subsection{Basic commands}
+\label{sec:orgf8e62b9}
+
+\begin{center}
+\begin{tabular}{ll}
+\hline
+Command Name & Action\\
+\hline
+M-. <RET> & Jump to the tag underneath the cursor\\
+M-. <tag> <RET> & Search for a particular Tag\\
+C-u M-. & Find the next definition for the last Tag\\
+M-* & Pop back to where you previously invoked M-.\\
+\hline
+\end{tabular}
+\end{center}
+
+\section{Projectile}
+\label{sec:org2694e14}
+\begin{center}
+\begin{tabular}{ll}
+\hline
+Keys & Description\\
+\hline
+C-c p C-h & Projectile's key bindings\\
+C-c h & Go to a projectile project (most important)\\
+C-x j & Projectile dired (Ctrl - m = Go inside director)\\
+\hline
+C-x j & Projectile dired (Ctrl - m: Inside, v: down, \^{}: up)\\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{verbatim}
+ctags -e -R . : Generate emacs ctags
+\end{verbatim}
+\begin{center}
+\begin{tabular}{ll}
+\hline
+M-. , M-. tag & Jump to tag or search a tag\\
+C-u M-. & Find the next definition for the last tag\\
+M-* & Pop back to where you previously invoked M-.\\
+\hline
+\end{tabular}
+\end{center}
+\end{document}

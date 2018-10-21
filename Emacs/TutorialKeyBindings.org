@@ -1,49 +1,66 @@
 Note: Read PackageInstallation note first. After installation of swiper and projectile package follow this.
 
+#+OPTIONS: \n:t
+#+LATEX_CLASS:article
+
+
 * Swiper
 After installing swiper you can invoke swiper with
-C-s
+| C-s | Search with swiper |
 
 * Jump between edits
-C-u C-space ; jump to previous edit position
-C-x C-space ;if you want to navigate back between buffers
+|-------------+----------------------------------------------|
+| C-u C-space | jump to previous edit position               |
+| C-x C-space | if you want to navigate back between buffers |
 
 * Copy/Save
-M-w w    Save word at point
-M-w s    Save sexp at point
-M-w l    Save list at point including sexp
-M-w d    Save defun
-M-w f    Save file at point
-M-w b    Save buffer
+|-------+-----------------------------------|
+| M-w w | Save word at point                |
+| M-w s | Save sexp at point                |
+| M-w l | Save list at point including sexp |
+| M-w d | Save defun                        |
+| M-w f | Save file at point                |
+| M-w b | Save buffer                       |
+
+* Macro
+|--------------+------------------------|
+| C-x (        | Start defining a macro |
+| C- )         | Stop defining a macro  |
+| C-e          | Execute macro          |
+| C-u 37 C-x e | Execute 37 time        |
 
 * Case
-C-x C-u ; uppercase
-C-x C-l ; lowercase
+|---------+-----------|
+| C-x C-u | uppercase |
+| C-x C-l | lowercase |
 
 * Selection
-C-x SPC   rectangle-mark-mode
+|---------+---------------------|
+| C-x SPC | rectangle-mark-mode |
 
 * Customization
-
 **  Change theme
-M-x customize-themes
+|-----+------------------|
+| M-x | customize-themes |
 
 * Key-chords (Quick Jump in edit)
 Key-chords are available only when the prelude-key-chord module has been enabled.
 
-Keybinding	Description
-jj	Jump to the beginning of a word(avy-goto-word-1)
-jk	Jump to a character(avy-goto-char)
-jl	Jump to the beginning of a line(avy-goto-line)
-JJ	Jump back to previous buffer(crux-switch-to-previous-buffer)
-uu	View edits as a tree(undo-tree-visualize)
-xx	Executed extended command(execute-extended-command)
-yy	Browse the kill ring(browse-kill-ring)
+| Keybinding | 	Description                                                  |
+|------------+----------------------------------------------------------------------|
+| jj         | 	Jump to the beginning of a word(avy-goto-word-1)             |
+| jk         | 	Jump to a character(avy-goto-char)                           |
+| jl         | 	Jump to the beginning of a line(avy-goto-line)               |
+| JJ         | 	Jump back to previous buffer(crux-switch-to-previous-buffer) |
+| uu         | 	View edits as a tree(undo-tree-visualize)                    |
+| xx         | 	Executed extended command(execute-extended-command)          |
+| yy         | 	Browse the kill ring(browse-kill-ring)                       |
 # Custom
-pp      Goto previous line
-nn      Goto next line
-bb      List bookmark
-bm      Add bookmark
+|----+--------------------|
+| pp | Goto previous line |
+| nn | Goto next line     |
+| bb | List bookmark      |
+| bm | Add bookmark       |
 
 ;; Custom keys defined in init-personalize.el
 #+BEGIN_SRC elisp
@@ -56,18 +73,21 @@ bm      Add bookmark
 * Convert Document
 #+BEGIN_SRC sh
     pandoc -f markdown -t org -o README.org README.md ;; convert from markdown to org
+    pandoc -f org TutorialKeyBindings.org -o TutorialKeyBindings.pdf
 #+END_SRC
 
 * Bookmark
-C-x r m        Create bookmark of current file or directory you are visiting
-C-x r b        Go to a bookmark
-C-x r l        List bookmark
+|---------+---------------------------------------------------------------|
+| C-x r m | Create bookmark of current file or directory you are visiting |
+| C-x r b | Go to a bookmark                                              |
+| C-x r l | List bookmark                                                 |
 
 # In bookmark mode
-d              Make item for delete
-x              Remove all that are marked for d
-r              Rename current item's title
-s              Save changes
+|---+----------------------------------|
+| d | Make item for delete             |
+| x | Remove all that are marked for d |
+| r | Rename current item's title      |
+| s | Save changes                     |
 
 #+BEGIN_SRC elisp
 (setq bookmark-save-flag 1) ; everytime bookmark is changed, automatically save it
@@ -162,64 +182,60 @@ s              Save changes
 | Super-m f              | Magit file log                                                                    |
 | Super-m b              | Magit blame mode                                                                  |
 
-
 * Magit
 Getting started with Magit is really easy:
+|---------------------------+-----------------------------------------------------------|
+| M-x magit-status or C-x g | to see git status, and in the status buffer               |
+| s                         | stage files                                               |
+| c c                       | commit (type the message then C-c C-c to actually commit) |
+| b b                       | switch to another branch                                  |
+| P u                       | git push                                                  |
+| F u                       | git pull                                                  |
 
-M-x magit-status or C-x g to see git status, and in the status buffer:
-s to stage files
-c c to commit (type the message then C-c C-c to actually commit)
-b b to switch to another branch
-Other handy keys:
-
-P u to do a git push
-F u to do a git pull
-try to press TAB
 
 ** Help projectile keys
-C-c p C-h or s-p C-h
-or s-p and wait for a moment for key bindings for projectile
-C-c h  # helm
-C-c h C-h  # Key bindings in helm
+|----------------------+-------------------------------------------------------|
+| C-c p C-h or s-p C-h |                                                       |
+| or s-p               | and wait for a moment for key bindings for projectile |
+| C-c h                | helm                                                  |
+| C-c h C-h            | Key bindings in helm                                  |
+
 
 * Dired Mode
-|Keybinding|Description|
-|----------|-----------|
+| Keybinding | Description                    |
+|------------+--------------------------------|
+| Enter/o    | 	Open a file            |
+| g          | 	Refresh                |
+| ^          | 	Visit Parent Directory |
 
-|Enter/o     	Open a file
-|g           	Refresh
-|^           	Visit Parent Directory
+| m	 | 	Mark file                       |
+| u/U       | Unmark/unmark all                       |
+| %m        | Mark by regexp                          |
+| %g        | Make files with content matching regexp |
+| t         | Toggle mark all                         |
 
-|m		Mark file
-u/U             Unmark/unmark all
-%m              Mark by regexp
-%g              Make files with content matching regexp
-t               Toggle mark all
+| d/D | Flag for deletion/delete now |
+| %d  | Flag by regexp               |
 
-d/D             Flag for deletion/delete now
-%d              Flag by regexp
+| R   | Rename/Move      |
+| C   | Copy             |
+| i/+ | Create directory |
 
-R               Rename/Move
-C               Copy
-i/+             Create directory
 Note: For more see: [[file:dired-ref.pdf][Dired Ref]]
 
 * Basic from tutorial
 ** Move
-   C-f	Move forward a character
-   C-b	Move backward a character
-
-   M-f	Move forward a word
-   M-b	Move backward a word
-
-   C-n	Move to next line
-   C-p	Move to previous line
-
-   C-a	Move to beginning of line
-   C-e	Move to end of line
-
-   M-a	Move back to beginning of sentence
-   M-e	Move forward to end of sentence
+|-----+--------------------------------------------|
+| C-f | 	Move forward a character           |
+| C-b | 	Move backward a character          |
+| M-f | 	Move forward a word                |
+| M-b | 	Move backward a word               |
+| C-n | 	Move to next line                  |
+| C-p | 	Move to previous line              |
+| C-a | 	Move to beginning of line          |
+| C-e | 	Move to end of line                |
+| M-a | 	Move back to beginning of sentence |
+| M-e | 	Move forward to end of sentence    |
 
    C-u 8 *  Insert * 8 times
 ** Delete
@@ -266,48 +282,55 @@ C-h c <cmd/char/seq>   Shows help on cmd. E.g C-h c C-p shows what C-p does
 C-x C-c           Exit emacs (Only do this if you restart)
 
 * Org mode
-C-c C-l           Org insert link
-C-c C-o           Org open at point
+|---------+-------------------|
+| C-c C-l | Org insert link   |
+| C-c C-o | Org open at point |
+|---------+-------------------|
 
-Create a file with todo and add it to agenda
-Org mode:
-1. C-c a – agenda
-2. C-c [ – add document to the list of agenda files
-3. C-c ] – remove document from the list of agenda files
-4. C-c . – add date
-5. C-u C-c . – add time and date
-6. C-g – stop doing what you are trying to do, escape
-7. Tasks : Start with * E.g
+** Create a file with todo and add it to agenda
+ Org mode:
+|----------------------------------------------------+-----------------------------------------------|
+| C-c a                                              | agenda                                        |
+| C-c                                                | add document to the list of agenda files      |
+| C-c                                                | remove document from the list of agenda files |
+| C-c                                                | add date                                      |
+| C-u C-c . – add time and date                      |                                               |
+| C-g – stop doing what you are trying to do, escape |                                               |
 
-\* Tasks
-\* \* TODO Start a new org file for tutorial
+** Tasks
 
-8. C-c C-t : Task done
-9. Link [[link][description]\]
-10. Shift tab : Show all headings
-11. C-c a t : Global tab list
-12. C-c C-s : Org schedule. Go to a list and add it to scheduled by pressing these keys. You can select date or type time with date
-13. l : In agenda, turns on log display (finished task and finished dates)
-
+| C-c C-t                     | Task done                                                          |
+| Link [[link][description]\] |                                                                    |
+| Shift tab                   | Show all headings                                                  |
+| C-c a t                     | Global tab list                                                    |
+| C-c C-s                     | Org schedule. Go to a list and schedule it.                        |
+| l                           | In agenda, turns on log display (finished task and finished dates) |
 
 
 
-Note: For more see: [[file:orgcard.pdf][Org mode Ref Card]]
+
+ Note: For more see: [[file:orgcard.pdf][Org mode Ref Card]]
 
 * Printing
 # External command
-lpq / lpstat      Show print queue
-cancel -a         Cancel all print jobs
-lpr <files>       Print files
+|--------------+-----------------------|
+| lpq / lpstat | Show print queue      |
+| cancel -a    | Cancel all print jobs |
+| lpr <files>  | Print files           |
+|--------------+-----------------------|
 * Tags
 ** To Generate Tags
+#+BEGIN_SRC sh
 find . -type f -iname "*.[chS]" | xargs etags -a
 find . -name '*.c' -exec etags -a {} \;
-
+#+END_SRC
 ** To Genereate Emacs Tags
+#+BEGIN_SRC sh
 ctags -e myfile.cpp
 ctags -e -R .
 ctags -e -R *.cpp *.hpp *.h
+#+END_SRC
+
 ** Basic commands
 
 |-----------------+----------------------------------------------|
@@ -320,16 +343,21 @@ ctags -e -R *.cpp *.hpp *.h
 |-----------------+----------------------------------------------|
 
 * Projectile
-| Keys      | Description                                      |
-|-----------+--------------------------------------------------|
-| C-c p C-h | Projectile's key bindings                        |
-| C-c h     | Go to a projectile project (most important)      |
-| C-x j     | Projectile dired (Ctrl - m = Go inside director) |
-|-----------+--------------------------------------------------|
+|-----------+-----------------------------------------------------|
+| Keys      | Description                                         |
+|-----------+-----------------------------------------------------|
+| C-c p C-h | Projectile's key bindings                           |
+| C-c h     | Go to a projectile project (most important)         |
+| C-x j     | Projectile dired (Ctrl - m = Go inside director)    |
+|-----------+-----------------------------------------------------|
+| C-x j     | Projectile dired (Ctrl - m: Inside, v: down, ^: up) |
+|-----------+-----------------------------------------------------|
 
-
-7. C-x j : Projectile dired (Ctrl - m: Inside, v: down, ^: up)
-8. ctags -e -R . : Generate emacs ctags
-9. M-. , M-. tag : Jump to tag or search a tag
-10. C-u M-. : Find the next definition for the last tag
-11. M-* : Pop back to where you previously invoked M-.
+#+BEGIN_SRC sh
+ctags -e -R . : Generate emacs ctags
+#+END_SRC
+|---------------+----------------------------------------------|
+| M-. , M-. tag | Jump to tag or search a tag                  |
+| C-u M-.       | Find the next definition for the last tag    |
+| M-*           | Pop back to where you previously invoked M-. |
+|---------------+----------------------------------------------|
