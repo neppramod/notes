@@ -1,2 +1,2 @@
 * Introduction
-  This project contains my emacs notes, scripts and some other programming notes
+  This project contains my emacs notes, scripts and some other programming notes. Add more contents also.
