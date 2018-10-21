@@ -1,0 +1,6 @@
+* Git
+** Configure for multiple users
+;; Download username aware git repo
+#+BEGIN_SEC sh
+git clone https://neppramod@github.com/neppramod/notes.git
+#+END_SRC
