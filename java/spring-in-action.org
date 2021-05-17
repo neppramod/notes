@@ -1,0 +1,182 @@
+* Foundational Spring
+** Getting started
+*** What is Spring ?
+Any non-trival application is composed of many components, each responsible for its own piece of the overall application functionality, coordinating with the other application elements to get the job done. When the application is run, these components somehow need to be created and introduced to each other.
+
+At its core, Spring offers a /container/, often referred to as the /Spring application context/, that creates and manages application components. These components, or /beans/, are wired together inside the Spring application context to make a complete application. 
+
+The act of wiring beans together is based on a pattern known as /dependency injection/ (DI). Rather than have componenets create and maintain the lifecycle of other beans that they depend on, a dependency-injected application relies on a separate entity (container) to create and maintain all components and inject those into the beans that need them. This is done through constructor arguments or property accessor methods.
+
+On top of its core container, Spring and set of related libraries offer a web framework, a variety of data persistence options, a security framework, integration with other systems, runtime monitoring, microservice support, a reactive programming model, and many other features necessary for modern application development.
+
+Beans can be configured using XML-based configuration and Java-based configuration. E.g.
+
+#+begin_src xml
+<bean id="inventoryService"
+      class="com.example.InventoryService" />
+<bean id="productService"
+      class="com.example.ProductService" />
+  <constructor-arg ref="inventoryService" />
+</bean>
+#+end_src
+
+#+begin_src java
+@Configuration
+public class ServiceConfiguration {
+  @Bean
+  public InventoryService inventoryService() {
+    return new InventoryService();
+  }
+  @Bean
+  public ProductService productService() {
+    return new ProductService(inventoryService());
+  }
+}
+#+end_src
+
+Explicit configuration with either Java or XML is only necessary if Spring is unable to automatically cofigure the componenets. 
+
+Automatic configuration in Spring is known as autowiring and componeent scanning. With compoenent scanning, Spring can automatically discover componenets from an application's classpath and create them as beans in Spring application context. With autowiring, Spring automatically injects the componenets with other beans that they depend on. Spring Boot enhances this with /autoconfiguration/ where Spring Boot can make reasonable guesses of what componenets need to be configured and wired together, based on entities in the classpath, environment variables and other factors.
+
+*** Initializing a Spring application 
+You can initialize a basic spring application with desired components using http://start.spring.io website. In Spring Tool Suite, you can use Spring Starter Project and create a spring project with spring starter website. For this example, we select the name as taco-cloud, package as tacos, group as sia, with description as "Taco Cloud Example". For components, select "Spring Boot DevTools, Spring Web, Thymeleaf, Lombok". Version of Spring Boot is 2.4.5. And web modelVersion is 4.0.0, java version 11. For this project I selected other packages also, e.g. Testing and Validation. The pom.xml looks like following code.
+#+begin_src xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.4.5</version>
+		<relativePath /> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>sia</groupId>
+	<artifactId>taco-cloud</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>taco-cloud</name>
+	<description>Taco Cloud Example</description>
+	<properties>
+		<java.version>11</java.version>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>htmlunit-driver</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+</project>
+#+end_src
+
+We use jar packaging. Although by default it sets to jar packaging. Jar packages are good fit for all Java cloud platforms. If we want to deploy in traditional Java application server, when we need to choose WAR packaging and include a web initializer class. We use Thymeleaf for view template. We use Spring Boot starter maven packages, which reduces the dependencies we need to include in pom.xml, as these starter packages include needed packages themselves.
+
+
+*** Bootstrapping the Application
+Since we'll be running the application from an executable JAR, we need to have a main class that will be executed when that JAR file is run. We will also need at least a minimal amount of Spring configuration to bootstrap the application. That's what we find in TacoCloudApplication class as shown below.
+
+#+begin_src java
+package tacos;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class TacoCloudApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(TacoCloudApplication.class, args);
+	}
+
+}
+#+end_src
+
+The @SpringBootApplication is composite application that combines @SpringBootConfiguraiton, @EnableAutoConfiguration and @ComponentScan. The first one specifies that this class is a configuration class, second annotation enables autoconfiguration, and @ComponenetScan enables other classes declared with @Component, @Controller, @Service and others and have Spring automatically discover and register them as components in the Spring application context. The SpringApplication.run() method performs actual bootstrapping of the application, creating the Spring application context. The two parameters passed to the run() method are a configuration class and the command-line arguments. Although it's not necessary that the configuration class passed to run() be the same as the bootstrap class, this is the most convenient and typical choice. We could define other configuration methods in this class, but we will create seperate configuration class, to keep this class clean.
+
+*** Testing the application
+Spring Initializer gives you a test class to get started. Code is shown below.
+#+begin_src java
+package tacos;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class TacoCloudApplicationTests {
+
+	@Test
+	void contextLoads() {
+	}
+
+}
+#+end_src
+
+This class makes sure the Spring application context can be loaded successfully, otherwise the test fails. @SpringBootTest tells JUnit to bootstrap the test with Spring Boot Capabilities. For now, it's enough to think of this as the test class equivalent of calling SpringApplication.run() in a main() method.
+*** Writing a Spring application
+	For start we will create a controller that handles request for the homepage for Taco Cloud application and a view template that defines what the homepage looks like. We will also add unit test for the controller.
+**** Handling web requests
+Spring comes with a powerful web framework known as Spring MVC. At the center of the Spring MVC is the concept of a /controller/, a class that handles requests and reponds with information of some sort. In the case of a browser-facing application, a controller responds by optionally populating model date and passing the request on to a view to produce HTML that's returned to the browser. Below is code for HomeController.
+#+begin_src java
+  package tacos;
+
+  import org.springframework.stereotype.Controller;
+  import org.springframework.web.bind.annotation.GetMapping;
+
+  @Controller
+  public class HomeController {
+	  @GetMapping("/")
+	  public String home() {
+		  return "home";
+	  }
+  }
+#+end_src
+
+As you  can see, this class is annotated with ~@Controller~. On its own, ~@controller~ doesn't do much. Its primary purpose is to identify this class as a componenet for component scanning. Because ~HomeController~ is  is annotated with @Controller, Spring's componenet scanning automatically discovers it and creates an instance of ~HomeController~ as a bean in the Spring application context. Other annotations including @Component, @Service and @Repository serve a purpose similar to @Controller. Any of these annotations would state the class for scanning, however @Controller is more descriptive of this component's role in the application. For the home() method, we use @GetMapping("\/") annotation to indicate this method is called when an HTTP GET request is received for the root path "\/".
