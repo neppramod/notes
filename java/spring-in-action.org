@@ -243,7 +243,6 @@ Instead of @SpringBooTest we use @WebMvcTest. This arranges for the test to run 
 
 Now you should be able to run the application and browse the homepage at http://localhost:8080.
 
-#+ATTR_HTML: :scale 0.25
 [[images/sia/01-taco-homepage.png]]
 
 
