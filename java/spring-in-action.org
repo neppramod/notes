@@ -241,8 +241,8 @@ public class HomeControllerTest {
 
 Instead of @SpringBooTest we use @WebMvcTest. This arranges for the test to run in the context of a Spring MVC application. More specifically, in htis case, it arranges for HomeController to be registered in Spring MVC so that you can throw requests against it. Although it could be made to start a server, mocking the mechanics of Spring MVC is sufficient for our purposes. The test class is injected with MockMvc object for the test to drive the mockup. Inside testHomePage() method, we perform HTTP GET request for the root path, and expect a HTTP 200 (OK) status. We also expect the view to have a logical name of home and the rendered view should contain the text "Welcome to ...".
 
-Now you should be able to run the application and browse the homepage at http://localhost:8080.
+Now you should be able to run the application and browse the homepage at [[http://localhost:8080][http://localhost:8080]]
 
-[[images/sia/01-taco-homepage.png]]
+[[./images/sia/01-taco-homepage.png]]
 
 
