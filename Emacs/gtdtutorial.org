@@ -1,0 +1,57 @@
+* GTD Inbox
+First thing to after setup. This will be save in inbox (after setup)
+C-c c   Start capturing thoughts
+C-c C-c Save capture
+
+** Add Entry
+ C-c c t    Add entry to Inbox
+ C-c c T    Add an try to tickler
+
+** Inbox looks like
+ #+BEGIN_SRC elisp
+   * TODO buy milk
+   * TODO call back Daniel
+   * TODO book the trip to Paris
+ #+END_SRC
+
+ Inbox is processed and emptied daily
+
+** Refile
+ When processing inbox, refile each entry that is actionable and belongs to a
+ project, moving the entry to the appropriate place. If need be
+ create a new project out of it.
+
+ C-c C-w     refile. After setup prompts for project (gtd), tickler or someday/maybe list
+
+* Projects File
+Active projects are kept in gtd.org. Around 30 active projects at the same time.
+
+Each project contains actions to be performed. First action of each project is
+called its "next action", and that's always the one to do when working on a project.
+Once a task is done, mark it as such using the DONE todo keyword.
+
+Example
+#+BEGIN_SRC elisp
+* Book a trip to Peris [33%]
+  * DONE Search for a good travel agency            :@internet:...
+  * WAITING Ask my wife when she's on vacation      :wife:@email:...
+  * TODO Book a meeting with a travel agent         :@phone:
+#+END_SRC
+
+Shows completion percentage on project
+** Tags
+C-c C-c    tagging, project or action
+
+- Regular catagories, like :emacs: or :writing: ;
+- Tags that link to people like :daniel: ;
+- GTD contexts  (regular tags with @)
+
+** todo keywords
+#+BEGIN_SRC
+** TODO keywords
+#+END_SRC
+
+Keywords like TODO, WAITING, DONE and CANCELLED mostly used. First 2 for incomplete and
+    last 2 for completed tasks.
+
+C-c C-t    set TODO keyword.

@@ -173,7 +173,7 @@ Key-chords are available only when the prelude-key-chord module has been enabled
 | C-c . >                | Right-shift integer at point. Default is 1 position to the right.                 |
 | C-c . #                | Convert integer at point to specified base. Default is 10.                        |
 | C-c . %                | Replace integer at point with another specified integer.                          |
-| C-c . '                | Perform arithmetic operations on integer at point. User specifies the operator.   |
+| C-c . '                | Perform arithmetic operations on integer at point. User specifies operator.       |
 | Super-r                | Recent files                                                                      |
 | Super-j                | Join lines                                                                        |
 | Super-k                | Kill whole line                                                                   |
@@ -199,7 +199,6 @@ Getting started with Magit is really easy:
 | or s-p               | and wait for a moment for key bindings for projectile |
 | C-c h                | helm                                                  |
 | C-c h C-h            | Key bindings in helm                                  |
-
 
 * Dired Mode
 | Keybinding | Description                    |

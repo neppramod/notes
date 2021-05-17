@@ -1,0 +1,22 @@
+LLDB Commands
+
+| Command                     | Description               |
+|-----------------------------+---------------------------|
+| clang++ -g -o main main.cpp | compile with debug symbol |
+| f                           | display frame             |
+| fr v                        | frame variables           |
+| p <var>                     | print <var>               |
+| n                           | next                      |
+| cont                        | continue                  |
+| run                         | start lldb                |
+| bt all                      | backtrace, backtrace -c 5 |
+| si                          | step in                   |
+| ni                          | next in                   |
+| finish                      | out of current frame      |
+| b main                      | set break point at main   |
+| b test.cpp:12               | break at line 12          |
+| br s -M main                | break at main             |
+| br del 1                    | delete a break point      |
+| br list                     | list all break points     |
+| wa s v <global_var>         | watch a global variable   |
+|-----------------------------+---------------------------|

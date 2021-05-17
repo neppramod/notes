@@ -1,0 +1,57 @@
+% Created 2018-10-27 Sat 20:04
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\author{Pramod Nepal}
+\date{\today}
+\title{}
+\hypersetup{
+ pdfauthor={Pramod Nepal},
+ pdftitle={},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 26.1 (Org mode 9.1.9)},
+ pdflang={English}}
+\begin{document}
+
+\tableofcontents
+
+LLDB Commands
+
+\begin{center}
+\begin{tabular}{ll}
+Command & Description\\
+\hline
+clang++ -g -o main main.cpp & compile with debug symbol\\
+f & display frame\\
+fr v & frame variables\\
+p <var> & print <var>\\
+n & next\\
+cont & continue\\
+run & start lldb\\
+bt all & backtrace, backtrace -c 5\\
+si & step in\\
+ni & next in\\
+finish & out of current frame\\
+b main & set break point at main\\
+b test.cpp:12 & break at line 12\\
+br s -M main & break at main\\
+br del 1 & delete a break point\\
+br list & list all break points\\
+wa s v <global\(_{\text{var}}\)> & watch a global variable\\
+\hline
+\end{tabular}
+\end{center}
+\end{document}

@@ -1,0 +1,923 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2018-10-23 Tue 22:15 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>&lrm;</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Pramod Nepal" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgd55dcaa">1. <span class="done DONE">DONE</span> Create a java maven project</a></li>
+<li><a href="#orga079023">2. Add maven release plugin</a>
+<ul>
+<li><a href="#orgfd5104e">2.1. Maven release plugin requires scm tag with developerConnection pointing to scm's pom.xml folder</a>
+<ul>
+<li><a href="#org4d8e3c9">2.1.1. Initialize git in current project</a></li>
+<li><a href="#orgf910353">2.1.2. Add scm section</a></li>
+<li><a href="#org41d667a">2.1.3. Add build tag</a></li>
+<li><a href="#orgf87d3f9">2.1.4. Provide release version</a></li>
+<li><a href="#org5b1729b">2.1.5. Release prepare</a></li>
+<li><a href="#org0194e41">2.1.6. Add distributionManagementTag</a></li>
+</ul>
+</li>
+<li><a href="#org8dafcf5">2.2. Remove recursive git (i.e git prj insdie git prj) :( like in my case</a></li>
+<li><a href="#org79a6729">2.3. Return release</a></li>
+</ul>
+</li>
+<li><a href="#org60f8c0d">3. Add remote git repository and modify pom.xml accordingly</a></li>
+<li><a href="#org2c87862">4. Finally execute</a></li>
+<li><a href="#org928c771">5. Output</a></li>
+<li><a href="#orged4ff23">6. Modified pom.xml</a></li>
+<li><a href="#org3481aa3">7. At this point set of commands</a></li>
+<li><a href="#org7778499">8. Develop will still work with SNAPSHOT</a></li>
+<li><a href="#orgcc3b439">9. Next execute mvn release:perform (Error)</a></li>
+<li><a href="#orgdf56af3">10. Log</a></li>
+<li><a href="#org0618dda">11. Now able to automate with mvn release:prepare and release:perform</a></li>
+<li><a href="#orgffa788f">12. Batch mode options</a></li>
+<li><a href="#orgf0dd951">13. Revisit pom.xml with all the changes</a></li>
+<li><a href="#org59cbf04">14. Links</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgd55dcaa" class="outline-2">
+<h2 id="orgd55dcaa"><span class="section-number-2">1</span> <span class="done DONE">DONE</span> Create a java maven project</h2>
+<div class="outline-text-2" id="text-1">
+<div class="org-src-container">
+<pre class="src src-sh">mvn archetype:generate -DgroupId=org.test.autobuild -DartifactId=autobuildtestpr<span style="color: #dc8cc3; background-color: #383838;">j -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false</span>
+</pre>
+</div>
+
+<p>
+;; Maven default pom.xml before change
+</p>
+<div class="org-src-container">
+<pre class="src src-xml">&lt;<span style="color: #ff1493;">project</span> <span style="color: #4c83ff;">xmlns</span>=<span style="color: #61CE3C;">"http://maven.apache.org/POM/4.0.0"</span> <span style="color: #4c83ff;">xmlns</span>:<span style="color: #ff69b4;">xsi</span>=<span style="color: #61CE3C;">"http://www.w3.org/</span><span style="color: #dc8cc3; background-color: #383838;">2001/XMLSchema-instance"</span>
+  <span style="color: #4c83ff;">xsi</span>:<span style="color: #ff69b4;">schemaLocation</span>=<span style="color: #61CE3C;">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/</span><span style="color: #dc8cc3; background-color: #383838;">maven-v4_0_0.xsd"</span><span style="color: #dc8cc3; background-color: #383838;">&gt;</span>
+  &lt;<span style="color: #ff1493;">modelVersion</span>&gt;4.0.0&lt;/<span style="color: #ff1493;">modelVersion</span>&gt;
+  &lt;<span style="color: #ff1493;">groupId</span>&gt;org.test.autobuild&lt;/<span style="color: #ff1493;">groupId</span>&gt;
+  &lt;<span style="color: #ff1493;">artifactId</span>&gt;autobuildtestprj&lt;/<span style="color: #ff1493;">artifactId</span>&gt;
+  &lt;<span style="color: #ff1493;">packaging</span>&gt;jar&lt;/<span style="color: #ff1493;">packaging</span>&gt;
+  &lt;<span style="color: #ff1493;">version</span>&gt;1.0-SNAPSHOT&lt;/<span style="color: #ff1493;">version</span>&gt;
+  &lt;<span style="color: #ff1493;">name</span>&gt;autobuildtestprj&lt;/<span style="color: #ff1493;">name</span>&gt;
+  &lt;<span style="color: #ff1493;">url</span>&gt;http://maven.apache.org&lt;/<span style="color: #ff1493;">url</span>&gt;
+  &lt;<span style="color: #ff1493;">dependencies</span>&gt;
+    &lt;<span style="color: #ff1493;">dependency</span>&gt;
+      &lt;<span style="color: #ff1493;">groupId</span>&gt;junit&lt;/<span style="color: #ff1493;">groupId</span>&gt;
+      &lt;<span style="color: #ff1493;">artifactId</span>&gt;junit&lt;/<span style="color: #ff1493;">artifactId</span>&gt;
+      &lt;<span style="color: #ff1493;">version</span>&gt;3.8.1&lt;/<span style="color: #ff1493;">version</span>&gt;
+      &lt;<span style="color: #ff1493;">scope</span>&gt;test&lt;/<span style="color: #ff1493;">scope</span>&gt;
+    &lt;/<span style="color: #ff1493;">dependency</span>&gt;
+  &lt;/<span style="color: #ff1493;">dependencies</span>&gt;
+&lt;/<span style="color: #ff1493;">project</span>&gt;
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga079023" class="outline-2">
+<h2 id="orga079023"><span class="section-number-2">2</span> Add maven release plugin</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+<a href="http://maven.apache.org/maven-release/maven-release-plugin/usage.html">Maven-Release-Plugin Usage</a>
+<a href="http://maven.apache.org/maven-release/maven-release-plugin/">Maven Release Plugin</a>
+</p>
+</div>
+<div id="outline-container-orgfd5104e" class="outline-3">
+<h3 id="orgfd5104e"><span class="section-number-3">2.1</span> Maven release plugin requires scm tag with developerConnection pointing to scm's pom.xml folder</h3>
+<div class="outline-text-3" id="text-2-1">
+</div>
+<div id="outline-container-org4d8e3c9" class="outline-4">
+<h4 id="org4d8e3c9"><span class="section-number-4">2.1.1</span> Initialize git in current project</h4>
+<div class="outline-text-4" id="text-2-1-1">
+<div class="org-src-container">
+<pre class="src src-sh">git init
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgf910353" class="outline-4">
+<h4 id="orgf910353"><span class="section-number-4">2.1.2</span> Add scm section</h4>
+<div class="outline-text-4" id="text-2-1-2">
+<div class="org-src-container">
+<pre class="src src-xml">&lt;<span style="color: #ff1493;">scm</span>&gt;
+    &lt;<span style="color: #ff1493;">developerConnection</span>&gt;scm:git:file:///Users/pramod/Programming/try/mavenabuto<span style="color: #dc8cc3; background-color: #383838;">builder/firstprj/autobuildtestprj</span><span style="color: #dc8cc3; background-color: #383838;">&lt;</span><span style="color: #dc8cc3; background-color: #383838;">/</span><span style="color: #dc8cc3; background-color: #383838;">developerConnection</span><span style="color: #dc8cc3; background-color: #383838;">&gt;</span>
+  &lt;/<span style="color: #ff1493;">scm</span>&gt;
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org41d667a" class="outline-4">
+<h4 id="org41d667a"><span class="section-number-4">2.1.3</span> Add build tag</h4>
+<div class="outline-text-4" id="text-2-1-3">
+<div class="org-src-container">
+<pre class="src src-xml">&lt;<span style="color: #ff1493;">build</span>&gt;
+    &lt;<span style="color: #ff1493;">plugins</span>&gt;
+      &lt;<span style="color: #ff1493;">plugin</span>&gt;
+        &lt;<span style="color: #ff1493;">groupId</span>&gt;org.apache.maven.plugins&lt;/<span style="color: #ff1493;">groupId</span>&gt;
+        &lt;<span style="color: #ff1493;">artifactId</span>&gt;maven-release-plugin&lt;/<span style="color: #ff1493;">artifactId</span>&gt;
+        &lt;<span style="color: #ff1493;">version</span>&gt;2.5.3&lt;/<span style="color: #ff1493;">version</span>&gt;
+      &lt;/<span style="color: #ff1493;">plugin</span>&gt;
+    &lt;/<span style="color: #ff1493;">plugins</span>&gt;
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgf87d3f9" class="outline-4">
+<h4 id="orgf87d3f9"><span class="section-number-4">2.1.4</span> Provide release version</h4>
+<div class="outline-text-4" id="text-2-1-4">
+<div class="org-src-container">
+<pre class="src src-sh">What is the release version for <span style="color: #61CE3C;">"autobuildtestprj"</span>? (org.test.autobuild:autobuil<span style="color: #dc8cc3; background-color: #383838;">dtestprj) 1.0: : 4.5.1</span>
+What is SCM release tag or label for <span style="color: #61CE3C;">"autobuildtestprj"</span>? (org.test.autobuild:aut<span style="color: #dc8cc3; background-color: #383838;">obuildtestprj) autobuildtestprj-1.0: : prod</span>
+What is the new development version for <span style="color: #61CE3C;">"autobuildtestprj"</span>? (org.test.autobuild:<span style="color: #dc8cc3; background-color: #383838;">autobuildtestprj) 1.1-SNAPSHOT: : 4.6.1-SNAPSHOT</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org5b1729b" class="outline-4">
+<h4 id="org5b1729b"><span class="section-number-4">2.1.5</span> Release prepare</h4>
+<div class="outline-text-4" id="text-2-1-5">
+<div class="org-src-container">
+<pre class="src src-sh">mvn release:prepare -DdryRun=true  <span style="color: #8B8989; font-style: italic;"># </span><span style="color: #8B8989; font-style: italic;">set up version</span>
+mvn release:prepare  <span style="color: #8B8989; font-style: italic;"># </span><span style="color: #8B8989; font-style: italic;">prepare version, may setup above</span>
+mvn release:clean <span style="color: #8B8989; font-style: italic;"># </span><span style="color: #8B8989; font-style: italic;">Removes all fils created above</span>
+mvn release:perform
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org0194e41" class="outline-4">
+<h4 id="org0194e41"><span class="section-number-4">2.1.6</span> Add distributionManagementTag</h4>
+<div class="outline-text-4" id="text-2-1-6">
+<div class="org-src-container">
+<pre class="src src-xml">&lt;<span style="color: #ff1493;">distributionManagement</span>&gt;
+      <span style="color: #8B8989; font-style: italic;">&lt;!-- </span><span style="color: #8B8989; font-style: italic;">use the following if you're not using a snapshot version. </span><span style="color: #8B8989; font-style: italic;">--&gt;</span>
+      &lt;<span style="color: #ff1493;">repository</span>&gt;
+          &lt;<span style="color: #ff1493;">id</span>&gt;localSnap&lt;/<span style="color: #ff1493;">id</span>&gt;
+          &lt;<span style="color: #ff1493;">name</span>&gt;RepositoryProxyRel&lt;/<span style="color: #ff1493;">name</span>&gt;
+          &lt;<span style="color: #ff1493;">url</span>&gt;file:///Users/pramod/Documents/autobuildtestprj&lt;/<span style="color: #ff1493;">url</span>&gt;
+      &lt;/<span style="color: #ff1493;">repository</span>&gt;
+  &lt;/<span style="color: #ff1493;">distributionManagement</span>&gt;
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org8dafcf5" class="outline-3">
+<h3 id="org8dafcf5"><span class="section-number-3">2.2</span> Remove recursive git (i.e git prj insdie git prj) :( like in my case</h3>
+</div>
+<div id="outline-container-org79a6729" class="outline-3">
+<h3 id="org79a6729"><span class="section-number-3">2.3</span> Return release</h3>
+<div class="outline-text-3" id="text-2-3">
+<div class="org-src-container">
+<pre class="src src-sh">mvn release:prepare
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org60f8c0d" class="outline-2">
+<h2 id="org60f8c0d"><span class="section-number-2">3</span> Add remote git repository and modify pom.xml accordingly</h2>
+<div class="outline-text-2" id="text-3">
+<div class="org-src-container">
+<pre class="src src-sh"> mkdir autobuildtestremoteprj
+<span style="color: #4c83ff;">cd</span> autobuildtestremoteprj/
+git init --bare .
+<span style="color: #4c83ff;">cd</span> ..
+ls
+<span style="color: #4c83ff;">cd</span> autobuildtestprj/
+ls
+git remote add origin file:///Users/pramod/Documents/autobuildtestremoteprj
+git push origin master
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org2c87862" class="outline-2">
+<h2 id="org2c87862"><span class="section-number-2">4</span> Finally execute</h2>
+<div class="outline-text-2" id="text-4">
+<pre class="example">
+mvn release:clean
+mvn release:prepare
+mvn release:perform
+# Don't use release tag, as it was already used
+</pre>
+</div>
+</div>
+<div id="outline-container-org928c771" class="outline-2">
+<h2 id="org928c771"><span class="section-number-2">5</span> Output</h2>
+<div class="outline-text-2" id="text-5">
+<div class="org-src-container">
+<pre class="src src-sh">Uploaded to localSnap: file:///Users/pramod/Documents/autobuildtestremoteprj/org<span style="color: #dc8cc3; background-color: #383838;">/test/autobuild/autobuildtestprj/4.5.3/autobuildtestprj-4.5.3-javadoc.jar (23 kB at 4.6 MB/s)</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orged4ff23" class="outline-2">
+<h2 id="orged4ff23"><span class="section-number-2">6</span> Modified pom.xml</h2>
+<div class="outline-text-2" id="text-6">
+<div class="org-src-container">
+<pre class="src src-sh">&lt;project <span style="color: #ff69b4;">xmlns</span>=<span style="color: #61CE3C;">"http://maven.apache.org/POM/4.0.0"</span> xmlns:<span style="color: #ff69b4;">xsi</span>=<span style="color: #61CE3C;">"http://www.w3.org/</span><span style="color: #dc8cc3; background-color: #383838;">2001/XMLSchema-instance"</span><span style="color: #dc8cc3; background-color: #383838;"> xsi:</span><span style="color: #dc8cc3; background-color: #383838;">schemaLocation</span><span style="color: #dc8cc3; background-color: #383838;">=</span><span style="color: #dc8cc3; background-color: #383838;">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"</span><span style="color: #dc8cc3; background-color: #383838;">&gt;</span>
+  &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+  &lt;groupId&gt;org.test.autobuild&lt;/groupId&gt;
+  &lt;artifactId&gt;autobuildtestprj&lt;/artifactId&gt;
+  &lt;packaging&gt;jar&lt;/packaging&gt;
+  &lt;version&gt;4.5.4-SNAPSHOT&lt;/version&gt;
+  &lt;name&gt;autobuildtestprj&lt;/name&gt;
+  &lt;url&gt;http://maven.apache.org&lt;/url&gt;
+  &lt;scm&gt;
+    &lt;developerConnection&gt;scm:git:file:///Users/pramod/Documents/autobuildtestrem<span style="color: #dc8cc3; background-color: #383838;">oteprj&lt;/developerConnection&gt;</span>
+    &lt;tag&gt;HEAD&lt;/tag&gt;
+  &lt;/scm&gt;
+
+  &lt;dependencies&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;junit&lt;/groupId&gt;
+      &lt;artifactId&gt;junit&lt;/artifactId&gt;
+      &lt;version&gt;3.8.1&lt;/version&gt;
+      &lt;scope&gt;test&lt;/scope&gt;
+    &lt;/dependency&gt;
+  &lt;/dependencies&gt;
+
+  &lt;distributionManagement&gt;
+      &lt;!-- use the following if you<span style="color: #61CE3C;">'re not using a snapshot version. --&gt;</span>
+<span style="color: #61CE3C;">      &lt;repository&gt;</span>
+<span style="color: #61CE3C;">          &lt;id&gt;localSnap&lt;/id&gt;</span>
+<span style="color: #61CE3C;">          &lt;name&gt;RepositoryProxyRel&lt;/name&gt;</span>
+<span style="color: #61CE3C;">          &lt;url&gt;file:///Users/pramod/Documents/autobuildtestremoteprj&lt;/url&gt;</span>
+<span style="color: #61CE3C;">      &lt;/repository&gt;</span>
+<span style="color: #61CE3C;">  &lt;/distributionManagement&gt;</span>
+
+<span style="color: #61CE3C;">  &lt;build&gt;</span>
+<span style="color: #61CE3C;">    &lt;plugins&gt;</span>
+<span style="color: #61CE3C;">      &lt;plugin&gt;</span>
+<span style="color: #61CE3C;">        &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;</span>
+<span style="color: #61CE3C;">        &lt;artifactId&gt;maven-release-plugin&lt;/artifactId&gt;</span>
+<span style="color: #61CE3C;">        &lt;version&gt;2.5.3&lt;/version&gt;</span>
+<span style="color: #61CE3C;">      &lt;/plugin&gt;</span>
+<span style="color: #61CE3C;">    &lt;/plugins&gt;</span>
+<span style="color: #61CE3C;">  &lt;/build&gt;</span>
+<span style="color: #61CE3C;">&lt;/project&gt;</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org3481aa3" class="outline-2">
+<h2 id="org3481aa3"><span class="section-number-2">7</span> At this point set of commands</h2>
+<div class="outline-text-2" id="text-7">
+<div class="org-src-container">
+<pre class="src src-sh">rm release.properties
+git add pom.xml
+git commit -m <span style="color: #61CE3C;">"Modify for third time"</span>
+git push
+git status
+mvn release:clean
+mvn release:prepare
+mvn release:perform
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org7778499" class="outline-2">
+<h2 id="org7778499"><span class="section-number-2">8</span> Develop will still work with SNAPSHOT</h2>
+<div class="outline-text-2" id="text-8">
+<pre class="example">
+mvn clean install
+[INFO] Building jar: /Users/pramod/Documents/autobuildtestprj/target/autobuildtestprj-4.5.4-SNAPSHOT.jar
+</pre>
+</div>
+</div>
+<div id="outline-container-orgcc3b439" class="outline-2">
+<h2 id="orgcc3b439"><span class="section-number-2">9</span> Next execute mvn release:perform (Error)</h2>
+<div class="outline-text-2" id="text-9">
+<pre class="example">
+mvn release:perform
+ No SCM URL was provided to perform the release from
+</pre>
+</div>
+</div>
+<div id="outline-container-orgdf56af3" class="outline-2">
+<h2 id="orgdf56af3"><span class="section-number-2">10</span> Log</h2>
+<div class="outline-text-2" id="text-10">
+<div class="org-src-container">
+<pre class="src src-sh">bash-3.2$ mvn release:clean release:prepare
+[INFO] Scanning for projects...
+[INFO]
+[INFO] ----------------&lt; org.test.autobuild:autobuildtestprj &gt;-----------------
+[INFO] Building autobuildtestprj 4.5.4-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- maven-release-plugin:2.5.3:clean (default-cli) @ autobuildtestprj ---
+[INFO] Cleaning up after release...
+[INFO]
+[INFO] --- maven-release-plugin:2.5.3:prepare (default-cli) @ autobuildtestprj -<span style="color: #dc8cc3; background-color: #383838;">--</span>
+[INFO] Verifying that there are no local modifications...
+[INFO]   ignoring changes on: **/pom.xml.releaseBackup, **/pom.xml.next, **/pom.<span style="color: #dc8cc3; background-color: #383838;">xml.tag, **/pom.xml.branch, **/release.properties, **/pom.xml.backup</span>
+[INFO] Executing: /bin/sh -c cd /Users/pramod/Documents/autobuildtestprj &amp;&amp; git <span style="color: #dc8cc3; background-color: #383838;">rev-parse --show-toplevel</span>
+[INFO] Working directory: /Users/pramod/Documents/autobuildtestprj
+[INFO] Executing: /bin/sh -c cd /Users/pramod/Documents/autobuildtestprj &amp;&amp; git <span style="color: #dc8cc3; background-color: #383838;">status --porcelain .</span>
+[INFO] Working directory: /Users/pramod/Documents/autobuildtestprj
+[WARNING] Ignoring unrecognized line: ?? release.properties
+[INFO] Checking dependencies and plugins for snapshots ...
+What is the release version for <span style="color: #61CE3C;">"autobuildtestprj"</span>? (org.test.autobuild:autobuil<span style="color: #dc8cc3; background-color: #383838;">dtestprj) 4.5.4: : 4.5.6</span>
+What is SCM release tag or label for <span style="color: #61CE3C;">"autobuildtestprj"</span>? (org.test.autobuild:aut<span style="color: #dc8cc3; background-color: #383838;">obuildtestprj) autobuildtestprj-4.5.6: : release-4.5.6</span>
+What is the new development version for <span style="color: #61CE3C;">"autobuildtestprj"</span>? (org.test.autobuild:<span style="color: #dc8cc3; background-color: #383838;">autobuildtestprj) 4.5.7-SNAPSHOT: :</span>
+[INFO] Transforming <span style="color: #61CE3C;">'autobuildtestprj'</span>...
+[INFO] Not generating release POMs
+[INFO] Executing goals <span style="color: #61CE3C;">'clean verify'</span>...
+[WARNING] Maven will be executed<span style="color: #4c83ff;"> in</span> interactive mode, but no input stream has be<span style="color: #dc8cc3; background-color: #383838;">en configured for this MavenInvoker instance.</span>
+[INFO] [INFO] Scanning for projects...
+[INFO] [INFO]
+[INFO] [INFO] ----------------&lt; org.test.autobuild:autobuildtestprj &gt;-----------<span style="color: #dc8cc3; background-color: #383838;">------</span>
+[INFO] [INFO] Building autobuildtestprj 4.5.6
+[INFO] [INFO] --------------------------------[ jar ]---------------------------<span style="color: #dc8cc3; background-color: #383838;">------</span>
+[INFO] [INFO]
+[INFO] [INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ autobuildtestpr<span style="color: #dc8cc3; background-color: #383838;">j ---</span>
+[INFO] [INFO]
+[INFO] [INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ aut<span style="color: #dc8cc3; background-color: #383838;">obuildtestprj ---</span>
+[INFO] [WARNING] Using platform encoding (UTF-8 actually) to copy filtered resou<span style="color: #dc8cc3; background-color: #383838;">rces, i.e. build is platform dependent!</span>
+[INFO] [INFO] skip non existing resourceDirectory /Users/pramod/Documents/autobu<span style="color: #dc8cc3; background-color: #383838;">ildtestprj/src/main/resources</span>
+[INFO] [INFO]
+[INFO] [INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ autobuil<span style="color: #dc8cc3; background-color: #383838;">dtestprj ---</span>
+[INFO] [INFO] Changes detected - recompiling the module!
+[INFO] [WARNING] File encoding has not been set, using platform encoding UTF-8, <span style="color: #dc8cc3; background-color: #383838;">i.e. build is platform dependent!</span>
+[INFO] [INFO] Compiling 1 source file to /Users/pramod/Documents/autobuildtestpr<span style="color: #dc8cc3; background-color: #383838;">j/target/classes</span>
+[INFO] [INFO]
+[INFO] [INFO] --- maven-resources-plugin:2.6:testResources (default-testResource<span style="color: #dc8cc3; background-color: #383838;">s) @ autobuildtestprj ---</span>
+[INFO] [WARNING] Using platform encoding (UTF-8 actually) to copy filtered resou<span style="color: #dc8cc3; background-color: #383838;">rces, i.e. build is platform dependent!</span>
+[INFO] [INFO] skip non existing resourceDirectory /Users/pramod/Documents/autobu<span style="color: #dc8cc3; background-color: #383838;">ildtestprj/src/test/resources</span>
+[INFO] [INFO]
+[INFO] [INFO] --- maven-compiler-plugin:3.1:testCompile (default-testCompile) @ <span style="color: #dc8cc3; background-color: #383838;">autobuildtestprj ---</span>
+[INFO] [INFO] Changes detected - recompiling the module!
+[INFO] [WARNING] File encoding has not been set, using platform encoding UTF-8, <span style="color: #dc8cc3; background-color: #383838;">i.e. build is platform dependent!</span>
+[INFO] [INFO] Compiling 1 source file to /Users/pramod/Documents/autobuildtestpr<span style="color: #dc8cc3; background-color: #383838;">j/target/test-classes</span>
+[INFO] [INFO]
+[INFO] [INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ autobuildte<span style="color: #dc8cc3; background-color: #383838;">stprj ---</span>
+[INFO] [INFO] Surefire report directory: /Users/pramod/Documents/autobuildtestpr<span style="color: #dc8cc3; background-color: #383838;">j/target/surefire-reports</span>
+[INFO]
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running org.test.autobuild.AppTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.005 sec
+[INFO]
+[INFO] Results :
+[INFO]
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
+[INFO]
+[INFO] [INFO]
+[INFO] [INFO] --- maven-jar-plugin:2.4:jar (default-jar) @ autobuildtestprj ---
+[INFO] [INFO] Building jar: /Users/pramod/Documents/autobuildtestprj/target/auto<span style="color: #dc8cc3; background-color: #383838;">buildtestprj-4.5.6.jar</span>
+[INFO] [INFO] ------------------------------------------------------------------<span style="color: #dc8cc3; background-color: #383838;">------</span>
+[INFO] [INFO] BUILD SUCCESS
+[INFO] [INFO] ------------------------------------------------------------------<span style="color: #dc8cc3; background-color: #383838;">------</span>
+[INFO] [INFO] Total time: 1.471 s
+[INFO] [INFO] Finished at: 2018-10-23T21:28:41-04:00
+[INFO] [INFO] ------------------------------------------------------------------<span style="color: #dc8cc3; background-color: #383838;">------</span>
+[INFO] Checking<span style="color: #4c83ff;"> in</span> modified POMs...
+[INFO] Executing: /bin/sh -c cd /Users/pramod/Documents/autobuildtestprj &amp;&amp; git <span style="color: #dc8cc3; background-color: #383838;">add -- pom.xml</span>
+[INFO] Working directory: /Users/pramod/Documents/autobuildtestprj
+[INFO] Executing: /bin/sh -c cd /Users/pramod/Documents/autobuildtestprj &amp;&amp; git <span style="color: #dc8cc3; background-color: #383838;">rev-parse --show-toplevel</span>
+[INFO] Working directory: /Users/pramod/Documents/autobuildtestprj
+[INFO] Executing: /bin/sh -c cd /Users/pramod/Documents/autobuildtestprj &amp;&amp; git <span style="color: #dc8cc3; background-color: #383838;">status --porcelain .</span>
+[INFO] Working directory: /Users/pramod/Documents/autobuildtestprj
+[WARNING] Ignoring unrecognized line: ?? pom.xml.releaseBackup
+[WARNING] Ignoring unrecognized line: ?? release.properties
+[WARNING] Ignoring unrecognized line: ?? target/
+[INFO] Executing: /bin/sh -c cd /Users/pramod/Documents/autobuildtestprj &amp;&amp; git <span style="color: #dc8cc3; background-color: #383838;">commit --verbose -F /var/folders/ww/twdlb2_d45x8r8d5_m537j940000gn/T/maven-scm-1587669494.commit pom.xml</span>
+[INFO] Working directory: /Users/pramod/Documents/autobuildtestprj
+[INFO] Executing: /bin/sh -c cd /Users/pramod/Documents/autobuildtestprj &amp;&amp; git <span style="color: #dc8cc3; background-color: #383838;">symbolic-ref HEAD</span>
+[INFO] Working directory: /Users/pramod/Documents/autobuildtestprj
+[INFO] Executing: /bin/sh -c cd /Users/pramod/Documents/autobuildtestprj &amp;&amp; git <span style="color: #dc8cc3; background-color: #383838;">push file:///Users/pramod/Documents/autobuildtestremoteprj refs/heads/master:refs/heads/master</span>
+[INFO] Working directory: /Users/pramod/Documents/autobuildtestprj
+[INFO] Tagging release with the label release-4.5.6...
+[INFO] Executing: /bin/sh -c cd /Users/pramod/Documents/autobuildtestprj &amp;&amp; git <span style="color: #dc8cc3; background-color: #383838;">tag -F /var/folders/ww/twdlb2_d45x8r8d5_m537j940000gn/T/maven-scm-850914747.commit release-4.5.6</span>
+[INFO] Working directory: /Users/pramod/Documents/autobuildtestprj
+[INFO] Executing: /bin/sh -c cd /Users/pramod/Documents/autobuildtestprj &amp;&amp; git <span style="color: #dc8cc3; background-color: #383838;">push file:///Users/pramod/Documents/autobuildtestremoteprj refs/tags/release-4.5.6</span>
+[INFO] Working directory: /Users/pramod/Documents/autobuildtestprj
+[INFO] Executing: /bin/sh -c cd /Users/pramod/Documents/autobuildtestprj &amp;&amp; git <span style="color: #dc8cc3; background-color: #383838;">ls-files</span>
+[INFO] Working directory: /Users/pramod/Documents/autobuildtestprj
+[INFO] Transforming <span style="color: #61CE3C;">'autobuildtestprj'</span>...
+[INFO] Not removing release POMs
+[INFO] Checking<span style="color: #4c83ff;"> in</span> modified POMs...
+[INFO] Executing: /bin/sh -c cd /Users/pramod/Documents/autobuildtestprj &amp;&amp; git <span style="color: #dc8cc3; background-color: #383838;">add -- pom.xml</span>
+[INFO] Working directory: /Users/pramod/Documents/autobuildtestprj
+[INFO] Executing: /bin/sh -c cd /Users/pramod/Documents/autobuildtestprj &amp;&amp; git <span style="color: #dc8cc3; background-color: #383838;">rev-parse --show-toplevel</span>
+[INFO] Working directory: /Users/pramod/Documents/autobuildtestprj
+[INFO] Executing: /bin/sh -c cd /Users/pramod/Documents/autobuildtestprj &amp;&amp; git <span style="color: #dc8cc3; background-color: #383838;">status --porcelain .</span>
+[INFO] Working directory: /Users/pramod/Documents/autobuildtestprj
+[WARNING] Ignoring unrecognized line: ?? pom.xml.releaseBackup
+[WARNING] Ignoring unrecognized line: ?? release.properties
+[WARNING] Ignoring unrecognized line: ?? target/
+[INFO] Executing: /bin/sh -c cd /Users/pramod/Documents/autobuildtestprj &amp;&amp; git <span style="color: #dc8cc3; background-color: #383838;">commit --verbose -F /var/folders/ww/twdlb2_d45x8r8d5_m537j940000gn/T/maven-scm-1490696766.commit pom.xml</span>
+[INFO] Working directory: /Users/pramod/Documents/autobuildtestprj
+[INFO] Executing: /bin/sh -c cd /Users/pramod/Documents/autobuildtestprj &amp;&amp; git <span style="color: #dc8cc3; background-color: #383838;">symbolic-ref HEAD</span>
+[INFO] Working directory: /Users/pramod/Documents/autobuildtestprj
+[INFO] Executing: /bin/sh -c cd /Users/pramod/Documents/autobuildtestprj &amp;&amp; git <span style="color: #dc8cc3; background-color: #383838;">push file:///Users/pramod/Documents/autobuildtestremoteprj refs/heads/master:refs/heads/master</span>
+[INFO] Working directory: /Users/pramod/Documents/autobuildtestprj
+[INFO] Release preparation complete.
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 23.868 s
+[INFO] Finished at: 2018-10-23T21:28:42-04:00
+[INFO] ------------------------------------------------------------------------
+bash-3.2$ ls
+pom.xml<span style="color: #ff0000; background-color: #000000;">                 </span>pom.xml.releaseBackup<span style="color: #ff0000; background-color: #000000;">   </span>release.properties<span style="color: #ff0000; background-color: #000000;">      </span>src<span style="color: #ff0000; background-color: #000000;">     </span><span style="color: #dc8cc3; background-color: #383838;">                </span><span style="color: #dc8cc3; background-color: #383838;">target</span>
+bash-3.2$ mvn release:perform
+[INFO] Scanning for projects...
+[INFO]
+[INFO] ----------------&lt; org.test.autobuild:autobuildtestprj &gt;-----------------
+[INFO] Building autobuildtestprj 4.5.7-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- maven-release-plugin:2.5.3:perform (default-cli) @ autobuildtestprj -<span style="color: #dc8cc3; background-color: #383838;">--</span>
+[INFO] Checking out the project to perform the release ...
+[INFO] Executing: /bin/sh -c cd /Users/pramod/Documents/autobuildtestprj/target <span style="color: #dc8cc3; background-color: #383838;">&amp;&amp; git clone --branch release-4.5.6 file:///Users/pramod/Documents/autobuildtestremoteprj /Users/pramod/Documents/autobuildtestprj/target/checkout</span>
+[INFO] Working directory: /Users/pramod/Documents/autobuildtestprj/target
+[INFO] Executing: /bin/sh -c cd /var/folders/ww/twdlb2_d45x8r8d5_m537j940000gn/T<span style="color: #dc8cc3; background-color: #383838;">/ &amp;&amp; git ls-remote file:///Users/pramod/Documents/autobuildtestremoteprj</span>
+[INFO] Working directory: /var/folders/ww/twdlb2_d45x8r8d5_m537j940000gn/T
+[INFO] Executing: /bin/sh -c cd /Users/pramod/Documents/autobuildtestprj/target/<span style="color: #dc8cc3; background-color: #383838;">checkout &amp;&amp; git fetch file:///Users/pramod/Documents/autobuildtestremoteprj</span>
+[INFO] Working directory: /Users/pramod/Documents/autobuildtestprj/target/checko<span style="color: #dc8cc3; background-color: #383838;">ut</span>
+[INFO] Executing: /bin/sh -c cd /Users/pramod/Documents/autobuildtestprj/target/<span style="color: #dc8cc3; background-color: #383838;">checkout &amp;&amp; git checkout release-4.5.6</span>
+[INFO] Working directory: /Users/pramod/Documents/autobuildtestprj/target/checko<span style="color: #dc8cc3; background-color: #383838;">ut</span>
+[INFO] Executing: /bin/sh -c cd /Users/pramod/Documents/autobuildtestprj/target/<span style="color: #dc8cc3; background-color: #383838;">checkout &amp;&amp; git ls-files</span>
+[INFO] Working directory: /Users/pramod/Documents/autobuildtestprj/target/checko<span style="color: #dc8cc3; background-color: #383838;">ut</span>
+[INFO] Invoking perform goals<span style="color: #4c83ff;"> in</span> directory /Users/pramod/Documents/autobuildtest<span style="color: #dc8cc3; background-color: #383838;">prj/target/checkout</span>
+[INFO] Executing goals <span style="color: #61CE3C;">'deploy'</span>...
+[WARNING] Maven will be executed<span style="color: #4c83ff;"> in</span> interactive mode, but no input stream has be<span style="color: #dc8cc3; background-color: #383838;">en configured for this MavenInvoker instance.</span>
+[INFO] [INFO] Scanning for projects...
+[INFO] [WARNING]
+[INFO] [WARNING] Some problems were encountered while building the effective mod<span style="color: #dc8cc3; background-color: #383838;">el for org.test.autobuild:autobuildtestprj:jar:4.5.6</span>
+[INFO] [WARNING] <span style="color: #61CE3C;">'build.plugins.plugin.version'</span> for org.apache.maven.plugins:mav<span style="color: #dc8cc3; background-color: #383838;">en-source-plugin is missing.</span>
+[INFO] [WARNING] <span style="color: #61CE3C;">'build.plugins.plugin.version'</span> for org.apache.maven.plugins:mav<span style="color: #dc8cc3; background-color: #383838;">en-javadoc-plugin is missing.</span>
+[INFO] [WARNING] <span style="color: #61CE3C;">'build.plugins.plugin.version'</span> for org.apache.maven.plugins:mav<span style="color: #dc8cc3; background-color: #383838;">en-deploy-plugin is missing.</span>
+[INFO] [WARNING]
+[INFO] [WARNING] It is highly recommended to fix these problems because they thr<span style="color: #dc8cc3; background-color: #383838;">eaten the stability of your build.</span>
+[INFO] [WARNING]
+[INFO] [WARNING] For this reason, future Maven versions might no longer support <span style="color: #dc8cc3; background-color: #383838;">building such malformed projects.</span>
+[INFO] [WARNING]
+[INFO] [INFO]
+[INFO] [INFO] ----------------&lt; org.test.autobuild:autobuildtestprj &gt;-----------<span style="color: #dc8cc3; background-color: #383838;">------</span>
+[INFO] [INFO] Building autobuildtestprj 4.5.6
+[INFO] [INFO] --------------------------------[ jar ]---------------------------<span style="color: #dc8cc3; background-color: #383838;">------</span>
+[INFO] [INFO]
+[INFO] [INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ aut<span style="color: #dc8cc3; background-color: #383838;">obuildtestprj ---</span>
+[INFO] [WARNING] Using platform encoding (UTF-8 actually) to copy filtered resou<span style="color: #dc8cc3; background-color: #383838;">rces, i.e. build is platform dependent!</span>
+[INFO] [INFO] skip non existing resourceDirectory /Users/pramod/Documents/autobu<span style="color: #dc8cc3; background-color: #383838;">ildtestprj/target/checkout/src/main/resources</span>
+[INFO] [INFO]
+[INFO] [INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ autobuil<span style="color: #dc8cc3; background-color: #383838;">dtestprj ---</span>
+[INFO] [INFO] Changes detected - recompiling the module!
+[INFO] [WARNING] File encoding has not been set, using platform encoding UTF-8, <span style="color: #dc8cc3; background-color: #383838;">i.e. build is platform dependent!</span>
+[INFO] [INFO] Compiling 1 source file to /Users/pramod/Documents/autobuildtestpr<span style="color: #dc8cc3; background-color: #383838;">j/target/checkout/target/classes</span>
+[INFO] [INFO]
+[INFO] [INFO] --- maven-resources-plugin:2.6:testResources (default-testResource<span style="color: #dc8cc3; background-color: #383838;">s) @ autobuildtestprj ---</span>
+[INFO] [WARNING] Using platform encoding (UTF-8 actually) to copy filtered resou<span style="color: #dc8cc3; background-color: #383838;">rces, i.e. build is platform dependent!</span>
+[INFO] [INFO] skip non existing resourceDirectory /Users/pramod/Documents/autobu<span style="color: #dc8cc3; background-color: #383838;">ildtestprj/target/checkout/src/test/resources</span>
+[INFO] [INFO]
+[INFO] [INFO] --- maven-compiler-plugin:3.1:testCompile (default-testCompile) @ <span style="color: #dc8cc3; background-color: #383838;">autobuildtestprj ---</span>
+[INFO] [INFO] Changes detected - recompiling the module!
+[INFO] [WARNING] File encoding has not been set, using platform encoding UTF-8, <span style="color: #dc8cc3; background-color: #383838;">i.e. build is platform dependent!</span>
+[INFO] [INFO] Compiling 1 source file to /Users/pramod/Documents/autobuildtestpr<span style="color: #dc8cc3; background-color: #383838;">j/target/checkout/target/test-classes</span>
+[INFO] [INFO]
+[INFO] [INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ autobuildte<span style="color: #dc8cc3; background-color: #383838;">stprj ---</span>
+[INFO] [INFO] Surefire report directory: /Users/pramod/Documents/autobuildtestpr<span style="color: #dc8cc3; background-color: #383838;">j/target/checkout/target/surefire-reports</span>
+[INFO]
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running org.test.autobuild.AppTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.005 sec
+[INFO]
+[INFO] Results :
+[INFO]
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
+[INFO]
+[INFO] [INFO]
+[INFO] [INFO] --- maven-jar-plugin:2.4:jar (default-jar) @ autobuildtestprj ---
+[INFO] [INFO] Building jar: /Users/pramod/Documents/autobuildtestprj/target/chec<span style="color: #dc8cc3; background-color: #383838;">kout/target/autobuildtestprj-4.5.6.jar</span>
+[INFO] [INFO]
+[INFO] [INFO] --- maven-source-plugin:3.0.1:jar-no-fork (attach-sources) @ autob<span style="color: #dc8cc3; background-color: #383838;">uildtestprj ---</span>
+[INFO] [INFO] Building jar: /Users/pramod/Documents/autobuildtestprj/target/chec<span style="color: #dc8cc3; background-color: #383838;">kout/target/autobuildtestprj-4.5.6-sources.jar</span>
+[INFO] [INFO]
+[INFO] [INFO] --- maven-javadoc-plugin:3.0.1:jar (attach-javadocs) @ autobuildte<span style="color: #dc8cc3; background-color: #383838;">stprj ---</span>
+[INFO] [WARNING] Source files encoding has not been set, using platform encoding<span style="color: #dc8cc3; background-color: #383838;"> UTF-8, i.e. build is platform dependent!</span>
+[INFO] [INFO]
+[INFO] Loading source files for package org.test.autobuild...
+[INFO] Constructing Javadoc information...
+[INFO] Standard Doclet version 1.8.0_131
+[INFO] Building tree for all the packages and classes...
+[INFO] Generating /Users/pramod/Documents/autobuildtestprj/target/checkout/targe<span style="color: #dc8cc3; background-color: #383838;">t/apidocs/org/test/autobuild/App.html...</span>
+[INFO] Generating /Users/pramod/Documents/autobuildtestprj/target/checkout/targe<span style="color: #dc8cc3; background-color: #383838;">t/apidocs/org/test/autobuild/package-frame.html...</span>
+[INFO] Generating /Users/pramod/Documents/autobuildtestprj/target/checkout/targe<span style="color: #dc8cc3; background-color: #383838;">t/apidocs/org/test/autobuild/package-summary.html...</span>
+[INFO] Generating /Users/pramod/Documents/autobuildtestprj/target/checkout/targe<span style="color: #dc8cc3; background-color: #383838;">t/apidocs/org/test/autobuild/package-tree.html...</span>
+[INFO] Generating /Users/pramod/Documents/autobuildtestprj/target/checkout/targe<span style="color: #dc8cc3; background-color: #383838;">t/apidocs/constant-values.html...</span>
+[INFO] Generating /Users/pramod/Documents/autobuildtestprj/target/checkout/targe<span style="color: #dc8cc3; background-color: #383838;">t/apidocs/org/test/autobuild/class-use/App.html...</span>
+[INFO] Generating /Users/pramod/Documents/autobuildtestprj/target/checkout/targe<span style="color: #dc8cc3; background-color: #383838;">t/apidocs/org/test/autobuild/package-use.html...</span>
+[INFO] Building index for all the packages and classes...
+[INFO] Generating /Users/pramod/Documents/autobuildtestprj/target/checkout/targe<span style="color: #dc8cc3; background-color: #383838;">t/apidocs/overview-tree.html...</span>
+[INFO] Generating /Users/pramod/Documents/autobuildtestprj/target/checkout/targe<span style="color: #dc8cc3; background-color: #383838;">t/apidocs/index-all.html...</span>
+[INFO] Generating /Users/pramod/Documents/autobuildtestprj/target/checkout/targe<span style="color: #dc8cc3; background-color: #383838;">t/apidocs/deprecated-list.html...</span>
+[INFO] Building index for all classes...
+[INFO] Generating /Users/pramod/Documents/autobuildtestprj/target/checkout/targe<span style="color: #dc8cc3; background-color: #383838;">t/apidocs/allclasses-frame.html...</span>
+[INFO] Generating /Users/pramod/Documents/autobuildtestprj/target/checkout/targe<span style="color: #dc8cc3; background-color: #383838;">t/apidocs/allclasses-noframe.html...</span>
+[INFO] Generating /Users/pramod/Documents/autobuildtestprj/target/checkout/targe<span style="color: #dc8cc3; background-color: #383838;">t/apidocs/index.html...</span>
+[INFO] Generating /Users/pramod/Documents/autobuildtestprj/target/checkout/targe<span style="color: #dc8cc3; background-color: #383838;">t/apidocs/help-doc.html...</span>
+[INFO] [INFO] Building jar: /Users/pramod/Documents/autobuildtestprj/target/chec<span style="color: #dc8cc3; background-color: #383838;">kout/target/autobuildtestprj-4.5.6-javadoc.jar</span>
+[INFO] [INFO]
+[INFO] [INFO] --- maven-install-plugin:2.4:install (default-install) @ autobuild<span style="color: #dc8cc3; background-color: #383838;">testprj ---</span>
+[INFO] [INFO] Installing /Users/pramod/Documents/autobuildtestprj/target/checkou<span style="color: #dc8cc3; background-color: #383838;">t/target/autobuildtestprj-4.5.6.jar to /Users/pramod/.m2/repository/org/test/autobuild/autobuildtestprj/4.5.6/autobuildtestprj-4.5.6.jar</span>
+[INFO] [INFO] Installing /Users/pramod/Documents/autobuildtestprj/target/checkou<span style="color: #dc8cc3; background-color: #383838;">t/pom.xml to /Users/pramod/.m2/repository/org/test/autobuild/autobuildtestprj/4.5.6/autobuildtestprj-4.5.6.pom</span>
+[INFO] [INFO] Installing /Users/pramod/Documents/autobuildtestprj/target/checkou<span style="color: #dc8cc3; background-color: #383838;">t/target/autobuildtestprj-4.5.6-sources.jar to /Users/pramod/.m2/repository/org/test/autobuild/autobuildtestprj/4.5.6/autobuildtestprj-4.5.6-sources.jar</span>
+[INFO] [INFO] Installing /Users/pramod/Documents/autobuildtestprj/target/checkou<span style="color: #dc8cc3; background-color: #383838;">t/target/autobuildtestprj-4.5.6-javadoc.jar to /Users/pramod/.m2/repository/org/test/autobuild/autobuildtestprj/4.5.6/autobuildtestprj-4.5.6-javadoc.jar</span>
+[INFO] [INFO]
+[INFO] [INFO] --- maven-deploy-plugin:2.7:deploy (default-deploy) @ autobuildtes<span style="color: #dc8cc3; background-color: #383838;">tprj ---</span>
+[INFO] Uploading to localSnap: file:///Users/pramod/Documents/autobuildtestremot<span style="color: #dc8cc3; background-color: #383838;">eprj/org/test/autobuild/autobuildtestprj/4.5.6/autobuildtestprj-4.5.6.jar</span>
+[INFO] Progress (1): 2.6 kB
+[INFO]
+[INFO] Uploaded to localSnap: file:///Users/pramod/Documents/autobuildtestremote<span style="color: #dc8cc3; background-color: #383838;">prj/org/test/autobuild/autobuildtestprj/4.5.6/autobuildtestprj-4.5.6.jar (2.6 kB at 288 kB/s)</span>
+[INFO] Uploading to localSnap: file:///Users/pramod/Documents/autobuildtestremot<span style="color: #dc8cc3; background-color: #383838;">eprj/org/test/autobuild/autobuildtestprj/4.5.6/autobuildtestprj-4.5.6.pom</span>
+[INFO] Progress (1): 1.3 kB
+[INFO]
+[INFO] Uploaded to localSnap: file:///Users/pramod/Documents/autobuildtestremote<span style="color: #dc8cc3; background-color: #383838;">prj/org/test/autobuild/autobuildtestprj/4.5.6/autobuildtestprj-4.5.6.pom (1.3 kB at 448 kB/s)</span>
+[INFO] Downloading from localSnap: file:///Users/pramod/Documents/autobuildtestr<span style="color: #dc8cc3; background-color: #383838;">emoteprj/org/test/autobuild/autobuildtestprj/maven-metadata.xml</span>
+[INFO] Progress (1): 314 B
+[INFO]
+[INFO] Downloaded from localSnap: file:///Users/pramod/Documents/autobuildtestre<span style="color: #dc8cc3; background-color: #383838;">moteprj/org/test/autobuild/autobuildtestprj/maven-metadata.xml (314 B at 31 kB/s)</span>
+[INFO] Uploading to localSnap: file:///Users/pramod/Documents/autobuildtestremot<span style="color: #dc8cc3; background-color: #383838;">eprj/org/test/autobuild/autobuildtestprj/maven-metadata.xml</span>
+[INFO] Progress (1): 345 B
+[INFO]
+[INFO] Uploaded to localSnap: file:///Users/pramod/Documents/autobuildtestremote<span style="color: #dc8cc3; background-color: #383838;">prj/org/test/autobuild/autobuildtestprj/maven-metadata.xml (345 B at 172 kB/s)</span>
+[INFO] Uploading to localSnap: file:///Users/pramod/Documents/autobuildtestremot<span style="color: #dc8cc3; background-color: #383838;">eprj/org/test/autobuild/autobuildtestprj/4.5.6/autobuildtestprj-4.5.6-sources.jar</span>
+[INFO] Progress (1): 2.4 kB
+[INFO]
+[INFO] Uploaded to localSnap: file:///Users/pramod/Documents/autobuildtestremote<span style="color: #dc8cc3; background-color: #383838;">prj/org/test/autobuild/autobuildtestprj/4.5.6/autobuildtestprj-4.5.6-sources.jar (2.4 kB at 1.2 MB/s)</span>
+[INFO] Uploading to localSnap: file:///Users/pramod/Documents/autobuildtestremot<span style="color: #dc8cc3; background-color: #383838;">eprj/org/test/autobuild/autobuildtestprj/4.5.6/autobuildtestprj-4.5.6-javadoc.jar</span>
+[INFO] Progress (1): 4.1/23 kB
+[INFO] Progress (1): 8.2/23 kB
+[INFO] Progress (1): 12/23 kB
+[INFO] Progress (1): 16/23 kB
+[INFO] Progress (1): 20/23 kB
+[INFO] Progress (1): 23 kB
+[INFO]
+[INFO] Uploaded to localSnap: file:///Users/pramod/Documents/autobuildtestremote<span style="color: #dc8cc3; background-color: #383838;">prj/org/test/autobuild/autobuildtestprj/4.5.6/autobuildtestprj-4.5.6-javadoc.jar (23 kB at 5.8 MB/s)</span>
+[INFO] [INFO] ------------------------------------------------------------------<span style="color: #dc8cc3; background-color: #383838;">------</span>
+[INFO] [INFO] BUILD SUCCESS
+[INFO] [INFO] ------------------------------------------------------------------<span style="color: #dc8cc3; background-color: #383838;">------</span>
+[INFO] [INFO] Total time: 3.037 s
+[INFO] [INFO] Finished at: 2018-10-23T21:28:58-04:00
+[INFO] [INFO] ------------------------------------------------------------------<span style="color: #dc8cc3; background-color: #383838;">------</span>
+[INFO] Cleaning up after release...
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 4.943 s
+[INFO] Finished at: 2018-10-23T21:28:59-04:00
+[INFO] ------------------------------------------------------------------------
+bash-3.2$
+
+ Uploaded to localSnap: file:///Users/pramod/Documents/autobuildtestremoteprj/or<span style="color: #dc8cc3; background-color: #383838;">g/test/autobuild/autobuildtestprj/4.5.7/autobuildtestprj-4.5.7-javadoc.jar (23 kB at 5.8 MB/s)</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org0618dda" class="outline-2">
+<h2 id="org0618dda"><span class="section-number-2">11</span> Now able to automate with mvn release:prepare and release:perform</h2>
+<div class="outline-text-2" id="text-11">
+<div class="org-src-container">
+<pre class="src src-sh"> mvn release:prepare release:perform
+Uploaded to localSnap: file:///Users/pramod/Documents/autobuildtestremoteprj/org<span style="color: #dc8cc3; background-color: #383838;">/test/autobuild/autobuildtestprj/4.5.8/autobuildtestprj-4.5.8-javadoc.jar (23 kB at 5.8 MB/s)</span>
+
+
+<span style="color: #8B8989; font-style: italic;"># </span><span style="color: #8B8989; font-style: italic;">But keeps on asking for version numbers with incremented version</span>
+What is the release version for <span style="color: #61CE3C;">"autobuildtestprj"</span>? (org.test.autobuild:autobuil<span style="color: #dc8cc3; background-color: #383838;">dtestprj) 4.5.9: :</span>
+What is SCM release tag or label for <span style="color: #61CE3C;">"autobuildtestprj"</span>? (org.test.autobuild:aut<span style="color: #dc8cc3; background-color: #383838;">obuildtestprj) autobuildtestprj-4.5.9: :</span>
+What is the new development version for <span style="color: #61CE3C;">"autobuildtestprj"</span>? (org.test.autobuild:<span style="color: #dc8cc3; background-color: #383838;">autobuildtestprj) 4.5.10-SNAPSHOT: :</span>
+Uploaded to localSnap: file:///Users/pramod/Documents/autobuildtestremoteprj/org<span style="color: #dc8cc3; background-color: #383838;">/test/autobuild/autobuildtestprj/4.5.9/autobuildtestprj-4.5.9-javadoc.jar (23 kB at 5.8 MB/s)</span>
+
+
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgffa788f" class="outline-2">
+<h2 id="orgffa788f"><span class="section-number-2">12</span> Batch mode options</h2>
+<div class="outline-text-2" id="text-12">
+<div class="org-src-container">
+<pre class="src src-sh">mvn --batch-mode -Dtag=my-proj-1.2 release:prepare <span style="color: #61CE3C;">\</span>
+                 -DreleaseVersion=1.2 <span style="color: #61CE3C;">\</span>
+                 -DdevelopmentVersion=2.0-SNAPSHOT
+mvn --batch-mode release:prepare release:perform
+
+ Uploaded to localSnap: file:///Users/pramod/Documents/autobuildtestremoteprj/or<span style="color: #dc8cc3; background-color: #383838;">g/test/autobuild/autobuildtestprj/4.5.11/autobuildtestprj-4.5.11-javadoc.jar (23 kB at 5.8 MB/s)</span>
+
+mvn clean install
+
+Installing /Users/pramod/Documents/Programming/projects/online_git_repos/neppram<span style="color: #dc8cc3; background-color: #383838;">od/problems_practice/try/mavenabutobuilder/firstprj/autobuildtestprj/target/autobuildtestprj-4.5.12-SNAPSHOT.jar to /Users/pramod/.m2/repository/org/test/autobuild/autobuildtestprj/4.5.12-SNAPSHOT/autobuildtestprj-4.5.12-SNAPSHOT.jar</span>
+
+<span style="color: #8B8989; font-style: italic;"># </span><span style="color: #8B8989; font-style: italic;">Increments develop version number based on release number</span>
+mvn --batch-mode release:prepare release:perform
+Uploading to localSnap: file:///Users/pramod/Documents/autobuildtestremoteprj/or<span style="color: #dc8cc3; background-color: #383838;">g/test/autobuild/autobuildtestprj/4.5.12/autobuildtestprj-4.5.12-javadoc.jar</span>
+
+mvn clean install
+ Installing /Users/pramod/Documents/Programming/projects/online_git_repos/neppra<span style="color: #dc8cc3; background-color: #383838;">mod/problems_practice/try/mavenabutobuilder/firstprj/autobuildtestprj/target/autobuildtestprj-4.5.13-SNAPSHOT.jar to /Users/pramod/.m2/repository/org/test/autobuild/autobuildtestprj/4.5.13-SNAPSHOT/autobuildtestprj-4.5.13-SNAPSHOT.jar</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgf0dd951" class="outline-2">
+<h2 id="orgf0dd951"><span class="section-number-2">13</span> Revisit pom.xml with all the changes</h2>
+<div class="outline-text-2" id="text-13">
+<div class="org-src-container">
+<pre class="src src-xml">&lt;<span style="color: #ff1493;">project</span> <span style="color: #4c83ff;">xmlns</span>=<span style="color: #61CE3C;">"http://maven.apache.org/POM/4.0.0"</span> <span style="color: #4c83ff;">xmlns</span>:<span style="color: #ff69b4;">xsi</span>=<span style="color: #61CE3C;">"http://www.w3.org/</span><span style="color: #dc8cc3; background-color: #383838;">2001/XMLSchema-instance"</span><span style="color: #dc8cc3; background-color: #383838;"> </span><span style="color: #dc8cc3; background-color: #383838;">xsi</span><span style="color: #dc8cc3; background-color: #383838;">:</span><span style="color: #dc8cc3; background-color: #383838;">schemaLocation</span><span style="color: #dc8cc3; background-color: #383838;">=</span><span style="color: #dc8cc3; background-color: #383838;">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"</span><span style="color: #dc8cc3; background-color: #383838;">&gt;</span>
+  &lt;<span style="color: #ff1493;">modelVersion</span>&gt;4.0.0&lt;/<span style="color: #ff1493;">modelVersion</span>&gt;
+  &lt;<span style="color: #ff1493;">groupId</span>&gt;org.test.autobuild&lt;/<span style="color: #ff1493;">groupId</span>&gt;
+  &lt;<span style="color: #ff1493;">artifactId</span>&gt;autobuildtestprj&lt;/<span style="color: #ff1493;">artifactId</span>&gt;
+  &lt;<span style="color: #ff1493;">packaging</span>&gt;jar&lt;/<span style="color: #ff1493;">packaging</span>&gt;
+  &lt;<span style="color: #ff1493;">version</span>&gt;4.5.13-SNAPSHOT&lt;/<span style="color: #ff1493;">version</span>&gt;
+  &lt;<span style="color: #ff1493;">name</span>&gt;autobuildtestprj&lt;/<span style="color: #ff1493;">name</span>&gt;
+  &lt;<span style="color: #ff1493;">url</span>&gt;http://maven.apache.org&lt;/<span style="color: #ff1493;">url</span>&gt;
+  &lt;<span style="color: #ff1493;">scm</span>&gt;
+      &lt;<span style="color: #ff1493;">developerConnection</span>&gt;scm:git:file:///Users/pramod/Documents/autobuildtestr<span style="color: #dc8cc3; background-color: #383838;">emoteprj</span><span style="color: #dc8cc3; background-color: #383838;">&lt;</span><span style="color: #dc8cc3; background-color: #383838;">/</span><span style="color: #dc8cc3; background-color: #383838;">developerConnection</span><span style="color: #dc8cc3; background-color: #383838;">&gt;</span>
+        &lt;<span style="color: #ff1493;">tag</span>&gt;HEAD&lt;/<span style="color: #ff1493;">tag</span>&gt;
+  &lt;/<span style="color: #ff1493;">scm</span>&gt;
+
+  &lt;<span style="color: #ff1493;">dependencies</span>&gt;
+    &lt;<span style="color: #ff1493;">dependency</span>&gt;
+      &lt;<span style="color: #ff1493;">groupId</span>&gt;junit&lt;/<span style="color: #ff1493;">groupId</span>&gt;
+      &lt;<span style="color: #ff1493;">artifactId</span>&gt;junit&lt;/<span style="color: #ff1493;">artifactId</span>&gt;
+      &lt;<span style="color: #ff1493;">version</span>&gt;3.8.1&lt;/<span style="color: #ff1493;">version</span>&gt;
+      &lt;<span style="color: #ff1493;">scope</span>&gt;test&lt;/<span style="color: #ff1493;">scope</span>&gt;
+    &lt;/<span style="color: #ff1493;">dependency</span>&gt;
+  &lt;/<span style="color: #ff1493;">dependencies</span>&gt;
+
+  &lt;<span style="color: #ff1493;">distributionManagement</span>&gt;
+      <span style="color: #8B8989; font-style: italic;">&lt;!-- </span><span style="color: #8B8989; font-style: italic;">use the following if you're not using a snapshot version. </span><span style="color: #8B8989; font-style: italic;">--&gt;</span>
+      &lt;<span style="color: #ff1493;">repository</span>&gt;
+          &lt;<span style="color: #ff1493;">id</span>&gt;localSnap&lt;/<span style="color: #ff1493;">id</span>&gt;
+          &lt;<span style="color: #ff1493;">name</span>&gt;RepositoryProxyRel&lt;/<span style="color: #ff1493;">name</span>&gt;
+          &lt;<span style="color: #ff1493;">url</span>&gt;file:///Users/pramod/Documents/autobuildtestremoteprj&lt;/<span style="color: #ff1493;">url</span>&gt;
+      &lt;/<span style="color: #ff1493;">repository</span>&gt;
+  &lt;/<span style="color: #ff1493;">distributionManagement</span>&gt;
+
+  &lt;<span style="color: #ff1493;">build</span>&gt;
+    &lt;<span style="color: #ff1493;">plugins</span>&gt;
+      &lt;<span style="color: #ff1493;">plugin</span>&gt;
+        &lt;<span style="color: #ff1493;">groupId</span>&gt;org.apache.maven.plugins&lt;/<span style="color: #ff1493;">groupId</span>&gt;
+        &lt;<span style="color: #ff1493;">artifactId</span>&gt;maven-release-plugin&lt;/<span style="color: #ff1493;">artifactId</span>&gt;
+        &lt;<span style="color: #ff1493;">version</span>&gt;2.5.3&lt;/<span style="color: #ff1493;">version</span>&gt;
+      &lt;/<span style="color: #ff1493;">plugin</span>&gt;
+    &lt;/<span style="color: #ff1493;">plugins</span>&gt;
+  &lt;/<span style="color: #ff1493;">build</span>&gt;
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org59cbf04" class="outline-2">
+<h2 id="org59cbf04"><span class="section-number-2">14</span> Links</h2>
+<div class="outline-text-2" id="text-14">
+<ul class="org-ul">
+<li><a href="https://maven.apache.org/maven-release/maven-release-plugin/examples/non-interactive-release.html">Non Interactive release</a></li>
+<li><a href="https://stackoverflow.com/questions/29143825/no-scm-url-was-provided-to-perform-the-release-from">No SCM URL was provided</a></li>
+<li><a href="https://stackoverflow.com/questions/18943347/how-to-run-releaseperform-from-a-given-git-tag/">Release Perform for given git tag</a></li>
+<li><a href="https://stackoverflow.com/questions/5910037/maven-repository-element-was-not-specified-in-the-pom-inside-distributionmanage">Repository Element Was not Specified</a></li>
+<li><a href="http://maven.apache.org/maven-release/maven-release-plugin/">Release Plugin</a></li>
+<li><a href="http://maven.apache.org/maven-release/maven-release-plugin/usage.html">Release Plugin Usage</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Pramod Nepal</p>
+<p class="date">Created: 2018-10-23 Tue 22:15</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

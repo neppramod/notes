@@ -1,4 +1,4 @@
-% Created 2018-10-21 Sun 18:59
+% Created 2018-10-21 Sun 19:29
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -32,7 +32,7 @@ Note: Read PackageInstallation note first. After installation of swiper and proj
 
 
 \section{Swiper}
-\label{sec:org7ab63bb}
+\label{sec:orgdb1907a}
 After installing swiper you can invoke swiper with\\
 \begin{center}
 \begin{tabular}{ll}
@@ -41,7 +41,7 @@ C-s & Search with swiper\\
 \end{center}
 
 \section{Jump between edits}
-\label{sec:orgf2f57b5}
+\label{sec:org94dde7b}
 \begin{center}
 \begin{tabular}{ll}
 \hline
@@ -51,7 +51,7 @@ C-x C-space & if you want to navigate back between buffers\\
 \end{center}
 
 \section{Copy/Save}
-\label{sec:orge771673}
+\label{sec:org099327a}
 \begin{center}
 \begin{tabular}{ll}
 \hline
@@ -65,7 +65,7 @@ M-w b & Save buffer\\
 \end{center}
 
 \section{Macro}
-\label{sec:orgedd41cd}
+\label{sec:org5ce70e2}
 \begin{center}
 \begin{tabular}{ll}
 \hline
@@ -77,7 +77,7 @@ C-u 37 C-x e & Execute 37 time\\
 \end{center}
 
 \section{Case}
-\label{sec:orgec40a6b}
+\label{sec:org8417a26}
 \begin{center}
 \begin{tabular}{ll}
 \hline
@@ -87,7 +87,7 @@ C-x C-l & lowercase\\
 \end{center}
 
 \section{Selection}
-\label{sec:org1a7a206}
+\label{sec:orga248c37}
 \begin{center}
 \begin{tabular}{ll}
 \hline
@@ -96,9 +96,9 @@ C-x SPC & rectangle-mark-mode\\
 \end{center}
 
 \section{Customization}
-\label{sec:org0c50722}
+\label{sec:orgd4e4a42}
 \subsection{Change theme}
-\label{sec:org2d03689}
+\label{sec:orgb3b12c4}
 \begin{center}
 \begin{tabular}{ll}
 \hline
@@ -107,7 +107,7 @@ M-x & customize-themes\\
 \end{center}
 
 \section{Key-chords (Quick Jump in edit)}
-\label{sec:org0ab744f}
+\label{sec:org66937fc}
 Key-chords are available only when the prelude-key-chord module has been enabled.\\
 
 \begin{center}
@@ -143,14 +143,14 @@ bm & Add bookmark\\
 \end{verbatim}
 
 \section{Convert Document}
-\label{sec:org98fc9fc}
+\label{sec:orgace9259}
 \begin{verbatim}
 pandoc -f markdown -t org -o README.org README.md ;; convert from markdown to org
 pandoc -f org TutorialKeyBindings.org -o TutorialKeyBindings.pdf
 \end{verbatim}
 
 \section{Bookmark}
-\label{sec:org840f922}
+\label{sec:org58b0169}
 \begin{center}
 \begin{tabular}{ll}
 \hline
@@ -175,15 +175,15 @@ s & Save changes\\
 \end{verbatim}
 
 \section{Prelude}
-\label{sec:org69eb3ce}
+\label{sec:orgbaa703f}
 \subsection{Install prelude}
-\label{sec:orgf51933a}
+\label{sec:org6fb2a20}
 ; Example src code\\
 \begin{verbatim}
 curl -L https://git.io/epre | sh
 \end{verbatim}
 \subsection{Other modules}
-\label{sec:orga37c2ff}
+\label{sec:org6ea51b5}
 (require 'prelude-helm)\\
 (require 'prelude-key-chord)\\
 
@@ -195,7 +195,7 @@ curl -L https://git.io/epre | sh
   (function2 param))
 \end{verbatim}
 \subsection{Global shortcuts}
-\label{sec:org4442866}
+\label{sec:org7b0270f}
 \begin{center}
 \begin{tabular}{ll}
 Keybinding & Description\\
@@ -225,7 +225,7 @@ C-a & Run \texttt{crux-move-beginning-of-line}. Read \href{http://emacsredux.com
 \end{center}
 
 \subsection{Prelude Mode}
-\label{sec:orgbfeadc7}
+\label{sec:org471fb6e}
 \begin{center}
 \begin{tabular}{ll}
 Keybinding & Description\\
@@ -265,7 +265,7 @@ C-c . < & Left-shift integer at point. Default is 1 position to the left.\\
 C-c . > & Right-shift integer at point. Default is 1 position to the right.\\
 C-c . \# & Convert integer at point to specified base. Default is 10.\\
 C-c . \% & Replace integer at point with another specified integer.\\
-C-c . ' & Perform arithmetic operations on integer at point. User specifies the operator.\\
+C-c . ' & Perform arithmetic operations on integer at point. User specifies operator.\\
 Super-r & Recent files\\
 Super-j & Join lines\\
 Super-k & Kill whole line\\
@@ -277,7 +277,7 @@ Super-m b & Magit blame mode\\
 \end{center}
 
 \section{Magit}
-\label{sec:orgea3736f}
+\label{sec:org300b090}
 Getting started with Magit is really easy:\\
 \begin{center}
 \begin{tabular}{ll}
@@ -293,7 +293,7 @@ F u & git pull\\
 
 
 \subsection{Help projectile keys}
-\label{sec:org0626144}
+\label{sec:org2165359}
 \begin{center}
 \begin{tabular}{ll}
 \hline
@@ -306,7 +306,7 @@ C-c h C-h & Key bindings in helm\\
 
 
 \section{Dired Mode}
-\label{sec:org5251596}
+\label{sec:org38aa13f}
 \begin{center}
 \begin{tabular}{ll}
 Keybinding & Description\\
@@ -345,9 +345,9 @@ i/+ & Create directory\\
 Note: For more see: \href{dired-ref.pdf}{Dired Ref}\\
 
 \section{Basic from tutorial}
-\label{sec:orge5113bf}
+\label{sec:orge4abc7f}
 \subsection{Move}
-\label{sec:org49309ec}
+\label{sec:orgf603350}
 \begin{center}
 \begin{tabular}{ll}
 \hline
@@ -366,7 +366,7 @@ M-e & Move forward to end of sentence\\
 
 C-u 8 *  Insert * 8 times\\
 \subsection{Delete}
-\label{sec:org8b7b97a}
+\label{sec:org8525b03}
 <DEL>        Delete the character just before the cursor\\
 C-d   	     Delete the next character after the cursor\\
 
@@ -376,7 +376,7 @@ M-d	     Kill the next word after the cursor\\
 C-k	     Kill from the cursor position to end of line\\
 M-k	     Kill to the end of the current sentence\\
 \subsection{Undo}
-\label{sec:orgb63514d}
+\label{sec:org992d502}
 C-/          Undo\\
 C-\_          Undo\\
 C-x u        Undo\\
@@ -386,7 +386,7 @@ C-S-/        Redo\\
 
 
 \subsection{File}
-\label{sec:org72f4113}
+\label{sec:orgdb56b72}
 C-x C-f		Find file\\
 C-x C-s		Save file\\
 C-x s		Save some buffers\\
@@ -398,7 +398,7 @@ C-x u		Undo\\
 
 
 \subsection{Multiple windows}
-\label{sec:org5480cee}
+\label{sec:orgb8f96f5}
 C-M-v             Scroll other window\\
 C-x o             Go to other window\\
 C-x 1             Get rid of other windows\\
@@ -408,13 +408,13 @@ C-x 5 2           Open new frame\\
 C-x 5 0           Remove selected frame\\
 
 \subsection{Help}
-\label{sec:org506869d}
+\label{sec:orgd0ef535}
 ESC ESC ESC       Get out of recersive mode\\
 C-h c <cmd/char/seq>   Shows help on cmd. E.g C-h c C-p shows what C-p does\\
 C-x C-c           Exit emacs (Only do this if you restart)\\
 
 \section{Org mode}
-\label{sec:org4b0d139}
+\label{sec:org687ff94}
 \begin{center}
 \begin{tabular}{ll}
 \hline
@@ -425,7 +425,7 @@ C-c C-o & Org open at point\\
 \end{center}
 
 \subsection{Create a file with todo and add it to agenda}
-\label{sec:org3df95be}
+\label{sec:org7cf8632}
 Org mode:\\
 \begin{center}
 \begin{tabular}{ll}
@@ -440,7 +440,7 @@ C-g – stop doing what you are trying to do, escape & \\
 \end{center}
 
 \subsection{Tasks}
-\label{sec:orgfc05d80}
+\label{sec:org4248eaf}
 
 \begin{center}
 \begin{tabular}{ll}
@@ -459,7 +459,7 @@ l & In agenda, turns on log display (finished task and finished dates)\\
 Note: For more see: \href{orgcard.pdf}{Org mode Ref Card}\\
 
 \section{Printing}
-\label{sec:orgcdc0b56}
+\label{sec:org3e35710}
 \begin{center}
 \begin{tabular}{ll}
 \hline
@@ -470,15 +470,15 @@ lpr <files> & Print files\\
 \end{tabular}
 \end{center}
 \section{Tags}
-\label{sec:orgfc103f4}
+\label{sec:org027395a}
 \subsection{To Generate Tags}
-\label{sec:org093c814}
+\label{sec:orgdd04bab}
 \begin{verbatim}
 find . -type f -iname "*.[chS]" | xargs etags -a
 find . -name '*.c' -exec etags -a {} \;
 \end{verbatim}
 \subsection{To Genereate Emacs Tags}
-\label{sec:org4eda625}
+\label{sec:orga4d9bef}
 \begin{verbatim}
 ctags -e myfile.cpp
 ctags -e -R .
@@ -486,7 +486,7 @@ ctags -e -R *.cpp *.hpp *.h
 \end{verbatim}
 
 \subsection{Basic commands}
-\label{sec:orgf8e62b9}
+\label{sec:orgcb04120}
 
 \begin{center}
 \begin{tabular}{ll}
@@ -502,7 +502,7 @@ M-* & Pop back to where you previously invoked M-.\\
 \end{center}
 
 \section{Projectile}
-\label{sec:org2694e14}
+\label{sec:org81cbc25}
 \begin{center}
 \begin{tabular}{ll}
 \hline
