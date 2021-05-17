@@ -245,4 +245,12 @@ Now you should be able to run the application and browse the homepage at [[http:
 
 [[./images/sia/01-taco-homepage.png]]
 
+Since we have enabled devtools, we can make changes to code and it should build and run the changes right away. However, if you change some library file, make sure to restart. Dev tool loads two separate class loaders in the JVM. One class loader is loaded with java code, property file and pretty much anything that' in the src/main/ path of the project. These are items that are likely to change frequently. The other class loader is loaded with dependency libraries, which aren't likely to change as often. When a change is detected, DevTools reloads only the class loader containing your project code and restarts the Spring application context, but leaves the other class loader and the JVM intact. This reduces the time it takes to start the application. To automatically refresh browser when there is a change and disable template cache (for Thymeleaf) we can install LiveReload plugin in major browsers. To disable cache add following to application.properties.
+#+begin_src bash
+spring.thymeleaf.cache=false
+#+end_src
+
+*Note*: Make sure to enable caching in production by setting above to true.
+
+Dev tools also allows us to access H2 Console from browser at [[http://localhost:8080/h2-console][http://localhost:8080/h2-console]].
 
