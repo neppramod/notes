@@ -179,4 +179,70 @@ Spring comes with a powerful web framework known as Spring MVC. At the center of
   }
 #+end_src
 
-As you  can see, this class is annotated with ~@Controller~. On its own, ~@controller~ doesn't do much. Its primary purpose is to identify this class as a componenet for component scanning. Because ~HomeController~ is  is annotated with @Controller, Spring's componenet scanning automatically discovers it and creates an instance of ~HomeController~ as a bean in the Spring application context. Other annotations including @Component, @Service and @Repository serve a purpose similar to @Controller. Any of these annotations would state the class for scanning, however @Controller is more descriptive of this component's role in the application. For the home() method, we use @GetMapping("/") annotation to indicate this method is called when an HTTP GET request is received for the root path "/".
+As you  can see, this class is annotated with ~@Controller~. On its own, ~@controller~ doesn't do much. Its primary purpose is to identify this class as a componenet for component scanning. Because ~HomeController~ is  is annotated with @Controller, Spring's componenet scanning automatically discovers it and creates an instance of ~HomeController~ as a bean in the Spring application context. Other annotations including @Component, @Service and @Repository serve a purpose similar to @Controller. Any of these annotations would state the class for scanning, however @Controller is more descriptive of this component's role in the application. For the home() method, we use @GetMapping("/") annotation to indicate this method is called when an HTTP GET request is received for the root path "/". The method returns nothing more than returning a ~String~ value of ~home~.
+
+This value is interpreted as the logical name of a view. How that view is implemented depends on a few factors, but because Thymeleaf is in our classpath, we can define that templated with Thymeleaf.
+
+Thymleaf is a template engine. We could use JSP, FreeMarker etc. The template name is derived from the logical name by prefexiing it with /templates/ and postfixing it with .html. The resulting path for the template is /templates/home.html. Therefore, you'll need to place the template in your project at /src/main/resoures/templates/home.html. The home.html has following code.
+
+#+begin_src html
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+              xmlns:th="http://www.thymeleaf.org">
+       <head>
+       	<title>Taco Cloud</title>
+       </head>   
+       
+       <body>
+       	<h1>Welcome to ... </h1>
+       	<h1>This is what</h1>
+       	<img th:src="@{/images/TacoCloud.png}" />
+       	<br/>
+       	
+       	<a th:href="@{/design}" id="another">Design Taco</a><br />
+       </body> 
+</html>
+#+end_src
+
+In the <img> tag we use TacoCloud.png. This file is located inside /src/main/resources/static/images/ folder. We can reference the image with a context-relative path with @{...} expression.
+
+**** Testing the controller
+Testing web applications can be tricky when making assertions against the content of an HTML page. Our test will perform an HTTP GET request for the root path / and expect a successful result where the view name is ~home~ and the resulting content contains the phrase "Welcome to ...".
+
+#+begin_src java
+package tacos;
+
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.test.web.servlet.MockMvc;
+
+@WebMvcTest
+public class HomeControllerTest {
+
+	@Autowired
+	private MockMvc mockMvc;
+	
+	@Test
+	public void testHomePage() throws Exception {
+		mockMvc.perform(get("/"))
+			.andExpect(status().isOk())
+			.andExpect(view().name("home"))
+			.andExpect(content().string(containsString("Welcome to ...")));
+	}
+}
+#+end_src
+
+Instead of @SpringBooTest we use @WebMvcTest. This arranges for the test to run in the context of a Spring MVC application. More specifically, in htis case, it arranges for HomeController to be registered in Spring MVC so that you can throw requests against it. Although it could be made to start a server, mocking the mechanics of Spring MVC is sufficient for our purposes. The test class is injected with MockMvc object for the test to drive the mockup. Inside testHomePage() method, we perform HTTP GET request for the root path, and expect a HTTP 200 (OK) status. We also expect the view to have a logical name of home and the rendered view should contain the text "Welcome to ...".
+
+Now you should be able to run the application and browse the homepage at http://localhost:8080.
+
+[[images/sia/01-taco-homepage.png]]
+
+
