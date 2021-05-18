@@ -254,3 +254,19 @@ spring.thymeleaf.cache=false
 
 Dev tools also allows us to access H2 Console from browser at [[http://localhost:8080/h2-console][http://localhost:8080/h2-console]].
 
+*** Spring Components
+- Core Spring Framework: Core container and dependency injection framework. It also includes Spring MVC, Sprin'ts web framework. Spring MVC can also be used to create REST APIs that produce non-HTML output. Core provides some elemental data persistence support, specifically template-based JDBC support. E.g. ~JdbcTemplate~. Spring also contains Spring WebFlux to support reactive-style programming.
+- Spring Boot: Includes starter dependencies and autoconfiguration. Actuator provides runtime insight into the inner workings of an application like metrics, thread dump information, application health and environment properties. Additional testing support on top of testing found in core framework.
+- Spring Data: Allows to define application's data repositories as simple Java interfaces, using a naming convention when defining methods to drive how data is stored and retrieved. Supports different databases, including relational (JPA), document (Mongo), graph (Neo4j) and others.
+- Spring Security: Addresses a broad range of application security needs, including authentication, authorization and API security.
+- Spring Integration and Spring Batch: Several patterns of application integration is provided. E.g. Real-time integration where data is processed as it's made available. In contrast, Spring Batch addresses batched integration where data is allowed to collect for a time until some trigger (perhaps a time trigger) signals that it's time for the batch of data to be processed.
+- Spring Cloud: We'll no longer develop our applications as single deployment unit monoliths and will instead compose application from several individual deployment units known as /microservices/. Spring Cloud brings collection of projects for developing cloud-native applications with Spring. Can check /Spring Microservices in Action/.
+
+** Developing web applications
+We will expand on our Taco Cloud application. A customer will be able to make selection and pay and add address information. We will hardcode the data in java file, which later we will server from database in upcoming chapters.
+
+In a Spring web application, it's a controller's job to fetch and process data. And it's a view's job to render that data into HTML that will be displayed in the browser.
+
+For Taco Cloud application we will create a domain class that defines the properties of a taco ingredient. A Spring MVC controller class that fetches ingredient information and passes it along to the view and a view template that renders a list of ingredients in the user's browser.
+
+[[./images/sia/02-taco-controller.png]]
