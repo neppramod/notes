@@ -265,8 +265,122 @@ Dev tools also allows us to access H2 Console from browser at [[http://localhost
 ** Developing web applications
 We will expand on our Taco Cloud application. A customer will be able to make selection and pay and add address information. We will hardcode the data in java file, which later we will server from database in upcoming chapters.
 
-In a Spring web application, it's a controller's job to fetch and process data. And it's a view's job to render that data into HTML that will be displayed in the browser.
+*** Displaying information
+ In a Spring web application, it's a controller's job to fetch and process data. And it's a view's job to render that data into HTML that will be displayed in the browser.
 
-For Taco Cloud application we will create a domain class that defines the properties of a taco ingredient. A Spring MVC controller class that fetches ingredient information and passes it along to the view and a view template that renders a list of ingredients in the user's browser.
+ For Taco Cloud application we will create a domain class that defines the properties of a taco ingredient. A Spring MVC controller class that fetches ingredient information and passes it along to the view and a view template that renders a list of ingredients in the user's browser.
 
-[[./images/sia/02-taco-controller.png]]
+ [[./images/sia/02-taco-controller.png]]
+
+**** Establish the domain
+ In Taco Cloud application, the domain includes objects such as taco designs, ingredients, customers and order placed by customers. Here we will focus on taco ingredients. We will have name of ingredient, with unique identifier id, with Type such as WRAP, PROTEIN, VEGGIES, CHEESE, SAUCE.
+
+ #+begin_src 
+ package tacos;
+
+ import lombok.Data;
+ import lombok.RequiredArgsConstructor;
+
+ @Data
+ @RequiredArgsConstructor
+ public class Ingredient {
+	
+	 private final String id;
+	 private final String name;
+	 private final Type type;
+	
+	 public static enum Type {
+		 WRAP, PROTEIN, VEGGIES, CHEESE, SAUCE
+	 }
+ }
+ #+end_src
+
+ We also include lombok package, so that we don't have to write getter and setter or specify constructor with arguments. This makes the domain class much cleaner. The getter and setters are provided at runtime. To include lombok in STS, after installation include lombok jar in user libraries so that it is included globally. The @Data annotation at the class level tells Lombok to generate all of those missing methods as well as a constructor that accepts all /final/ properties as arguments. Lombok isn't spring library but can be easily added to Spring Boot starter.
+
+**** Creating a controller class
+Controller's primary job is to handle HTTP requests and either hand off to a view to render HTML (browser-displayed) or write data directly to the body of a response (RESTful). For Taco Cloud application, we want to handle HTTP GET requests where the request path is /design, build a list of ingredients, and hand the request and the ingredient data off to a view template to be rendered as HTML and sent to the requesting web browser. Follow code for DesignTacoController address above requirements.
+
+#+begin_src java
+package tacos.web;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import javax.validation.Valid;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import lombok.extern.slf4j.Slf4j;
+import tacos.Ingredient;
+import tacos.Ingredient.Type;
+import tacos.Taco;
+
+@Slf4j
+@Controller
+@RequestMapping("/design")
+public class DesignTacoController {
+
+	@GetMapping
+	public String showDesignForm(Model model) {
+		List<Ingredient> ingredients = Arrays.asList(
+				new Ingredient("FLTO", "Flour Tortilla", Type.WRAP),
+				new Ingredient("COTO", "Corn Tortilla", Type.WRAP),
+				new Ingredient("GRBF", "Ground Beef", Type.PROTEIN),
+			    new Ingredient("CARN", "Carnitas", Type.PROTEIN),
+			    new Ingredient("TMTO", "Diced Tomatoes", Type.VEGGIES),
+			    new Ingredient("LETC", "Lettuce", Type.VEGGIES),
+			    new Ingredient("CHED", "Cheddar", Type.CHEESE),
+			    new Ingredient("JACK", "Monterrey Jack", Type.CHEESE),
+			    new Ingredient("SLSA", "Salsa", Type.SAUCE),
+			    new Ingredient("SRCR", "Sour Cream", Type.SAUCE)
+				);
+		
+		Type[] types = Ingredient.Type.values();
+		for (Type type : types) {
+			model.addAttribute(type.toString().toLowerCase(), filterByType(ingredients, type));
+		}
+		
+		model.addAttribute("design", new Taco());
+		
+		return "design";
+	}
+	
+	List<Ingredient> filterByType(List<Ingredient> ingredients, Type type) {
+		return ingredients
+				.stream()
+				.filter(x -> x.getType().equals(type))
+				.collect(Collectors.toList());
+	}
+	
+	@PostMapping
+	public String processDesign(@Valid @ModelAttribute("design") Taco design, Errors errors) {
+		if (errors.hasErrors()) {
+			return "design";
+		}
+		
+		log.info("Processing design: " + design);
+		
+		return "redirect:/orders/current";
+	}
+}
+#+end_src
+
+The @Slf4j is a Lombok-provided annotation, that at runtime will automatically generate an SLF4J Logger for the current class with object name as /log/. We can use /log/ object to log any value in the class. The @Controller annotation declares current class as controller and marks it for componeent scanning. When Spring discovers the class it will create an instance of DesignTacoController as a bean in the Spring application context. We also annotate the class with @RequestMapping with path that begins with /design. In this case, it specifies that DesignTacocontroller will handle request whose path begins with /design.
+
+We have two methods defined annotated with @GetMapping and @PostMapping. Since we don't add any additional URI, a GET request at /design will call showDesignForm method and a POST request at /design will call processDesign method. We could have also used @RequestMapping(method=RequestMethod.GET), however @GetMapping is much cleaner. Spring MVC supported request-mapping annotations are @RequestMapping (general purpose), @GetMapping (GET), @PostMapping (POST), @PutMapping (PUT), @DeleteMapping (DELETE) and @PatchMapping (HTTP PATCH). The showDesignForm method defines the ingredients list. In latr chapter we will get the list from database. We then filter each data with ingredient type like WRAP, PROTEIN etc. and add it to the Model object. /Model/ is an object that moves data between a controller and whatever view is chared with rendering that data. Ultimately, date that's placed in /Model/ attributes is copied into the servlet response attributes, where the view can find them. The ~showDesignForm()~ method concludes by returning "design", which is the logical name of the view that will be used to render the model to the browser.
+
+**** Designing the view
+Spring offers several great options for defining views, including JavaServer Pages (JSP), Thymeleaf, FreeMaker, Mustache, and Groovy-based templates. Here we'll use Thymeleaf. Since we included thymeleaf starter package in maven dependency, at runtime String Boot autoconfiguration will see that Thymeleaf is in the classpath and will automatically create the beans that support Thymeleaf views for Spring MVC.
+
+View Libraries such as Thymeleaf are designed to be decoupled from any particular web framework. As such, they're unaware of Spring's model abstraction and are unable to work with the data that the controller places in /Model/. *But they can work with servlet request attributes*. Therefore, before Sprig handles the request over to a view, it copies the model data into request attributes that Thymeleaf and other view-templating options have ready access to.
+
+Thymeleaf templates are just HTML with some additional element attributes that guide a template in rendering request data. For example, if there were a request attribute whose key is "message", and you wanted it to be rendered into an HTML <p> tag by Thymeleaf, you'd write the following in your Thymeleaf template:
+
+~<p th:text="${message}">placeholder message</p>~
