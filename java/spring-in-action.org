@@ -847,3 +847,7 @@ Validation for Taco Design looks like following
 And finally once you correct above form, you get to orderForm, where you can enter address and credit card information. Validation error in orderForm.html looks like following.
 
 [[./images/sia/05-taco-order-validation.png]]
+
+And correct data for taco order looks like following
+
+[[./images/sia/06-taco-order-correct-data.png]]
