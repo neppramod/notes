@@ -384,3 +384,466 @@ View Libraries such as Thymeleaf are designed to be decoupled from any particula
 Thymeleaf templates are just HTML with some additional element attributes that guide a template in rendering request data. For example, if there were a request attribute whose key is "message", and you wanted it to be rendered into an HTML <p> tag by Thymeleaf, you'd write the following in your Thymeleaf template:
 
 ~<p th:text="${message}">placeholder message</p>~
+
+When the template is rendered into HTML, the body of the <p> element will be replaced with the value of the servlet request attribute whose key is "message". The th:text attribute is a Thymeleaf-namespaced attribute that perform the replacement. The ${} operator tells it to use the value of a request attribute ("message", in this case).
+
+Thymeleaf also offers another attribute, th:each, that iterates over a collection of elements, rendering the HTML once for each item in the collection. This will come in handy as we design our view to list taco ingredients from the model. For example, to render just the list of "wrap" ingredients, we can use the following snippet of HTML:
+
+#+begin_src html
+<h3>Designate your wrap:</h3>
+<div th:each="ingredient : ${wrap}">
+  <input name="ingredients" type="checkbox" th:value="${ingredient.id}" />
+  <span th:text="${ingredient.name}">INGREDIENT</span><br/>
+</div>
+#+end_src
+
+Here th:each will render new div for each wrap element from the list with the enclosed content. The name of each checkbox will be ingredients. This variable will capture each of the chosen ingredients. However each object of wrap is bound to thymeleaf local variable "ingredient". We can access each attribute using this variable.
+
+A single div will look like following
+#+begin_src html
+div>
+  <input name="ingredients" type="checkbox" value="FLTO" />
+  <span>Flour Tortilla</span><br/>
+</div>
+#+end_src
+
+Below we have complete code for design.html
+#+begin_src html
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Taco Cloud</title>
+	<link rel="stylesheet" th:href="@{/styles.css}" />
+</head>
+
+<body>
+	<h1>Design your taco!</h1>
+	<img th:src="@{/images/TacoCloud.png}" />
+
+	<form method="POST" th:object="${design}">
+
+		<span class="validationError" th:if="${#fields.hasErrors('ingredients')}"
+          th:errors="*{ingredients}">Ingredient Error</span>
+	
+		<div class="grid">
+		
+			<div class="ingredient-group" id="wraps">
+				<h3>Designate your wrap:</h3>
+				<div th:each="ingredient : ${wrap}">
+					<input name="ingredients" type="checkbox" th:value="${ingredient.id}" />
+					<span th:text="${ingredient.name}">INGREDIENT</span><br/>
+					
+				</div>
+			</div>
+		
+			<div class="ingredient-group" id="proteins">
+				<h3>Pick your protein:</h3>
+				<div th:each="ingredient : ${protein}">
+					<input name="ingredients" type="checkbox" th:value="${ingredient.id}" />
+					<span th:text="${ingredient.name}">INGREDIENT</span><br/>
+				</div>
+			</div>
+			
+			<div class="ingredient-group" id="cheeses">
+				<h3>Choose your cheese:</h3>
+				<div th:each="ingredient : ${cheese}">
+					<input name="ingredients" type="checkbox" th:value="${ingredient.id}" />
+					<span th:text="${ingredient.name}">INGREDIENT</span><br/>
+				</div>
+			</div>
+			
+			
+			<div class="ingredient-group" id="veggies">
+				<h3>Determine your veggies:</h3>
+				<div th:each="ingredient : ${veggies}">
+					<input name="ingredients" type="checkbox" th:value="${ingredient.id}" />
+					<span th:text="${ingredient.name}">INGREDIENT</span><br/>
+				</div>
+			</div>
+			
+			<div class="ingredient-group" id="sauces">
+				<h3>Select your sauce:</h3>
+				<div th:each="ingredient : ${sauce}">
+					<input name="ingredients" type="checkbox" th:value="${ingredient.id}" />
+					<span th:text="${ingredient.name}">INGREDIENT</span><br/>
+				</div>
+			</div>
+			
+			
+			<h3>Name your taco creation:</h3>
+			<input type="text" th:field="*{name}" />
+			 <span th:text="${#fields.hasErrors('name')}">XXX</span>
+      		 <span class="validationError"
+            	th:if="${#fields.hasErrors('name')}"
+            	th:errors="*{name}">Name Error</span>
+			<br/>
+			
+			<button>Sumbit your taco</button>
+			
+		</div>
+	</form>
+	
+</body>
+</html>
+#+end_src
+
+We repeat <div> snippet for each type of ingredients. We also include a Submit button for the form. All the form object is bound to "design" object which is a type of model class called Taco. With two attributes: "name" (String) and "ingredients" (list of string). In DesignTacoController, we have defined the "design" key and added to model object. We also link to "TacoCloud.png" using relative path in /static directory. In the processDesign method in the controller we accept model attribute of "design" of type Taco and redirect the request to /orders/current URI. The Taco class looks like following.
+
+#+begin_src java
+package tacos;
+
+import java.util.List;
+
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import lombok.Data;
+
+@Data
+public class Taco {
+	
+	@NotNull
+	@Size(min = 5, message = "Name must be at least 5 characters long")
+	private String name;
+	
+	@Size(min = 1, message = "You must choose at least 1 ingredient")
+	private List<String> ingredients;
+}
+#+end_src
+
+Similarly the redirected /orders/current controller will look like following.
+
+#+begin_src java
+package tacos.web;
+
+import javax.validation.Valid;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import lombok.extern.slf4j.Slf4j;
+import tacos.Order;
+
+@Slf4j
+@Controller
+@RequestMapping("/orders")
+public class OrderController {
+
+	@GetMapping("/current")
+	public String orderForm(Model model) {
+		model.addAttribute("order", new Order());
+		return "orderForm";
+	}
+	
+	@PostMapping
+	public String processOrder(@Valid Order order, Errors errors) {
+		
+		if (errors.hasErrors()) {
+			return "orderForm";
+		}
+		
+		log.info("Order submitted: " + order);
+		return "redirect:/";
+	}
+}
+#+end_src
+
+The GET method for /orders/current will return "orderForm" and post will process the data (nothing for now) and redirect to the home page. The orderForm view will look like following.
+
+#+begin_src html
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Taco Cloud</title>
+	<link rel="stylesheet" th:href="@{/styles.css}" />
+</head>
+
+<body>
+	<form method="POST" th:action="@{/orders}" th:object="${order}">
+		<h1>Order your taco creations!</h1>
+
+		<img th:src="@{/images/TacoCloud.png}" />
+		<a th:href="@{/design}" id="another">Design another taco</a><br />
+
+		<div th:if="${#fields.hasErrors()}">
+				<span class="validationError">
+					Please correct the problems below and resubmit.
+				</span>
+			</div>
+			
+			
+			<h3>Deliver my taco masterpieces to...</h3>
+			<label for="name">Name: </label>
+			<input type="text" th:field="*{name}" />
+			<span class="validationError"
+				th:if="${#fields.hasErrors('name')}"
+				th:errors="*{name}">Name Error</span>
+			<br />
+			<label for="street">Street address: </label>
+			<input type="text" th:field="*{street}" />
+			<span class="validationError"
+            th:if="${#fields.hasErrors('street')}"
+            th:errors="*{street}">Street Error</span>
+			<br />
+			<label for="city">City: </label>
+			<input type="text" th:field="*{city}" />
+			 <span class="validationError"
+            th:if="${#fields.hasErrors('city')}"
+            th:errors="*{city}">City Error</span>
+			<br />
+			<label for="state">State: </label>
+			<input type="text" th:field="*{state}" />
+			 <span class="validationError"
+            th:if="${#fields.hasErrors('state')}"
+            th:errors="*{state}">State Error</span>
+			<br />
+			<label for="zip">Zip code: </label>
+			<input type="text" th:field="*{zip}" />
+			 <span class="validationError"
+            th:if="${#fields.hasErrors('zip')}"
+			<br />
+			
+			<h3>Here's how I'll pay...</h3>
+			<label for="ccNumber">Credit Card #: </label>
+			<input type="text" th:field="*{ccNumber}" />
+			<span class="validationError"
+				th:if="${#fields.hasErrors('ccNumber')}"
+				th:errors="*{ccNumber}">CC Num Error</span>
+				 <span class="validationError"
+            th:if="${#fields.hasErrors('ccNumber')}"
+            th:errors="*{ccNumber}">CC Num Error</span>
+			<br />
+			<label for="ccExpiration">Expiration: </label>
+			<input type="text" th:field="*{ccExpiration}" />
+			 <span class="validationError"
+            	th:if="${#fields.hasErrors('ccExpiration')}"
+            	th:errors="*{ccExpiration}">CC Num Error</span>
+			<br />
+			<label for="ccCVV">CVV: </label>
+			<input type="text" th:field="*{ccCVV}" />
+			 <span class="validationError"
+            th:if="${#fields.hasErrors('ccCVV')}"
+            th:errors="*{ccCVV}">CC Num Error</span>
+			<br />
+			<input type="submit" value="Submit order" />
+			
+		</form>
+	</body>
+
+</html>
+#+end_src
+
+The action of POST is /orders. As you can see in OrderController there is no extra mapping for POSTMapping. Thus processOrder method will handle the post method. The form field maps to Order class just like Taco. Below is the code for Order class.
+
+#+begin_src java
+package tacos;
+
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+
+import org.hibernate.validator.constraints.CreditCardNumber;
+
+import lombok.Data;
+
+@Data
+public class Order {
+	
+	@NotBlank(message = "Name is required")
+	private String name;
+	
+	@NotBlank(message = "Street is required")
+	private String street;
+	
+	@NotBlank(message = "City is required")
+	private String city;
+	
+	@NotBlank(message = "State is required")
+	private String state;
+	
+	@NotBlank(message = "Zip code is required")
+	private String zip;
+	
+	@CreditCardNumber(message = "Not a valid credit card number")
+	private String ccNumber;
+	
+	@Pattern(regexp="^(0[1-9]|1[0-2])([\\/])([1-9][0-9])$",
+	           message="Must be formatted MM/YY")
+	private String ccExpiration;
+	
+	@Digits(integer=3, fraction = 0, message = "Invalid CVV")
+	private String ccCVV;
+}
+#+end_src
+
+*** Validating form input
+If you see Taco and Order class, we have added different validation rules for each attributes. E.g. We specified that name should not be null and should contain at least 5 character. We also specify the message that needs to be displayed when the rule is not met. In case or Order class we use @CreditCardNumber annotation from hibernate (that checks with Luhn_algorithm) for credit card number. For ccExpiration date, we define our own regex rule. In the processDesign method we return back the view "design" if the form has errors. We do same for processOrder method. We use @Valid annotation to instruct the method to validate Order. To display validation errors, we can use a class "validationError" that displays differently using css style. The syntax is as follows for credit card number.
+
+#+begin_src html
+<label for="ccNumber">Credit Card #: </label>
+        <input type="text" th:field="*{ccNumber}"/>
+        <span class="validationError"
+              th:if="${#fields.hasErrors('ccNumber')}"
+              th:errors="*{ccNumber}">CC Num Error</span>
+#+end_src
+
+The code for orderForm.html looks like following.
+
+#+begin_src html
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Taco Cloud</title>
+	<link rel="stylesheet" th:href="@{/styles.css}" />
+</head>
+
+<body>
+	<form method="POST" th:action="@{/orders}" th:object="${order}">
+		<h1>Order your taco creations!</h1>
+
+		<img th:src="@{/images/TacoCloud.png}" />
+		<a th:href="@{/design}" id="another">Design another taco</a><br />
+
+		<div th:if="${#fields.hasErrors()}">
+				<span class="validationError">
+					Please correct the problems below and resubmit.
+				</span>
+			</div>
+			
+			
+			<h3>Deliver my taco masterpieces to...</h3>
+			<label for="name">Name: </label>
+			<input type="text" th:field="*{name}" />
+			<span class="validationError"
+				th:if="${#fields.hasErrors('name')}"
+				th:errors="*{name}">Name Error</span>
+			<br />
+			<label for="street">Street address: </label>
+			<input type="text" th:field="*{street}" />
+			<span class="validationError"
+            th:if="${#fields.hasErrors('street')}"
+            th:errors="*{street}">Street Error</span>
+			<br />
+			<label for="city">City: </label>
+			<input type="text" th:field="*{city}" />
+			 <span class="validationError"
+            th:if="${#fields.hasErrors('city')}"
+            th:errors="*{city}">City Error</span>
+			<br />
+			<label for="state">State: </label>
+			<input type="text" th:field="*{state}" />
+			 <span class="validationError"
+            th:if="${#fields.hasErrors('state')}"
+            th:errors="*{state}">State Error</span>
+			<br />
+			<label for="zip">Zip code: </label>
+			<input type="text" th:field="*{zip}" />
+			 <span class="validationError"
+            th:if="${#fields.hasErrors('zip')}"
+			<br />
+			
+			<h3>Here's how I'll pay...</h3>
+			<label for="ccNumber">Credit Card #: </label>
+			<input type="text" th:field="*{ccNumber}" />
+			<span class="validationError"
+				th:if="${#fields.hasErrors('ccNumber')}"
+				th:errors="*{ccNumber}">CC Num Error</span>
+				 <span class="validationError"
+            th:if="${#fields.hasErrors('ccNumber')}"
+            th:errors="*{ccNumber}">CC Num Error</span>
+			<br />
+			<label for="ccExpiration">Expiration: </label>
+			<input type="text" th:field="*{ccExpiration}" />
+			 <span class="validationError"
+            	th:if="${#fields.hasErrors('ccExpiration')}"
+            	th:errors="*{ccExpiration}">CC Num Error</span>
+			<br />
+			<label for="ccCVV">CVV: </label>
+			<input type="text" th:field="*{ccCVV}" />
+			 <span class="validationError"
+            th:if="${#fields.hasErrors('ccCVV')}"
+            th:errors="*{ccCVV}">CC Num Error</span>
+			<br />
+			<input type="submit" value="Submit order" />
+			
+		</form>
+	</body>
+</html>
+#+end_src
+
+The css file that helps in displaying error looks like following
+
+#+begin_src css
+div.ingredient-group:nth-child(odd) {
+	float: left;
+	padding-right: 20px;
+}
+
+div.ingredient-group:nth-child(even) {
+    float: left;
+	padding-right: 0;
+}
+
+div.ingredient-group {
+	width: 50%;
+}
+
+.grid:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+*, *:after, *:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+span.validationError {
+	color: red;
+}
+#+end_src
+
+Finally, we can replace HomeController with WebConfi class that works as a view controller. Below is the code
+
+#+begin_src java
+package tacos.web;
+
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+@Configuration
+public class WebConfig implements WebMvcConfigurer {
+
+	// If you just want to forward some request without process
+	// Override addViewControllers method of WebMvcConfigurer interface
+	@Override
+	public void addViewControllers(ViewControllerRegistry registry) {
+		registry.addViewController("/").setViewName("home");
+	}
+}
+#+end_src
+
+The addViewControllers() method is given a ViewControllerRegistry that we can use to register one or more view controllers. Here we pass "/" which is the path to handle GET request for "home" view. With above class you can remove HomeController and HomeControllerTest classes.
+
+If we run the application, the [[http://localhost:8080/design]] looks like following.
+
+[[./images/sia/03-taco-design.png]]
+
+Validation for Taco Design looks like following
+
+[[./images/sia/04-taco-design-validation.png]]
+
+
+And finally once you correct above form, you get to orderForm, where you can enter address and credit card information. Validation error in orderForm.html looks like following.
+
+[[./images/sia/05-taco-order-validation.png]]
