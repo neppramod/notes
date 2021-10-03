@@ -95,3 +95,13 @@ EndSection
 
 
 6. Kde to remember wifi password in connections->Wi-Fi Security (enter password), select Store password for all users (not encrypted).
+
+
+7. Suspend and Resume
+
+/etc/default/grub
+
+GRUB_CMDLINE_LINUX="modprobe.blacklist=thunderbolt efi=noruntime pcie_ports=compat acpi=force acpi_backlight=vendor acpi_osi=Darwin acpi_mask_gpe=0x06"
+
+
+sudo grub-mkconfig -o /boot/grub/grub.cfg
