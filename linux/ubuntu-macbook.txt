@@ -105,3 +105,12 @@ GRUB_CMDLINE_LINUX="modprobe.blacklist=thunderbolt efi=noruntime pcie_ports=comp
 
 
 sudo grub-mkconfig -o /boot/grub/grub.cfg
+
+
+8. Don't suspend external DAC when not used
+
+.config/pulse/default.pa (can copy from global file /etc/pulse/default.pa)
+
+### Automatically suspend sinks/sources that become idle for too long
+#load-module module-suspend-on-idle
+
