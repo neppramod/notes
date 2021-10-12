@@ -94,7 +94,34 @@ Option          "ScrollSensitivity" "0"
 EndSection
 
 
+Other setting
+
+https://ianrenton.com/guides/howto-linux-and-synaptics-touchpads-for-little-fingers/
+https://manpages.ubuntu.com/manpages/precise/man4/synaptics.4.html
+
+Following commands gives current setting
+
+$ synclient
+
+to set a value at runtime
+
+synclient HorizScrollDelta=500
+
 6. Kde to remember wifi password in connections->Wi-Fi Security (enter password), select Store password for all users (not encrypted).
+
+
+
+7. Wifi:
+
+https://nixaid.com/linux-on-macbookpro/
+https://bugzilla.kernel.org/show_bug.cgi?id=193121#c74
+
+sudo apt-get purge bcmwl-kernel-source
+sudo apt update
+sudo update-pciids
+sudo apt install firmware-b43-installer
+sudo reboot
+
 
 
 7. Suspend and Resume
@@ -113,4 +140,105 @@ sudo grub-mkconfig -o /boot/grub/grub.cfg
 
 ### Automatically suspend sinks/sources that become idle for too long
 #load-module module-suspend-on-idle
+
+
+
+
+https://gist.github.com/roadrunner2/1289542a748d9a104e7baec6a92f9cd7
+
+61-evdev-local.hwdb
+
+# MacBook8,1 (2015), MacBook9,1 (2016), MacBook10,1 (2017)
+evdev:name:Apple SPI Touchpad:dmi:*:svnAppleInc.:pnMacBook8,1:*
+evdev:name:Apple SPI Touchpad:dmi:*:svnAppleInc.:pnMacBook9,1:*
+evdev:name:Apple SPI Touchpad:dmi:*:svnAppleInc.:pnMacBook10,1:*
+ EVDEV_ABS_00=::95
+ EVDEV_ABS_01=::90
+ EVDEV_ABS_35=::95
+ EVDEV_ABS_36=::90
+
+# MacBookPro13,* (Late 2016), MacBookPro14,* (Mid 2017)
+evdev:name:Apple SPI Touchpad:dmi:*:svnAppleInc.:pnMacBookPro13,1:*
+evdev:name:Apple SPI Touchpad:dmi:*:svnAppleInc.:pnMacBookPro13,2:*
+evdev:name:Apple SPI Touchpad:dmi:*:svnAppleInc.:pnMacBookPro14,1:*
+evdev:name:Apple SPI Touchpad:dmi:*:svnAppleInc.:pnMacBookPro14,2:*
+ EVDEV_ABS_00=::96
+ EVDEV_ABS_01=::94
+ EVDEV_ABS_35=::96
+ EVDEV_ABS_36=::94
+
+evdev:name:Apple SPI Touchpad:dmi:*:svnAppleInc.:pnMacBookPro13,3:*
+evdev:name:Apple SPI Touchpad:dmi:*:svnAppleInc.:pnMacBookPro14,3:*
+ EVDEV_ABS_00=::96
+ EVDEV_ABS_01=::95
+ EVDEV_ABS_35=::96
+ EVDEV_ABS_36=::95
+
+
+61-libinput-local.hwdb
+
+libinput:name:*Apple SPI Touchpad*:dmi:*
+ LIBINPUT_MODEL_APPLE_TOUCHPAD=1
+ LIBINPUT_ATTR_TOUCH_SIZE_RANGE=200:150
+ LIBINPUT_ATTR_PALM_SIZE_THRESHOLD=1200
+
+libinput:name:*Apple SPI Keyboard*:dmi:*
+ LIBINPUT_ATTR_KEYBOARD_INTEGRATION=internal
+
+https://gist.github.com/roadrunner2/1289542a748d9a104e7baec6a92f9cd7
+
+
+9. Disable network inteface at boot
+
+https://www.xmodulo.com/disable-network-manager-linux.html
+
+sudo vi /etc/network/interfaces
+
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+# network interface not managed by Network Manager
+allow-hotplug wlp3s0
+iface wlp3s0 inet static
+address 10.0.0.10
+netmask 255.255.255.0
+gateway 10.0.0.1
+dns-nameservers 8.8.8.8
+
+
+
+$ nmcli dev status
+
+
+10. Mount virtual drive (iso)
+
+fuseiso ~/game.bin /home/username/virtual-drives/1/
+
+
+
+11. AMD FSR
+
+WINE_FULLSCREEN_FSR=1 %command%
+
+
+12. Disable /proc/acpi/wakeup for usb devices
+
+# /etc/systemd/system/disable-usb-wakeup.service
+[Unit]
+Description=Disable USB controllers in /proc/acpi/wakeup
+
+[Service]
+Type=oneshot
+ExecStart=bash -c '\
+    while read -r device _ status _; do \
+        [[ $device == +([EX]HC*|USB*|PS2*|LID*) && $status == "*enabled" ]] && \
+            echo $device > /proc/acpi/wakeup; \
+    done < /proc/acpi/wakeup; \
+    true \
+'
+
+[Install]
+WantedBy=multi-user.target
 
