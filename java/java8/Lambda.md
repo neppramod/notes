@@ -99,7 +99,7 @@ Hello?
 ```
 ###  Another example
 
-HashMap  compute
+HashMap  [compute](https://docs.oracle.com/javase/8/docs/api/java/util/HashMap.html#compute-K-java.util.function.BiFunction-)
 
 > default [V](https://docs.oracle.com/javase/8/docs/api/java/util/Map.html) compute([K](https://docs.oracle.com/javase/8/docs/api/java/util/Map.html) key, [BiFunction](https://docs.oracle.com/javase/8/docs/api/java/util/function/BiFunction.html)<? super [K](https://docs.oracle.com/javase/8/docs/api/java/util/Map.html),? super [V](https://docs.oracle.com/javase/8/docs/api/java/util/Map.html),? extends [V](https://docs.oracle.com/javase/8/docs/api/java/util/Map.html)> remappingFunction)
 
