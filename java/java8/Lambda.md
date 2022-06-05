@@ -83,7 +83,7 @@ public class Main {
 Hello!
 Hello?
 ```
-###  Code example from CE
+###  Another example
 
 HashMap  compute
 
