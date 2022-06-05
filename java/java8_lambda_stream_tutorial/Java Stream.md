@@ -20,7 +20,7 @@ Consists of a source, followed by zero or more intermediate operations, and a te
 3. Some short-circuiting operations: `limit()` is intermediate operation. Others like `findFirst()`, `findAny()`, `anyMatch()`, `allMatch()`, `noneMatch()` are terminal operations.
 4. Some other terminal operations: `toArray()`, `min()`, `max()`, `count()`, `summaryStatistics()`
 
-![](images/Screenshot_20220605_085049.png = 300x250)
+![](images/Screenshot_20220605_085049.png =300x250)
 
 ### Stream Creation
 You can create Stream in many ways. Few of them are listed below.
