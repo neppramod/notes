@@ -8,7 +8,7 @@ With few lines of code, you can do more. Use lambda expressions for processing. 
 ### Stream Pipeline
 Consists of a source, followed by zero or more intermediate operations, and a terminal operation.
 
-![[images/Screenshot_20220604_075936.png]]
+ [[images/Screenshot_20220604_075936.png]]
 
 1. Streams can be created from Collections, Lists, Sets, ints, longs, doubles, arrays, lines of files etc.
 2. Intermediate operations such as `filter`, `map` or `sort` return a stream so we can chain multiple intermediate operations.
