@@ -256,7 +256,6 @@ public class StreamExamples {
 
 
 ## References
-1. https://stackify.com/streams-guide-java-8/
-2. [Java 8 STREAMS Tutorial](https://www.youtube.com/watch?v=t1-YZ6bF-g0)
-3. https://www.logicbig.com/tutorials/core-java-tutorial/java-util-stream/short-circuiting.html
-4. [Java Lambda and Stream Full Course | Zero to Hero | Complete Course | Venkat Subramaniam](https://www.youtube.com/watch?v=rGJAk2W2HbI)
+1. [Java 8 STREAMS Tutorial](https://www.youtube.com/watch?v=t1-YZ6bF-g0)
+2. https://www.logicbig.com/tutorials/core-java-tutorial/java-util-stream/short-circuiting.html
+3. [Java Lambda and Stream Full Course | Zero to Hero | Complete Course | Venkat Subramaniam](https://www.youtube.com/watch?v=rGJAk2W2HbI)
