@@ -13,6 +13,20 @@ Lambda Expressions were added in Java 8.
   
 
 ## Examples
+
+### Imports
+```java
+import java.util.*;
+import java.lang.String;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.*;
+import java.util.function.*;
+import java.nio.file.*;
+import java.io.IOException;
+import static java.util.stream.Collectors.*;
+```
+
 ### ArrayList class provides forEach method that supports lambda expression.
 
 > public void forEach([Consumer](https://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html "interface in java.util.function")<? super [E](https://docs.oracle.com/javase/8/docs/api/java/util/ArrayList.html "type parameter in ArrayList")> action)
