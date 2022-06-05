@@ -90,9 +90,9 @@ public class StreamExamples {
 
 	// 4. Integer Stream with sum
 	System.out.println(
-	   IntStream
-	   .range(1, 5)    // exclusive
-	   .sum());
+			   IntStream
+			   .range(1, 5)    // exclusive
+			   .sum());
 	// 10  
 
 	// 5. Stream.of, sorted and findFirst (returns Optional)
@@ -137,7 +137,7 @@ public class StreamExamples {
 	  Lady Gaga
 	  Jackson Browne
 	  Maroon 5
-	 */
+	*/
 	Stream<String> bands = Files.lines(Paths.get("bands.txt"));
 
 	bands
@@ -170,7 +170,7 @@ public class StreamExamples {
 	  D,23,2.7
 	  E
 	  F,18,3.4
-	 */
+	*/
 	Stream<String> rows1 = Files.lines(Paths.get("data.txt"));
 	int rowCount = (int)rows1
 	    .map(x -> x.split(","))
@@ -197,7 +197,7 @@ public class StreamExamples {
 
 	// 13. Stream rows from CSV file, store fields in HashMap
 	Stream<String> rows3 = Files.lines(Paths.get("data.txt"));
-	Map<String, Integer> map = rows3
+	Map<String, Integer> map1 = rows3
 	    .map(x -> x.split(","))
 	    .filter(x -> x.length == 3)
 	    .filter(x -> Integer.parseInt(x[1]) > 15)
@@ -207,8 +207,8 @@ public class StreamExamples {
 
 	System.out.println();
 	
-	for (String key : map.keySet()) {
-	    System.out.println(key + " " + map.get(key));
+	for (String key : map1.keySet()) {
+	    System.out.println(key + " " + map1.get(key));
 	}
 	
 	// map.entrySet().stream().forEach(e -> System.out.println(e.getKey() + " " + e.getValue()));
@@ -216,10 +216,10 @@ public class StreamExamples {
 	// import static java.util.stream.Collectors.*;
 	// Let's say we have Person(name:String, age:int) => ("Jack", 23), ("Jack", 15), ("Bob", 18)
 	List<Person> people = Arrays.asList(new Person("Jack", 23), new Person("Jack", 15), new Person("Bob", 18));
-	Map<String, List<Integer>> map = people.stream()
+	Map<String, List<Integer>> map2 = people.stream()
 	    .collect(groupingBy(Person::getName, mapping(Person::getAge, toList())));
 
-	System.out.println(map);
+	System.out.println(map2);
 	// {Bob=[18], Jack=[23, 15]}
 	
 		
@@ -238,17 +238,17 @@ public class StreamExamples {
 
     }    
 	
-	static class Person {
-		private String name;
-		private int age;
+    static class Person {
+	private String name;
+	private int age;
 		
-		public Person(String name, int age) {
-			this.name = name;
-			this.age = age;
-		}
+	public Person(String name, int age) {
+	    this.name = name;
+	    this.age = age;
+	}
 
-		public String getName() { return this.name; }
-		public int getAge() { return this.age; }
+	public String getName() { return this.name; }
+	public int getAge() { return this.age; }
     }
 }
 ```
