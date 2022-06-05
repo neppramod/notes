@@ -56,6 +56,7 @@ import java.util.stream.*;
 import java.util.*;
 import java.nio.file.*;
 import java.io.IOException;
+import static java.util.stream.Collectors.*;
 
 // Few modifications to : https://github.com/joeyajames/Java/blob/master/Java%208%20Streams/JavaStreams.java
 public class StreamExamples {
