@@ -110,24 +110,32 @@ HashMap  compute
 There is Function<T,R> interface for single operation.
 
 ```java
-addFieldCount("state", "CA")
-addFieldCount("state", "CA")
-addFieldCount("state", "VA")
-addFieldCount("state", "va")
-addFieldCount("state", "CA")
-```
-// {state={va=2, ca=3}}
-```java
-private void addFieldCount(String field, String fieldValue) {
+public class Main {
+    static Map<String, Map<String, Integer>> fieldsMap = new HashMap<>();
+    
+    public static void main(String[] args) {
+	addFieldCount("state", "CA");
+	addFieldCount("state", "CA");
+	addFieldCount("state", "VA");
+	addFieldCount("state", "va");
+	addFieldCount("state", "CA");
+
+	System.out.println(fieldsMap);
+    }
+
+    static void addFieldCount(String field, String fieldValue) {
 
 	Map<String, Integer> fieldMap = fieldsMap.getOrDefault(field, new HashMap<>());
 
-	if (StringUtils.isNotBlank(fieldValue)) {
-		fieldMap.compute(fieldValue.toLowerCase(), (k, v) -> (v == null) ? 1 : v + 1);
+	if (fieldValue != null && fieldValue.length() > 0) {
+	    fieldMap.compute(fieldValue.toLowerCase(), (k, v) -> (v == null) ? 1 : v + 1);
 	}
 
 	fieldsMap.putIfAbsent(field, fieldMap);
+    }
 }
+
+// {state={va=2, ca=3}}
 ```
 
 ### References
