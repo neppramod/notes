@@ -21,6 +21,7 @@ Consists of a source, followed by zero or more intermediate operations, and a te
 4. Some other terminal operations: `toArray()`, `min()`, `max()`, `count()`, `summaryStatistics()`
 
 ![](images/Screenshot_20220605_085049.png | width=300)
+<img src="images/Screenshot_20220605_085049.png" width="100" height="100">
 
 ### Stream Creation
 You can create Stream in many ways. Few of them are listed below.
